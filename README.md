@@ -1,0 +1,1 @@
+do "ant all" to do everything to instantly run a clean compiled version of the program in one command.
