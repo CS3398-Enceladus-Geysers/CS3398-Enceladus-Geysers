@@ -1,10 +1,13 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 import java.util.EnumMap;
 import java.util.LinkedList;
 
@@ -12,10 +15,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import input.Id;
+
 /**
  * The main driver class for the game, also a {@link KeyListener}.
  */
 public class Main implements KeyListener {
+	public static Handler handler;
+	
 	/**
 	 * This class represents a scene which we can swap to using
 	 * transitionScene(Scenes)
@@ -59,6 +66,7 @@ public class Main implements KeyListener {
 		public void addGameComponent(GameComponent gc) {
 			gameComponents.add(gc);
 			gc.repaint();
+			init();
 		}
 
 		@Override
@@ -77,7 +85,7 @@ public class Main implements KeyListener {
 
 	/** This is the dimensions for the panel which is always displayed. */
 	private static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
-	private static final JFrame GAME_WINDOW = new JFrame("Title TBA");
+	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	/** This variable tells us which scene we're currently in. */
 	private static Scenes scene;
 	/**
@@ -159,6 +167,43 @@ public class Main implements KeyListener {
 	 * @param args arguments passed by the command line, which are ignored.
 	 * @throws Exception if a file cannot be loaded.
 	 */
+	
+	public void render() {
+		BufferStrategy bs = getBufferStrategy();
+		if(bs==null) {
+			createBufferStrategy(3);
+			return;
+		}
+		
+		Graphics g = bs.getDrawGraphics();
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0, 30, 30);
+		handler.render(g);
+		g.dispose();
+		bs.show();
+	}
+	private void createBufferStrategy(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private BufferStrategy getBufferStrategy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void init(){
+		handler = new Handler();
+		
+		handler.addEntity(new Player(300,512,64,64,true,Id.player,handler));
+		handler.addTile(new Wall(200,200,64,64,true,Id.wall,handler));
+	}
+	
+	public void movement() {
+		
+		handler.movement();
+	}
+
 	public static void main(String[] args) throws Exception {
 		new Main();
 	}
