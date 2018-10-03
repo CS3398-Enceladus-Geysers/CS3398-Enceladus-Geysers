@@ -1,76 +1,63 @@
 package game;
-import java.awt.Graphics;
 
-import input.Id;
+import java.awt.Point;
 
+public abstract class Entity extends LevelObject {
+	private static final double GRAVITY_CONSTANT = 1.0 / 60, MAX_FALLING_SPEED = 1.0 / 6;
+	private double dx, dy;
+	private boolean gravitational;
+	private boolean grounded;
 
-public abstract class Entity{
-	
-	public double x, y;
-	public int width, height; 
-	public boolean solid;
-	public int dx,dy;
-	public Id id;
-	public Handler handler;
-	public boolean jumping = false;
-	public boolean falling = true; 
-	public double gravity = 0.0;
-
-	public Entity(int x, int y, int width, int height, boolean solid,Id id, Handler handler){
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.solid = solid;
-		this.id = id;
-		this.handler = handler;
-	}
-	 
-	public abstract void render(Graphics g);
-	public abstract void movement();
-	
-	public void die() {
-		handler.removeEntity(this);
+	public final boolean isGravitational() {
+		return gravitational;
 	}
 
-	public double getX() {
-		return x;
+	protected final boolean isGrounded() {
+		return grounded;
 	}
 
-	public void setX(double x) {
-		this.x = x;
+	public Entity(Point cameraLocation, double x, double y, double width, double height, boolean gravitational) {
+		super(cameraLocation, x, y, width, height);
+		this.gravitational = gravitational;
 	}
 
-	public double getY() {
-		return y;
+	@Override
+	public void act() {
+		super.act();
+		if (gravitational)
+			applyGravityAcceleration();
+		updateVelocity();
+		move();
 	}
 
-	public void setY(double y) {
-		this.y = y;
+	private void applyGravityAcceleration() {
+		dy = Math.min(dy + (GRAVITY_CONSTANT * Main.SIZE_FACTOR), MAX_FALLING_SPEED * Main.SIZE_FACTOR);
 	}
 
-	public boolean isSolid() {
-		return solid;
+	public final void ground(LevelObject lc) {// TODO Change to terrain instead of LevelComponent.
+		// TODO Move to not collide with lc
+		grounded = true;
 	}
 
-	public int getDx() {
+	public abstract void updateVelocity();
+
+	private final void move() {
+		absoluteLocation.translate((int) dx, (int) dy);
+	}
+
+	protected double getDx() {
 		return dx;
 	}
 
-	public void setDx(int dx) {
-		this.dx = dx;
-	}
-
-	public int getDy() {
+	protected double getDy() {
 		return dy;
 	}
 
-	public void setDy(int dy) {
-		this.dy = dy;
-	}
-	
-	public Id getId() {
-		return id;
+	protected void setDx(double dx) {
+		this.dx = dx * Main.SIZE_FACTOR;
 	}
 
+	protected void setDy(double dy) {
+		this.dy = dy * Main.SIZE_FACTOR;
+	}
 }

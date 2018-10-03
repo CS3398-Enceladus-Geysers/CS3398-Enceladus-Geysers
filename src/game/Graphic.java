@@ -12,6 +12,8 @@ public abstract class Graphic extends JComponent {
 	private static final long serialVersionUID = 5084265228790714409L;
 	private boolean expired;
 
+	public abstract void act();
+
 	/**
 	 * Mark this object for destruction.
 	 */

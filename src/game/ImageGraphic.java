@@ -12,7 +12,8 @@ import javax.imageio.ImageIO;
  */
 public class ImageGraphic extends Graphic {
 	private static final long serialVersionUID = 7604033494188278910L;
-	Image image;
+	private final Image facingRight;
+//	private final Image facingLeft;
 
 	/**
 	 * This constructor loads and scales an image, and also sets its size.
@@ -26,8 +27,9 @@ public class ImageGraphic extends Graphic {
 	 */
 	public ImageGraphic(String fileName, double width, double height) throws Exception {
 		setSize((int) (width * Main.SIZE_FACTOR), (int) (height * Main.SIZE_FACTOR));
-		image = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName))).getScaledInstance(getWidth(),
-				getHeight(), Image.SCALE_DEFAULT);
+		facingRight = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName))).getScaledInstance(getWidth(),
+				getHeight(), Image.SCALE_AREA_AVERAGING);
+		// TODO Uncomment facingLeft and implement an Image Flip.
 	}
 
 	/**
@@ -37,6 +39,10 @@ public class ImageGraphic extends Graphic {
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
-		g.drawImage(image, 0, 0, null);
+		g.drawImage(facingRight, 0, 0, null);
+	}
+
+	@Override
+	public void act() {
 	}
 }
