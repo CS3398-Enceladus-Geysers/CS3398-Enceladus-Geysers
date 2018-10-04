@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -15,7 +16,7 @@ import javax.swing.WindowConstants;
  * The main driver class for the game, also a {@link KeyListener}.
  */
 public class Main implements KeyListener {
-	private Player player;
+	private static Player player;
 	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
 	public static final int FPS_LIMIT = 30;
 
@@ -53,16 +54,9 @@ public class Main implements KeyListener {
 				SCENES_MAP.put(s, new Scene() {
 					private static final long serialVersionUID = 6758001109836539535L;
 
-					@Override
 					public void act() {
 						super.act();
-						// Act for just level
-						Rectangle r = player.occupiedSpace.getBounds();
-						Point p = new Point((int) r.getCenterX(), (int) r.getCenterY());
-						p.translate((int) (-GAME_PANEL_DIMENSION.getWidth() / 2),
-								(int) (-GAME_PANEL_DIMENSION.getHeight() * 2 / 3));
-						cameraLocation.setLocation(p);
-						// TODO Do physics on terrain.
+						followPlayerWithCamera(1.0 / 2, 2.0 / 3);
 					}
 				});
 			} else
@@ -73,6 +67,28 @@ public class Main implements KeyListener {
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
 		player = new Player(level.getCameraLocation());
 		level.addGameComponent(player);
+		GameObject healthbar = new GameObject(10.0 / 60, 10.0 / 60);// TODO Change params to choose where on screen
+																	// healthbar goes.
+		Graphic healthbarGraphic = new Graphic() {
+			private static final long serialVersionUID = 3237106029139727237L;
+			int lastHP;
+
+			@Override
+			public void act() {
+				if (player.getHP() != lastHP)
+					repaint();
+				lastHP = player.getHP();
+			}
+
+			@Override
+			public void paintComponent(Graphics g) {
+				int health = player.getHP();
+				// TODO Draw something based on health.
+			}
+		};
+//		healthbarGraphic.setSize(,); TODO Set the size of the healthbargraphic
+		healthbar.addGraphic(healthbarGraphic);
+		level.addGameComponent(healthbar);
 		// TODO Add components to the level.
 		// Demonstration.
 		GAME_WINDOW.addKeyListener(this);
@@ -102,7 +118,7 @@ public class Main implements KeyListener {
 		CURRENTLY_PRESSED_KEYS.remove(e.getKeyCode());
 	}
 
-	/** Let's not use this one, it still must be implemented though. */
+	/** Let's not use this one, it's for typing. */
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
@@ -124,5 +140,9 @@ public class Main implements KeyListener {
 	 */
 	public static void main(String[] args) throws Exception {
 		new Main();
+	}
+
+	public static final Player getPlayer() {
+		return player;
 	}
 }

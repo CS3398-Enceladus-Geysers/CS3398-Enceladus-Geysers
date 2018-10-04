@@ -3,13 +3,18 @@ package game;
 import java.awt.Point;
 
 /**
- * A {@link GameComponent} that depends on the game camera.
+ * A {@link GameObject} that depends on the game camera.
  */
-public abstract class LevelObject extends GameObject {
+public abstract class CameraObservedObject extends GameObject {
 	protected Hitbox occupiedSpace;
 	private final Point cameraLocation;
 
-	public final boolean collidesWith(LevelObject lc) {
+	@Override
+	public void act() {
+		updateLocation();
+	}
+
+	public final boolean collidesWith(CameraObservedObject lc) {
 		return occupiedSpace.collidesWith(lc.occupiedSpace);
 	}
 
@@ -26,17 +31,13 @@ public abstract class LevelObject extends GameObject {
 	 * @param absoluteLocation The object's current location, independent of the
 	 *                         camera.
 	 */
-	public LevelObject(Point cameraLocation, double x, double y, double width, double height) {
+	public CameraObservedObject(Point cameraLocation, double x, double y, double width, double height) {
 		super(x, y);
 		this.cameraLocation = cameraLocation;
 		occupiedSpace = new Hitbox(width, height, absoluteLocation);
 	}
 
-	/**
-	 * @see game.GameComponent#updateBounds()
-	 */
-	@Override
-	protected final void updateBounds() {
+	protected final void updateLocation() {
 		for (Graphic graphic : getGraphics()) {
 			graphic.setLocation(getScreenLocation());
 		}

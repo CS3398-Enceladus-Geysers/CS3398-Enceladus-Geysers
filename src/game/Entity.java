@@ -2,7 +2,7 @@ package game;
 
 import java.awt.Point;
 
-public abstract class Entity extends LevelObject {
+public abstract class Entity extends CameraObservedObject {
 	private static final double GRAVITY_CONSTANT = 1.0 / 60, MAX_FALLING_SPEED = 1.0 / 6;
 	private double dx, dy;
 	private boolean gravitational;
@@ -23,18 +23,18 @@ public abstract class Entity extends LevelObject {
 
 	@Override
 	public void act() {
-		super.act();
 		if (gravitational)
 			applyGravityAcceleration();
 		updateVelocity();
 		move();
+		super.act();
 	}
 
 	private void applyGravityAcceleration() {
 		dy = Math.min(dy + (GRAVITY_CONSTANT * Main.SIZE_FACTOR), MAX_FALLING_SPEED * Main.SIZE_FACTOR);
 	}
 
-	public final void ground(LevelObject lc) {// TODO Change to terrain instead of LevelComponent.
+	public final void ground(CameraObservedObject lc) {// TODO Change to terrain instead of LevelComponent.
 		// TODO Move to not collide with lc
 		grounded = true;
 	}

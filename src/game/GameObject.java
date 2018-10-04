@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * One independent part of the game, bound to a location.
  */
-public abstract class GameObject {
+public class GameObject {
 	protected final Point absoluteLocation;
 	/** This exists so that one GameObject can have multiple graphical parts. */
 	private final ArrayList<Graphic> graphics = new ArrayList<Graphic>();
@@ -30,7 +30,6 @@ public abstract class GameObject {
 	}
 
 	public void act() {
-		updateBounds();
 	}
 
 	/**
@@ -72,9 +71,4 @@ public abstract class GameObject {
 	public final void repaint() {
 		repaint = true;
 	}
-
-	/**
-	 * Update the bounds of all attached graphics.
-	 */
-	protected abstract void updateBounds();
 }

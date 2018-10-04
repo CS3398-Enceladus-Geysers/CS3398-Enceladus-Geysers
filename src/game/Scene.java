@@ -3,6 +3,7 @@ package game;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
@@ -14,7 +15,15 @@ import javax.swing.JPanel;
 public class Scene extends JPanel {
 	private static final long serialVersionUID = -6926746677172868739L;
 	protected final Point cameraLocation;
-	private final LinkedList<GameObject> gameComponents = new LinkedList<GameObject>();
+	protected final LinkedList<GameObject> gameObjects = new LinkedList<GameObject>();
+
+	protected final void followPlayerWithCamera(double screenWidthFraction, double screenHeightFraction) {
+		Rectangle r = Main.getPlayer().occupiedSpace.getBounds();
+		Point p = new Point((int) r.getCenterX(), (int) r.getCenterY());
+		p.translate((int) (-Main.GAME_PANEL_DIMENSION.getWidth() * screenWidthFraction),
+				(int) (-Main.GAME_PANEL_DIMENSION.getHeight() * screenHeightFraction));
+		cameraLocation.setLocation(p);
+	}
 
 	public final Point getCameraLocation() {
 		return cameraLocation;
@@ -27,7 +36,9 @@ public class Scene extends JPanel {
 
 	/** Will be called on every frame. */
 	public void act() {
-		for (GameObject gc : gameComponents) {
+		for (GameObject gc : gameObjects) {
+			if (gc.isExpired())
+				gameObjects.remove(gc);
 			gc.act();
 			if (gc.needsPainting()) {
 				gc.markPainted();
@@ -52,7 +63,7 @@ public class Scene extends JPanel {
 	}
 
 	public void addGameComponent(GameObject gc) {
-		gameComponents.add(gc);
+		gameObjects.add(gc);
 		gc.repaint();
 	}
 
