@@ -34,9 +34,13 @@ public abstract class Entity extends CameraObservedObject {
 		dy = Math.min(dy + (GRAVITY_CONSTANT * Main.SIZE_FACTOR), MAX_FALLING_SPEED * Main.SIZE_FACTOR);
 	}
 
-	public final void ground(CameraObservedObject lc) {// TODO Change to terrain instead of LevelComponent.
-		// TODO Move to not collide with lc
-		grounded = true;
+	public final boolean exclusionPrinciple(Terrain trr) {
+		// TODO Move entity to not collide with terrain.
+		return false;// TODO Change to return true if object is on top
+	}
+
+	public final void setGrounded(boolean grounded) {
+		this.grounded = grounded;
 	}
 
 	public abstract void updateVelocity();

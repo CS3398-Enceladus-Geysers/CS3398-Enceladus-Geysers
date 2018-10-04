@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -12,6 +13,7 @@ import javax.imageio.ImageIO;
  */
 public class ImageGraphic extends Graphic {
 	private static final long serialVersionUID = 7604033494188278910L;
+	private static final HashMap<String, Image> RESOURCES = new HashMap<String, Image>();
 	private final Image facingRight;
 //	private final Image facingLeft;
 
@@ -27,9 +29,15 @@ public class ImageGraphic extends Graphic {
 	 */
 	public ImageGraphic(String fileName, double width, double height) throws Exception {
 		setSize((int) (width * Main.SIZE_FACTOR), (int) (height * Main.SIZE_FACTOR));
-		facingRight = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName))).getScaledInstance(getWidth(),
-				getHeight(), Image.SCALE_AREA_AVERAGING);
+		if (RESOURCES.containsKey(fileName)) {
+			facingRight = RESOURCES.get(fileName);
+		} else {
+			facingRight = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName)))
+					.getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
+			RESOURCES.put(fileName, facingRight);
+		}
 		// TODO Uncomment facingLeft and implement an Image Flip.
+		// TODO Also differentiate different facing images in RESOURCES HashMap.
 	}
 
 	/**

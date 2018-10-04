@@ -66,7 +66,15 @@ public class Scene extends JPanel {
 				}
 			}
 		}
-		// TODO Finish physics collision here.
+		for (Entity grv : gravitational) {
+			boolean grounded = false;
+			for (Terrain trr : terrain) {
+				if (grv.collidesWith(trr)) {
+					grounded |= grv.exclusionPrinciple(trr);
+				}
+			}
+			grv.setGrounded(grounded);
+		}
 		Component[] c = getComponents();
 		for (int x = 0; x < c.length; x++) {
 			if (((Graphic) c[x]).isExpired())
