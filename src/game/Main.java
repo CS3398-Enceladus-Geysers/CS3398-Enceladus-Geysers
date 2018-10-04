@@ -62,6 +62,43 @@ public class Main implements KeyListener {
 			} else
 				SCENES_MAP.put(s, new Scene());
 		}
+		
+		// TODO Add components to each other scene.
+				transitionScene(ScenesEnum.TITLE);
+				Scene level = SCENES_MAP.get(ScenesEnum.TITLE);
+				//player = new Player(level.getCameraLocation());
+				//level.addGameComponent(player);
+				GameObject startScene = new GameObject(10.0 / 60, 10.0 / 60);// TODO Change params to choose size of menu
+				Graphic startSceneGraphic = new Graphic() {
+					private static final long serialVersionUID = 3237106029139727237L;
+					
+
+					@Override
+					public void paintComponent(Graphics g) {
+						//int health = player.getHP();
+						// TODO Draw something based on health.
+					}
+				};
+//				startScene.setSize(,); TODO Set the size of the startScene
+				startScene.addGraphic(startSceneGraphic);
+				level.addGameComponent(startScene);
+				// TODO Add components to the level.
+				// Demonstration.
+				GAME_WINDOW.addKeyListener(this);
+				GAME_WINDOW.pack();
+				GAME_WINDOW.setResizable(false);
+				GAME_WINDOW.setLocationRelativeTo(null);
+				GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				GAME_WINDOW.setVisible(true);
+				long lastFrameTime = System.currentTimeMillis();
+				while (true) {
+					if (System.currentTimeMillis() - lastFrameTime < 1000.0 / FPS_LIMIT)
+						Thread.sleep((int) (1000.0 / FPS_LIMIT - System.currentTimeMillis() + lastFrameTime));
+					lastFrameTime = System.currentTimeMillis();
+					currentScene().act();
+				}
+			}
+
 		// TODO Add components to each other scene.
 		transitionScene(ScenesEnum.LEVEL);
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
