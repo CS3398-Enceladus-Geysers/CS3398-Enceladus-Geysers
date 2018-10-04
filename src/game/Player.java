@@ -26,7 +26,4 @@ public class Player extends Character {
 //			}
 		}
 	}
-
-	private void jump() {
-	}
 }

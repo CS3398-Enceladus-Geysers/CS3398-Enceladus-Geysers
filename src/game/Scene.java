@@ -16,6 +16,8 @@ public class Scene extends JPanel {
 	private static final long serialVersionUID = -6926746677172868739L;
 	protected final Point cameraLocation;
 	protected final LinkedList<GameObject> gameObjects = new LinkedList<GameObject>();
+	protected final LinkedList<Terrain> terrain = new LinkedList<Terrain>();
+	protected final LinkedList<Entity> gravitational = new LinkedList<Entity>();
 
 	protected final void followPlayerWithCamera(double screenWidthFraction, double screenHeightFraction) {
 		Rectangle r = Main.getPlayer().occupiedSpace.getBounds();
@@ -36,13 +38,22 @@ public class Scene extends JPanel {
 
 	/** Will be called on every frame. */
 	public void act() {
-		for (GameObject gc : gameObjects) {
-			if (gc.isExpired())
-				gameObjects.remove(gc);
-			gc.act();
-			if (gc.needsPainting()) {
-				gc.markPainted();
-				for (Graphic g : gc.getGraphics()) {
+		for (GameObject go : gameObjects) {
+			if (go.isExpired()) {
+				gameObjects.remove(go);
+				if (go instanceof Entity) {
+					Entity ent = (Entity) go;
+					if (ent.isGravitational())
+						gravitational.remove(ent);
+				} else if (go instanceof Terrain) {
+					Terrain trr = (Terrain) go;
+					terrain.remove(trr);
+				}
+			}
+			go.act();
+			if (go.needsPainting()) {
+				go.markPainted();
+				for (Graphic g : go.getGraphics()) {
 					boolean flag = true;
 					Component[] c = getComponents();
 					for (int x = 0; x < c.length; x++) {
@@ -55,6 +66,7 @@ public class Scene extends JPanel {
 				}
 			}
 		}
+		// TODO Finish physics collision here.
 		Component[] c = getComponents();
 		for (int x = 0; x < c.length; x++) {
 			if (((Graphic) c[x]).isExpired())
@@ -62,9 +74,17 @@ public class Scene extends JPanel {
 		}
 	}
 
-	public void addGameComponent(GameObject gc) {
-		gameObjects.add(gc);
-		gc.repaint();
+	public void addGameComponent(GameObject go) {
+		gameObjects.add(go);
+		go.repaint();
+		if (go instanceof Entity) {
+			Entity ent = (Entity) go;
+			if (ent.isGravitational())
+				gravitational.add(ent);
+		} else if (go instanceof Terrain) {
+			Terrain trr = (Terrain) go;
+			terrain.add(trr);
+		}
 	}
 
 	@Override

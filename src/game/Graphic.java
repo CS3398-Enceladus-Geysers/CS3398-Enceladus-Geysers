@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import javax.swing.JComponent;
 
@@ -11,6 +12,27 @@ import javax.swing.JComponent;
 public abstract class Graphic extends JComponent {
 	private static final long serialVersionUID = 5084265228790714409L;
 	private boolean expired;
+	private final int xoffset, yoffset;
+
+	public void setLocation(Point p) {
+		Point np = ((Point) p.clone());
+		np.translate(xoffset, yoffset);
+		super.setLocation(np);
+	}
+
+	public void setLocation(int x, int y) {
+		super.setLocation(x + xoffset, y + yoffset);
+	}
+
+	public Graphic(double xoffset, double yoffset) {
+		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
+		this.yoffset = (int) (yoffset * Main.SIZE_FACTOR);
+	}
+
+	public Graphic() {
+		this.xoffset = 0;
+		this.yoffset = 0;
+	}
 
 	public abstract void act();
 

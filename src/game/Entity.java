@@ -5,7 +5,7 @@ import java.awt.Point;
 public abstract class Entity extends CameraObservedObject {
 	private static final double GRAVITY_CONSTANT = 1.0 / 60, MAX_FALLING_SPEED = 1.0 / 6;
 	private double dx, dy;
-	private boolean gravitational;
+	private final boolean gravitational;
 	private boolean grounded;
 
 	public final boolean isGravitational() {
