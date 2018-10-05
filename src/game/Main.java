@@ -14,22 +14,22 @@ import javax.swing.WindowConstants;
  * The main driver class for the game, also a {@link KeyListener}.
  */
 public class Main implements KeyListener {
-	// TODO Add a clickable game object class.
-	private static Player player;
-	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
-	public static final int FPS_LIMIT = 30;
-
 	/** A list of all the scenes. */
 	enum ScenesEnum {
-		LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE
-	};
+	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE
+	}
 
+	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
+	public static final int FPS_LIMIT = 30;
 	/** This determines how big the game is. */
 	public static final Integer SIZE_FACTOR = 60;
 
 	/** This is the dimensions for the panel which is always displayed. */
-	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
+	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);;
+
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
+	// TODO Add javadocs on everything.
+	private static Player player;
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
 	/**
@@ -37,10 +37,6 @@ public class Main implements KeyListener {
 	 * from title to game, etc.
 	 */
 	private static final EnumMap<ScenesEnum, Scene> SCENES_MAP = new EnumMap<ScenesEnum, Scene>(ScenesEnum.class);
-
-	private static final Scene currentScene() {
-		return SCENES_MAP.get(scene);
-	}
 
 	/**
 	 * Here's the meat of the program.
@@ -53,6 +49,7 @@ public class Main implements KeyListener {
 				SCENES_MAP.put(s, new Scene() {
 					private static final long serialVersionUID = 6758001109836539535L;
 
+					@Override
 					public void act() {
 						super.act();
 						followPlayerWithCamera(1.0 / 2, 2.0 / 3);
@@ -68,7 +65,7 @@ public class Main implements KeyListener {
 		level.addGameObject(player);
 		GameObject healthbar = new GameObject(10.0 / 60, 10.0 / 60);// TODO Change params to choose where on screen
 																	// healthbar goes.
-		Graphic healthbarGraphic = new Graphic() {
+		Graphic healthbarGraphic = new Graphic(0, 0) {// TODO Change params to choose the size of the healthbar.
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
 
@@ -85,7 +82,6 @@ public class Main implements KeyListener {
 				// TODO Draw something based on health.
 			}
 		};
-//		healthbarGraphic.setSize(,); TODO Set the size of the healthbargraphic
 		healthbar.addGraphic(healthbarGraphic);
 		level.addGameObject(healthbar);
 		// TODO Add components to the level.
@@ -131,6 +127,10 @@ public class Main implements KeyListener {
 		GAME_WINDOW.repaint();
 	}
 
+	public static final Player getPlayer() {
+		return player;
+	}
+
 	/**
 	 * Just instantiate a Main Object here.
 	 * 
@@ -141,7 +141,7 @@ public class Main implements KeyListener {
 		new Main();
 	}
 
-	public static final Player getPlayer() {
-		return player;
+	private static final Scene currentScene() {
+		return SCENES_MAP.get(scene);
 	}
 }

@@ -14,24 +14,16 @@ public abstract class Graphic extends JComponent {
 	private boolean expired;
 	private final int xoffset, yoffset;
 
-	public void setLocation(Point p) {
-		Point np = ((Point) p.clone());
-		np.translate(xoffset, yoffset);
-		super.setLocation(np);
+	public Graphic(double width, double height) {
+		setSize(scaledSize(width, height));
+		xoffset = 0;
+		yoffset = 0;
 	}
 
-	public void setLocation(int x, int y) {
-		super.setLocation(x + xoffset, y + yoffset);
-	}
-
-	public Graphic(double xoffset, double yoffset) {
+	public Graphic(double xoffset, double yoffset, double width, double height) {
+		setSize(scaledSize(width, height));
 		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
 		this.yoffset = (int) (yoffset * Main.SIZE_FACTOR);
-	}
-
-	public Graphic() {
-		this.xoffset = 0;
-		this.yoffset = 0;
 	}
 
 	public abstract void act();
@@ -66,4 +58,20 @@ public abstract class Graphic extends JComponent {
 	/** Must be overridden. */
 	@Override
 	public abstract void paintComponent(Graphics g);
+
+	@Override
+	public void setLocation(int x, int y) {
+		super.setLocation(x + xoffset, y + yoffset);
+	}
+
+	@Override
+	public void setLocation(Point p) {
+		Point np = ((Point) p.clone());
+		np.translate(xoffset, yoffset);
+		super.setLocation(np);
+	}
+
+	private static final Dimension scaledSize(double width, double height) {
+		return new Dimension((int) (width * Main.SIZE_FACTOR), (int) (height * Main.SIZE_FACTOR));
+	}
 }

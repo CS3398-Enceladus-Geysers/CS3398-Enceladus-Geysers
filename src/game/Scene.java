@@ -16,20 +16,8 @@ public class Scene extends JPanel {
 	private static final long serialVersionUID = -6926746677172868739L;
 	protected final Point cameraLocation;
 	protected final LinkedList<GameObject> gameObjects = new LinkedList<GameObject>();
-	protected final LinkedList<Terrain> terrain = new LinkedList<Terrain>();
 	protected final LinkedList<Entity> gravitational = new LinkedList<Entity>();
-
-	protected final void followPlayerWithCamera(double screenWidthFraction, double screenHeightFraction) {
-		Rectangle r = Main.getPlayer().occupiedSpace.getBounds();
-		Point p = new Point((int) r.getCenterX(), (int) r.getCenterY());
-		p.translate((int) (-Main.GAME_PANEL_DIMENSION.getWidth() * screenWidthFraction),
-				(int) (-Main.GAME_PANEL_DIMENSION.getHeight() * screenHeightFraction));
-		cameraLocation.setLocation(p);
-	}
-
-	public final Point getCameraLocation() {
-		return cameraLocation;
-	}
+	protected final LinkedList<Terrain> terrain = new LinkedList<Terrain>();
 
 	public Scene() {
 		cameraLocation = new Point(0, 0);
@@ -95,8 +83,20 @@ public class Scene extends JPanel {
 		}
 	}
 
+	public final Point getCameraLocation() {
+		return cameraLocation;
+	}
+
 	@Override
 	public final Dimension getPreferredSize() {
 		return Main.GAME_PANEL_DIMENSION;
+	}
+
+	protected final void followPlayerWithCamera(double screenWidthFraction, double screenHeightFraction) {
+		Rectangle r = Main.getPlayer().occupiedSpace.getBounds();
+		Point p = new Point((int) r.getCenterX(), (int) r.getCenterY());
+		p.translate((int) (-Main.GAME_PANEL_DIMENSION.getWidth() * screenWidthFraction),
+				(int) (-Main.GAME_PANEL_DIMENSION.getHeight() * screenHeightFraction));
+		cameraLocation.setLocation(p);
 	}
 }
