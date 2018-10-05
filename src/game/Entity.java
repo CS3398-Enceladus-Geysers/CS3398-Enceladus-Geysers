@@ -8,14 +8,6 @@ public abstract class Entity extends CameraObservedObject {
 	private final boolean gravitational;
 	private boolean grounded;
 
-	public final boolean isGravitational() {
-		return gravitational;
-	}
-
-	protected final boolean isGrounded() {
-		return grounded;
-	}
-
 	public Entity(Point cameraLocation, double x, double y, double width, double height, boolean gravitational) {
 		super(cameraLocation, x, y, width, height);
 		this.gravitational = gravitational;
@@ -30,13 +22,17 @@ public abstract class Entity extends CameraObservedObject {
 		super.act();
 	}
 
-	private void applyGravityAcceleration() {
-		dy = Math.min(dy + (GRAVITY_CONSTANT * Main.SIZE_FACTOR), MAX_FALLING_SPEED * Main.SIZE_FACTOR);
-	}
-
 	public final boolean exclusionPrinciple(Terrain trr) {
 		// TODO Move entity to not collide with terrain.
 		return false;// TODO Change to return true if object is on top
+	}
+
+	public final double getVelocitySlope() {
+		return dy / dx;
+	}
+
+	public final boolean isGravitational() {
+		return gravitational;
 	}
 
 	public final void setGrounded(boolean grounded) {
@@ -44,6 +40,10 @@ public abstract class Entity extends CameraObservedObject {
 	}
 
 	public abstract void updateVelocity();
+
+	private void applyGravityAcceleration() {
+		dy = Math.min(dy + (GRAVITY_CONSTANT * Main.SIZE_FACTOR), MAX_FALLING_SPEED * Main.SIZE_FACTOR);
+	}
 
 	private final void move() {
 		absoluteLocation.translate((int) dx, (int) dy);
@@ -55,6 +55,10 @@ public abstract class Entity extends CameraObservedObject {
 
 	protected double getDy() {
 		return dy;
+	}
+
+	protected final boolean isGrounded() {
+		return grounded;
 	}
 
 	protected void setDx(double dx) {
