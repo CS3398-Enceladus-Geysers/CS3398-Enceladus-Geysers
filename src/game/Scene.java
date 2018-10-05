@@ -49,8 +49,8 @@ public class Scene extends JPanel {
 					Terrain trr = (Terrain) go;
 					terrain.remove(trr);
 				}
-			}
-			go.act();
+			} else
+				go.act();
 			if (go.needsPainting()) {
 				go.markPainted();
 				for (Graphic g : go.getGraphics()) {
@@ -82,7 +82,7 @@ public class Scene extends JPanel {
 		}
 	}
 
-	public void addGameComponent(GameObject go) {
+	public void addGameObject(GameObject go) {
 		gameObjects.add(go);
 		go.repaint();
 		if (go instanceof Entity) {

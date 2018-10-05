@@ -8,6 +8,10 @@ public abstract class Entity extends CameraObservedObject {
 	private final boolean gravitational;
 	private boolean grounded;
 
+	public final double getVelocitySlope() {
+		return dy / dx;
+	}
+
 	public final boolean isGravitational() {
 		return gravitational;
 	}
