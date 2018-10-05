@@ -7,6 +7,13 @@ public class Hitbox {
 	double width, height;
 	Point absoluteLocation;
 
+	public final Point getCorner(boolean top, boolean left) {
+		Rectangle r = getBounds();
+		double x = left ? r.getMinX() : r.getMaxX();
+		double y = top ? r.getMinY() : r.getMaxY();
+		return new Point((int) x, (int) y);
+	}
+
 	public final Rectangle getBounds() {
 		Rectangle r = new Rectangle();
 		r.setLocation(absoluteLocation);
