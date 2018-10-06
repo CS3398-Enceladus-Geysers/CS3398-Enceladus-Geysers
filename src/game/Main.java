@@ -23,10 +23,8 @@ public class Main implements KeyListener {
 	public static final int FPS_LIMIT = 30;
 	/** This determines how big the game is. */
 	public static final Integer SIZE_FACTOR = 60;
-
 	/** This is the dimensions for the panel which is always displayed. */
 	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);;
-
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	// TODO Add javadocs on everything.
 	private static Player player;
