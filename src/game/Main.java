@@ -1,13 +1,17 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.EnumMap;
 import java.util.HashSet;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -21,7 +25,8 @@ public class Main implements KeyListener {
 
 	/** A list of all the scenes. */
 	enum ScenesEnum {
-		LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE
+		LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
+	
 	};
 
 	/** This determines how big the game is. */
@@ -61,7 +66,85 @@ public class Main implements KeyListener {
 			} else
 				SCENES_MAP.put(s, new Scene());
 		}
-		// TODO Add components to each other scene.
+		
+	      // Title Scene
+			transitionScene(ScenesEnum.TITLE);
+			Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
+			GameObject titleScene = new GameObject(10.0 / 60, 10.0 / 60);// TODO Change params to choose where on screen
+																			// healthbar goes.
+			Graphic titleGraphic = new Graphic() {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void act() {
+					
+				}
+
+				@Override
+				public void paintComponent(Graphics g) {
+					g.drawString("Lunar Rebellion... Starting", 60, 60);
+					
+					// TODO Draw something based on title scene.
+					}
+			};
+			titleScene.addGraphic(titleGraphic);
+			title.addGameObject(titleScene);
+			// TODO Add components to the title
+			// Demonstration.
+			GAME_WINDOW.addKeyListener(this);
+			GAME_WINDOW.pack();
+			GAME_WINDOW.setResizable(false);
+			GAME_WINDOW.setLocationRelativeTo(null);
+			GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			GAME_WINDOW.setVisible(true);
+			
+			
+			// Start Menu
+			transitionScene(ScenesEnum.START_MENU);
+			Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
+			GameObject menuScene = new GameObject(10.0 / 60, 10.0 / 60);// TODO Change params to choose where on screen
+																			// healthbar goes.
+			Graphic menuGraphic = new Graphic() {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void act() {
+					
+				}
+
+				@Override
+				public void paintComponent(Graphics m) {
+					
+					Frame f= new JFrame("Lunar Rebellion Menu");    
+			        JPanel panel=new JPanel();  
+			        panel.setBounds(40,80,200,200);    
+			        panel.setBackground(Color.blue);  
+			        JButton b1=new JButton("Start");     
+			        b1.setBounds(50,100,80,30);    
+			        b1.setBackground(Color.black);   
+			        JButton b2=new JButton("Exit");   
+			        b2.setBounds(100,100,80,30);    
+			        b2.setBackground(Color.blue);   
+			        panel.add(b1); panel.add(b2);  
+			        f.add(panel);  
+			                f.setSize(400,400);    
+			                f.setLayout(null);    
+			                f.setVisible(true);    
+				}
+			};
+			titleScene.addGraphic(menuGraphic);
+			title.addGameObject(menuScene);
+			// TODO Add components to the title
+			// Demonstration.
+			GAME_WINDOW.addKeyListener(this);
+			GAME_WINDOW.pack();
+			GAME_WINDOW.setResizable(false);
+			GAME_WINDOW.setLocationRelativeTo(null);
+			GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			GAME_WINDOW.setVisible(true);
+			
+				
+		// Healthbar
 		transitionScene(ScenesEnum.LEVEL);
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
 		player = new Player(level.getCameraLocation());
