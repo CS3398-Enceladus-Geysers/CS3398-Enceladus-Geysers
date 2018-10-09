@@ -7,18 +7,28 @@ import java.util.ArrayList;
  * One independent part of the game, bound to a location.
  */
 public class GameObject {
+	protected final Point absoluteLocation;
 	private boolean expired;
 	/** This exists so that one GameObject can have multiple graphical parts. */
 	private final ArrayList<Graphic> graphics = new ArrayList<Graphic>();
 	/** This marks a GameComponent for its graphics list to be checked again. */
 	private boolean repaint;
-	protected final Point absoluteLocation;
 
 	public GameObject(double x, double y) {
 		absoluteLocation = new Point((int) (x * Main.SIZE_FACTOR), (int) (y * Main.SIZE_FACTOR));
 	}
 
 	public void act() {
+	}
+
+	/**
+	 * Add a graphic to
+	 * 
+	 * @param graphic The graphic to be added.
+	 */
+	protected final void addGraphic(Graphic graphic) {
+		graphics.add(graphic);
+		repaint();
 	}
 
 	public final void expire() {
@@ -60,15 +70,5 @@ public class GameObject {
 	 */
 	public final void repaint() {
 		repaint = true;
-	}
-
-	/**
-	 * Add a graphic to
-	 * 
-	 * @param graphic The graphic to be added.
-	 */
-	protected final void addGraphic(Graphic graphic) {
-		graphics.add(graphic);
-		repaint();
 	}
 }

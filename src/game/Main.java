@@ -24,8 +24,8 @@ public class Main implements KeyListener {
 	/** This determines how big the game is. */
 	public static final Integer SIZE_FACTOR = 60;
 	/** This is the dimensions for the panel which is always displayed. */
-	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);;
-	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
+	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
+	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");;
 	// TODO Add javadocs on everything.
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
@@ -36,6 +36,24 @@ public class Main implements KeyListener {
 	 */
 	private static final EnumMap<ScenesEnum, Scene> SCENES_MAP = new EnumMap<ScenesEnum, Scene>(ScenesEnum.class);
 
+	private static final Scene currentScene() {
+		return SCENES_MAP.get(scene);
+	}
+
+	public static final Player getPlayer() {
+		return player;
+	}
+
+	/**
+	 * Just instantiate a Main Object here.
+	 * 
+	 * @param args arguments passed by the command line, which are ignored.
+	 * @throws Exception if a file cannot be loaded.
+	 */
+	public static void main(String[] args) throws Exception {
+		new Main();
+	}
+
 	/**
 	 * Here's the meat of the program.
 	 * 
@@ -43,27 +61,35 @@ public class Main implements KeyListener {
 	 */
 	public Main() throws Exception {
 		for (ScenesEnum s : ScenesEnum.values()) {
-			if (s == ScenesEnum.LEVEL) {
-				SCENES_MAP.put(s, new Scene() {
-					private static final long serialVersionUID = 6758001109836539535L;
-
-					@Override
-					public void act() {
-						super.act();
-						followPlayerWithCamera(1.0 / 2, 2.0 / 3);
-					}
-				});
-			} else
+			if (s != ScenesEnum.LEVEL)
 				SCENES_MAP.put(s, new Scene());
 		}
-		// TODO Add components to each other scene.
+		constructScenes();
 		transitionScene(ScenesEnum.LEVEL);
+		GAME_WINDOW.addKeyListener(this);
+		GAME_WINDOW.pack();
+		GAME_WINDOW.setResizable(false);
+		GAME_WINDOW.setLocationRelativeTo(null);
+		GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		GAME_WINDOW.setVisible(true);
+		long lastFrameTime = System.currentTimeMillis();
+		while (true) {
+			if (System.currentTimeMillis() - lastFrameTime < 1000.0 / FPS_LIMIT)
+				Thread.sleep((int) (1000.0 / FPS_LIMIT - System.currentTimeMillis() + lastFrameTime));
+			lastFrameTime = System.currentTimeMillis();
+			currentScene().act();
+		}
+	}
+
+	private final void constructScenes() throws Exception {
+		// Start level construction.
+		SCENES_MAP.put(ScenesEnum.LEVEL, new Scene(1.0 / 2, 2.0 / 3));
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
 		player = new Player(level.getCameraLocation());
+		level.setPlayer(player);
 		level.addGameObject(player);
-		GameObject healthbar = new GameObject(10.0 / 60, 10.0 / 60);// TODO Change params to choose where on screen
-																	// healthbar goes.
-		Graphic healthbarGraphic = new Graphic(0, 0) {// TODO Change params to choose the size of the healthbar.
+		GameObject healthbar = new GameObject(10.0 / 60, 10.0 / 60);
+		Graphic healthbarGraphic = new Graphic(0, 0) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
 
@@ -82,21 +108,19 @@ public class Main implements KeyListener {
 		};
 		healthbar.addGraphic(healthbarGraphic);
 		level.addGameObject(healthbar);
-		// TODO Add components to the level.
-		// Demonstration.
-		GAME_WINDOW.addKeyListener(this);
-		GAME_WINDOW.pack();
-		GAME_WINDOW.setResizable(false);
-		GAME_WINDOW.setLocationRelativeTo(null);
-		GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		GAME_WINDOW.setVisible(true);
-		long lastFrameTime = System.currentTimeMillis();
-		while (true) {
-			if (System.currentTimeMillis() - lastFrameTime < 1000.0 / FPS_LIMIT)
-				Thread.sleep((int) (1000.0 / FPS_LIMIT - System.currentTimeMillis() + lastFrameTime));
-			lastFrameTime = System.currentTimeMillis();
-			currentScene().act();
-		}
+		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 200.0 / 60, 100.0 / 60, 100.0 / 60, "assets/dirt.png",
+				8, 1);
+		level.addGameObject(dirt1);
+		Terrain dirt2 = new Terrain(level.getCameraLocation(), 400.0 / 60, -50.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/dirt.png", 1, 1);
+		level.addGameObject(dirt2);
+		Terrain dirt3 = new Terrain(level.getCameraLocation(), 700.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/dirt.png", 1, 1);
+		level.addGameObject(dirt3);
+		Terrain dirt4 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/dirt.png", 1, 1);
+		level.addGameObject(dirt4);
+		// End level construction.
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
@@ -123,23 +147,5 @@ public class Main implements KeyListener {
 		Main.scene = scene;
 		GAME_WINDOW.add(SCENES_MAP.get(scene));
 		GAME_WINDOW.repaint();
-	}
-
-	public static final Player getPlayer() {
-		return player;
-	}
-
-	/**
-	 * Just instantiate a Main Object here.
-	 * 
-	 * @param args arguments passed by the command line, which are ignored.
-	 * @throws Exception if a file cannot be loaded.
-	 */
-	public static void main(String[] args) throws Exception {
-		new Main();
-	}
-
-	private static final Scene currentScene() {
-		return SCENES_MAP.get(scene);
 	}
 }
