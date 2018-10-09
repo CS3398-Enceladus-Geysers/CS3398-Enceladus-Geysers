@@ -25,9 +25,5 @@ Things to do next...
 Kristof Y. - I'm going to finish the healthbar display and work on the damage functions.
 Jazmine C. - I'm going to finish the level and character design.
 Laura R. - I'm planning to implement when a player death and start working on the overworld map.
-Maria J - I'm planning to continue working on Title scene and Start Menu
-
-
-
-
-
+Maria J. - I'm planning to continue working on Title scene and Start Menu
+Peter Wesley H. - I'm planning to work on the overworld.
