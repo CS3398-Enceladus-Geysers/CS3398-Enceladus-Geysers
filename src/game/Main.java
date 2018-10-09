@@ -88,8 +88,7 @@ public class Main implements KeyListener {
 		player = new Player(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		GameObject healthbar = new GameObject(10.0 / 60, 10.0 / 60);
-		Graphic healthbarGraphic = new Graphic(0, 0) {
+		Graphic healthbarGraphic = new Graphic(0.25, 0.05, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
 
@@ -104,10 +103,10 @@ public class Main implements KeyListener {
 			public void paintComponent(Graphics g) {
 				int health = player.getHP();
 				// TODO Draw something based on health.
+				g.drawRect(3, 3, 150, 25);
 			}
 		};
-		healthbar.addGraphic(healthbarGraphic);
-		level.addGameObject(healthbar);
+		level.addGraphic(healthbarGraphic);
 		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 200.0 / 60, 100.0 / 60, 100.0 / 60, "assets/dirt.png",
 				8, 1);
 		level.addGameObject(dirt1);
