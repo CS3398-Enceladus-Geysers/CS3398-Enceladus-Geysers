@@ -7,7 +7,7 @@ public class Player extends Character {
 
 	public Player(Point cameraLocation) throws Exception {
 		super(cameraLocation, 0, 0, WIDTH, HEIGHT, true);
-		addGraphic(new ImageGraphic("assets/player2.png", WIDTH, HEIGHT));
+		addGraphic(new ImageGraphic("assets/player.png", WIDTH, HEIGHT));
 	}
 
 	@Override
