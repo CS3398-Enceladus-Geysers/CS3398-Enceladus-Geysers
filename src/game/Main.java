@@ -89,7 +89,7 @@ public class Main implements KeyListener {
 		player = new Player(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		Graphic healthbarGraphic = new Graphic(8.0/60, 3.0/60, 150, 50) {
+		Graphic healthbarGraphic = new Graphic(4.0/60, 3.0/60, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
 
