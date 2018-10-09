@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.EnumMap;
@@ -88,7 +89,7 @@ public class Main implements KeyListener {
 		player = new Player(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		Graphic healthbarGraphic = new Graphic(0.25, 0.05, 150, 50) {
+		Graphic healthbarGraphic = new Graphic(8.0/60, 3.0/60, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
 
@@ -103,7 +104,9 @@ public class Main implements KeyListener {
 			public void paintComponent(Graphics g) {
 				int health = player.getHP();
 				// TODO Draw something based on health.
-				g.drawRect(3, 3, 150, 25);
+				g.drawRect(1, 1, 150, 25);
+				g.setColor(Color.red);
+				g.fillRect(1, 1, health, 25);
 			}
 		};
 		level.addGraphic(healthbarGraphic);

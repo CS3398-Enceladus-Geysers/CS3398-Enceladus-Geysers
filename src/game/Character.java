@@ -12,6 +12,10 @@ public abstract class Character extends Entity {
 		super(cameraLocation, x, y, width, height, gravitational);
 	}
 
+	public void setHP(int x) {
+		HP = x;
+	}
+	
 	public final int getHP() {
 		return HP;
 	}
