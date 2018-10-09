@@ -21,8 +21,15 @@ public class Scene extends JPanel {
 	private Entity playerRepresentation;
 	private final double screenWidthFraction, screenHeightFraction;
 	protected final LinkedList<Terrain> terrain = new LinkedList<Terrain>();
+	private final GameObject defaultGameObject;
+
+	public final void addGraphic(Graphic g) {
+		defaultGameObject.addGraphic(g);
+	}
 
 	public Scene() {
+		defaultGameObject = new GameObject(0, 0);
+		addGameObject(defaultGameObject);
 		followsPlayer = false;
 		playerRepresentation = null;
 		screenWidthFraction = 0;
@@ -32,6 +39,8 @@ public class Scene extends JPanel {
 	}
 
 	public Scene(double screenWidthFraction, double screenHeightFraction) {
+		defaultGameObject = new GameObject(0, 0);
+		addGameObject(defaultGameObject);
 		followsPlayer = true;
 		this.screenWidthFraction = screenWidthFraction;
 		this.screenHeightFraction = screenHeightFraction;
