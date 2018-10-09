@@ -24,9 +24,7 @@ public abstract class CameraObservedObject extends GameObject {
 	}
 
 	@Override
-	public void act() {
-		updateLocation();
-	}
+	public abstract void act();
 
 	public final boolean collidesWith(CameraObservedObject lc) {
 		return occupiedSpace.collidesWith(lc.occupiedSpace);
@@ -37,7 +35,7 @@ public abstract class CameraObservedObject extends GameObject {
 				(int) (absoluteLocation.getY() - cameraLocation.getY()));
 	}
 
-	protected final void updateLocation() {
+	public final void updateLocation() {
 		for (Graphic graphic : getGraphics()) {
 			graphic.setLocation(getScreenLocation());
 		}
