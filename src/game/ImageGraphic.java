@@ -12,8 +12,8 @@ import javax.imageio.ImageIO;
  * A graphic which is represented by a still image, as opposed to an animation.
  */
 public class ImageGraphic extends Graphic {
-	private static final long serialVersionUID = 7604033494188278910L;
 	private static final HashMap<String, Image> RESOURCES = new HashMap<String, Image>();
+	private static final long serialVersionUID = 7604033494188278910L;
 	private final Image facingRight;
 //	private final Image facingLeft;
 
@@ -27,8 +27,8 @@ public class ImageGraphic extends Graphic {
 	 *                 {@link Main#SIZE_FACTOR}
 	 * @throws Exception In case a file is missing.
 	 */
-	public ImageGraphic(String fileName, double width, double height) throws Exception {
-		setSize((int) (width * Main.SIZE_FACTOR), (int) (height * Main.SIZE_FACTOR));
+	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height) throws Exception {
+		super(xoffset, yoffset, width, height);
 		if (RESOURCES.containsKey(fileName)) {
 			facingRight = RESOURCES.get(fileName);
 		} else {
@@ -40,6 +40,10 @@ public class ImageGraphic extends Graphic {
 		// TODO Also differentiate different facing images in RESOURCES HashMap.
 	}
 
+	@Override
+	public void act() {
+	}
+
 	/**
 	 * Overrides paintComponent to paint the still image.
 	 * 
@@ -48,9 +52,5 @@ public class ImageGraphic extends Graphic {
 	@Override
 	public void paintComponent(Graphics g) {
 		g.drawImage(facingRight, 0, 0, null);
-	}
-
-	@Override
-	public void act() {
 	}
 }
