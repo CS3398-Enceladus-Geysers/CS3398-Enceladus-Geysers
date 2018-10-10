@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.EnumMap;
 import java.util.HashSet;
 
@@ -17,7 +18,7 @@ import javax.swing.WindowConstants;
 public class Main implements KeyListener {
 	/** A list of all the scenes. */
 	enum ScenesEnum {
-	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE
+	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
 	}
 
 	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
@@ -123,6 +124,47 @@ public class Main implements KeyListener {
 				"assets/dirt.png", 1, 1);
 		level.addGameObject(dirt4);
 		// End level construction.
+		
+		// Start of Title construction
+		SCENES_MAP.put(ScenesEnum.TITLE, new Scene(1.0 / 2, 2.0 / 3));
+		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
+		Graphic titleScene = new Graphic(100.0/60, 100.0/60, 100.0/60, 100.0/60) {
+
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void paintComponent(Graphics t) {
+				t.drawString("Lunar Rebellion", 60, 60);
+				
+			}
+			
+		};
+		
+		Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				transitionScene(ScenesEnum.START_MENU);
+				
+			}
+
+			@Override
+			public void paintComponent(Graphics m) {
+				m.drawRect(60, 60, 60, 60);
+			
+			}
+			
+		};
+		
+		title.addGraphic(titleScene);
+		title.addGraphic(startButton);
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
