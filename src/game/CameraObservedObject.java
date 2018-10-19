@@ -6,22 +6,8 @@ import java.awt.Point;
  * A {@link GameObject} that depends on the game camera.
  */
 public abstract class CameraObservedObject extends GameObject {
-	protected Hitbox occupiedSpace;
 	private final Point cameraLocation;
-
-	@Override
-	public void act() {
-		updateLocation();
-	}
-
-	public final boolean collidesWith(CameraObservedObject lc) {
-		return occupiedSpace.collidesWith(lc.occupiedSpace);
-	}
-
-	private final Point getScreenLocation() {
-		return new Point((int) (absoluteLocation.getX() - cameraLocation.getX()),
-				(int) (absoluteLocation.getY() - cameraLocation.getY()));
-	}
+	protected Hitbox occupiedSpace;
 
 	/**
 	 * This constructor creates a reference to the related {@link Main.Scene} camera
@@ -37,7 +23,19 @@ public abstract class CameraObservedObject extends GameObject {
 		occupiedSpace = new Hitbox(width, height, absoluteLocation);
 	}
 
-	protected final void updateLocation() {
+	@Override
+	public abstract void act();
+
+	public final boolean collidesWith(CameraObservedObject lc) {
+		return occupiedSpace.collidesWith(lc.occupiedSpace);
+	}
+
+	private final Point getScreenLocation() {
+		return new Point((int) (absoluteLocation.getX() - cameraLocation.getX()),
+				(int) (absoluteLocation.getY() - cameraLocation.getY()));
+	}
+
+	public final void updateLocation() {
 		for (Graphic graphic : getGraphics()) {
 			graphic.setLocation(getScreenLocation());
 		}

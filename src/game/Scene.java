@@ -15,23 +15,35 @@ import javax.swing.JPanel;
 public class Scene extends JPanel {
 	private static final long serialVersionUID = -6926746677172868739L;
 	protected final Point cameraLocation;
+	private final boolean followsPlayer;
 	protected final LinkedList<GameObject> gameObjects = new LinkedList<GameObject>();
-	protected final LinkedList<Terrain> terrain = new LinkedList<Terrain>();
 	protected final LinkedList<Entity> gravitational = new LinkedList<Entity>();
+	private Entity playerRepresentation;
+	private final double screenWidthFraction, screenHeightFraction;
+	protected final LinkedList<Terrain> terrain = new LinkedList<Terrain>();
+	private final GameObject defaultGameObject;
 
-	protected final void followPlayerWithCamera(double screenWidthFraction, double screenHeightFraction) {
-		Rectangle r = Main.getPlayer().occupiedSpace.getBounds();
-		Point p = new Point((int) r.getCenterX(), (int) r.getCenterY());
-		p.translate((int) (-Main.GAME_PANEL_DIMENSION.getWidth() * screenWidthFraction),
-				(int) (-Main.GAME_PANEL_DIMENSION.getHeight() * screenHeightFraction));
-		cameraLocation.setLocation(p);
-	}
-
-	public final Point getCameraLocation() {
-		return cameraLocation;
+	public final void addGraphic(Graphic g) {
+		defaultGameObject.addGraphic(g);
 	}
 
 	public Scene() {
+		defaultGameObject = new GameObject(0, 0);
+		addGameObject(defaultGameObject);
+		followsPlayer = false;
+		playerRepresentation = null;
+		screenWidthFraction = 0;
+		screenHeightFraction = 0;
+		cameraLocation = new Point(0, 0);
+		setLayout(null);
+	}
+
+	public Scene(double screenWidthFraction, double screenHeightFraction) {
+		defaultGameObject = new GameObject(0, 0);
+		addGameObject(defaultGameObject);
+		followsPlayer = true;
+		this.screenWidthFraction = screenWidthFraction;
+		this.screenHeightFraction = screenHeightFraction;
 		cameraLocation = new Point(0, 0);
 		setLayout(null);
 	}
@@ -80,6 +92,12 @@ public class Scene extends JPanel {
 			if (((Graphic) c[x]).isExpired())
 				remove(c[x]);
 		}
+		if (followsPlayer)
+			followPlayerWithCamera();
+		for (GameObject go : gameObjects) {
+			if (go instanceof CameraObservedObject)
+				((CameraObservedObject) go).updateLocation();
+		}
 	}
 
 	public void addGameObject(GameObject go) {
@@ -95,8 +113,24 @@ public class Scene extends JPanel {
 		}
 	}
 
+	private final void followPlayerWithCamera() {
+		Rectangle r = playerRepresentation.occupiedSpace.getBounds();
+		Point p = new Point((int) r.getCenterX(), (int) r.getCenterY());
+		p.translate((int) (-Main.GAME_PANEL_DIMENSION.getWidth() * screenWidthFraction),
+				(int) (-Main.GAME_PANEL_DIMENSION.getHeight() * screenHeightFraction));
+		cameraLocation.setLocation(p);
+	}
+
+	public final Point getCameraLocation() {
+		return cameraLocation;
+	}
+
 	@Override
 	public final Dimension getPreferredSize() {
 		return Main.GAME_PANEL_DIMENSION;
+	}
+
+	public void setPlayer(Entity playerRepresentation) {
+		this.playerRepresentation = playerRepresentation;
 	}
 }

@@ -8,25 +8,14 @@ import java.util.ArrayList;
  */
 public class GameObject {
 	protected final Point absoluteLocation;
+	private boolean expired;
 	/** This exists so that one GameObject can have multiple graphical parts. */
 	private final ArrayList<Graphic> graphics = new ArrayList<Graphic>();
 	/** This marks a GameComponent for its graphics list to be checked again. */
 	private boolean repaint;
-	private boolean expired;
 
 	public GameObject(double x, double y) {
 		absoluteLocation = new Point((int) (x * Main.SIZE_FACTOR), (int) (y * Main.SIZE_FACTOR));
-	}
-
-	public final boolean isExpired() {
-		return expired;
-	}
-
-	public final void expire() {
-		expired = true;
-		for (Graphic g : graphics) {
-			g.expire();
-		}
 	}
 
 	public void act() {
@@ -42,11 +31,22 @@ public class GameObject {
 		repaint();
 	}
 
+	public final void expire() {
+		expired = true;
+		for (Graphic g : graphics) {
+			g.expire();
+		}
+	}
+
 	/**
 	 * @return The array of Graphic objects related to this Game Component.
 	 */
 	public final ArrayList<Graphic> getGraphics() {
 		return graphics;
+	}
+
+	public final boolean isExpired() {
+		return expired;
 	}
 
 	/**
