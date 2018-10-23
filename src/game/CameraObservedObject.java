@@ -7,15 +7,23 @@ import java.awt.Point;
  */
 public abstract class CameraObservedObject extends GameObject {
 	private final Point cameraLocation;
+	/**
+	 * The hitbox representing the space occupied by this
+	 * {@link CameraObservedObject}
+	 */
 	protected Hitbox occupiedSpace;
 
 	/**
-	 * This constructor creates a reference to the related {@link Main.Scene} camera
-	 * {@link Point}
+	 * This constructor creates a reference to the related
+	 * {@link Scene#cameraLocation}.
 	 * 
-	 * @param cameraLocation   The scene camera's current location.
-	 * @param absoluteLocation The object's current location, independent of the
-	 *                         camera.
+	 * @param cameraLocation The scene camera's current location
+	 * @param x              The x coordinate in absolute space of this Object
+	 * @param y              The y coordinate in absolute space of this Object
+	 * @param width          The width of this object, before scaling by
+	 *                       {@link Main#SIZE_FACTOR}
+	 * @param height         The width of this object, before scaling by
+	 *                       {@link Main#SIZE_FACTOR}
 	 */
 	public CameraObservedObject(Point cameraLocation, double x, double y, double width, double height) {
 		super(x, y);
@@ -26,8 +34,12 @@ public abstract class CameraObservedObject extends GameObject {
 	@Override
 	public abstract void act();
 
-	public final boolean collidesWith(CameraObservedObject lc) {
-		return occupiedSpace.collidesWith(lc.occupiedSpace);
+	/**
+	 * @param coo
+	 * @return {@code true} if this object collides with {@code coo}
+	 */
+	public final boolean collidesWith(CameraObservedObject coo) {
+		return occupiedSpace.collidesWith(coo.occupiedSpace);
 	}
 
 	private final Point getScreenLocation() {
@@ -35,6 +47,10 @@ public abstract class CameraObservedObject extends GameObject {
 				(int) (absoluteLocation.getY() - cameraLocation.getY()));
 	}
 
+	/**
+	 * Updates the graphic locations on the screen to match the current location of
+	 * this object on the screen.
+	 */
 	public final void updateLocation() {
 		for (Graphic graphic : getGraphics()) {
 			graphic.setLocation(getScreenLocation());
