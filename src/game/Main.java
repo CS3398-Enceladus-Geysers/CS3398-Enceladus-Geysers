@@ -131,25 +131,30 @@ public class Main implements KeyListener {
 		// End level construction.
 		
 		// Start of Title construction
-		SCENES_MAP.put(ScenesEnum.TITLE, new Scene(1.0 / 2, 2.0 / 3));
-		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		Graphic titleScene = new Graphic(100.0/60, 100.0/60, 100.0/60, 100.0/60) {
+				Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
+		Graphic titleScene = new Graphic(0, 0, 150, 50) {
 
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
-				
+			repaint();
 			}
 
 			@Override
 			public void paintComponent(Graphics t) {
-				t.drawString("Lunar Rebellion", 60, 60);
 				
-			}
+				t.setFont(new Font("Arial", Font.BOLD, 24));
+				t.setColor(Color.blue);
+				t.drawString("Lunar Rebellion", 0, 10);
 			
+			}
 		};
+		
+		title.addGraphic(titleScene);
+		
+		
 		
 		/*Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -168,8 +173,7 @@ public class Main implements KeyListener {
 			
 		};*/
 		
-		title.addGraphic(titleScene);
-		//title.addGraphic(startButton);
+			//title.addGraphic(startButton);
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
@@ -197,4 +201,3 @@ public class Main implements KeyListener {
 		GAME_WINDOW.add(SCENES_MAP.get(scene));
 		GAME_WINDOW.repaint();
 	}
-}
