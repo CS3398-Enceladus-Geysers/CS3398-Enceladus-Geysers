@@ -110,20 +110,20 @@ public class Main implements KeyListener {
 			}
 		};
 		level.addGraphic(healthbarGraphic);
-		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 200.0 / 60, 100.0 / 60, 100.0 / 60, "assets/dirt.png",
+		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 200.0 / 60, 100.0 / 60, 100.0 / 60, "assets/block.png",
 				8, 1);
 		level.addGameObject(dirt1);
 		Terrain dirt2 = new Terrain(level.getCameraLocation(), 400.0 / 60, -50.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/dirt.png", 1, 1);
+				"assets/block.png", 1, 1);
 		level.addGameObject(dirt2);
 		Terrain dirt3 = new Terrain(level.getCameraLocation(), 700.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/dirt.png", 1, 1);
+				"assets/block.png", 1, 1);
 		level.addGameObject(dirt3);
 		Terrain dirt4 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/dirt.png", 1, 1);
+				"assets/block.png", 1, 1);
 		level.addGameObject(dirt4);
 		
-		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0/60, 150.0/60, 100.0/60, 100.0/60, "assets/dirt.png", 1, 1, 20);
+		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0/60, 150.0/60, 100.0/60, 100.0/60, "assets/spikes.png", 1, 1, 20);
 		level.addGameObject(obs1);
 		// End level construction.
 		
