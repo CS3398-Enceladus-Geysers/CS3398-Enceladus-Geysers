@@ -11,8 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ResourceManager {
-
-	private static final String SAVE_FILENAME = "save.sav";
 	
 	public static void save(Serializable data, String fileName) throws Exception {
 		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
