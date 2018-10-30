@@ -125,6 +125,9 @@ public class Main implements KeyListener {
 		
 		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0/60, 150.0/60, 100.0/60, 100.0/60, "assets/icicle.png", 1, 1, 20);
 		level.addGameObject(obs1);
+		
+		//Graphic background = new ImageGraphic("assets/space.png",0,0,16,9);
+		//level.addGraphic(background);
 		// End level construction.
 		
 		// Start of Title construction
