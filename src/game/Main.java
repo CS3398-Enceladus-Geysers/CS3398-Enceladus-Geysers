@@ -123,7 +123,7 @@ public class Main implements KeyListener {
 				"assets/block.png", 1, 1);
 		level.addGameObject(dirt4);
 		
-		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0/60, 150.0/60, 100.0/60, 100.0/60, "assets/icicle.png", 1, 1, 20);
+		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0/60, 150.0/60, 100.0/60, 100.0/60, "assets/spikes.png", 1, 1, 20);
 		level.addGameObject(obs1);
 		
 		//Graphic background = new ImageGraphic("assets/space.png",0,0,16,9);
