@@ -3,10 +3,28 @@ package game;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import com.sun.accessibility.internal.resources.accessibility;
+
+/**
+ * A class to handle collisions.
+ */
 public class Hitbox {
 	Point absoluteLocation;
 	double width, height;
 
+	/**
+	 * Initializes this {@link Hitbox} with a width and height scaled by
+	 * {@link Main#SIZE_FACTOR}, and a {@link Point} that refers to a
+	 * {@link GameObject#absoluteLocation} to represent a rectangle that depends on
+	 * the location of that {@link GameObject}.
+	 * 
+	 * @param width            The width of this {@link Hitbox}, before scaling by
+	 *                         {@link Main#SIZE_FACTOR}
+	 * @param height           The height of this {@link Hitbox}, before scaling by
+	 *                         {@link Main#SIZE_FACTOR}
+	 * @param absoluteLocation The reference to a
+	 *                         {@link GameObject#absoluteLocation}
+	 */
 	public Hitbox(double width, double height, Point absoluteLocation) {
 		this.width = width * Main.SIZE_FACTOR;
 		this.height = height * Main.SIZE_FACTOR;
