@@ -63,7 +63,7 @@ public abstract class Entity extends CameraObservedObject {
 		accelerate(true, GRAVITY_CONSTANT, MAX_FALLING_SPEED);
 	}
 
-	public final boolean exclusionPrinciple(Terrain trr) {
+	public boolean exclusionPrinciple(Terrain trr) {
 		Point[] entityCorners = { occupiedSpace.getCorner(true, true), occupiedSpace.getCorner(true, false),
 				occupiedSpace.getCorner(false, true), occupiedSpace.getCorner(false, false) };// TODO Make this a single
 																								// call getCorners();
