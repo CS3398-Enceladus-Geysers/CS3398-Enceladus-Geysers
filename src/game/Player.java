@@ -37,4 +37,8 @@ public class Player extends Character {
 			}
 		}
 	}
+	
+	public boolean exclusionPrinciple(Obstacle trr) {
+		return super.exclusionPrinciple(trr);
+	}
 }
