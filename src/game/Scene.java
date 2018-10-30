@@ -77,6 +77,7 @@ public class Scene extends JPanel {
 						add(g);
 				}
 			}
+			
 		}
 		for (Entity grv : gravitational) {
 			boolean grounded = false;
@@ -98,6 +99,10 @@ public class Scene extends JPanel {
 			if (go instanceof CameraObservedObject)
 				((CameraObservedObject) go).updateLocation();
 		}
+		
+		for (Component g : getComponents()) {
+            ((Graphic) g).act();
+        }
 	}
 
 	public void addGameObject(GameObject go) {

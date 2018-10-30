@@ -103,11 +103,10 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics g) {
-				int health = player.getHP();
 				// TODO Draw something based on health.
 				g.drawRect(1, 1, 150, 25);
 				g.setColor(Color.red);
-				g.fillRect(1, 1, health, 25);
+				g.fillRect(1, 1, player.getHP(), 25);
 			}
 		};
 		level.addGraphic(healthbarGraphic);
@@ -123,6 +122,9 @@ public class Main implements KeyListener {
 		Terrain dirt4 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/dirt.png", 1, 1);
 		level.addGameObject(dirt4);
+		
+		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0/60, 150.0/60, 100.0/60, 100.0/60, "assets/dirt.png", 1, 1, 20);
+		level.addGameObject(obs1);
 		// End level construction.
 		
 		// Start of Title construction
