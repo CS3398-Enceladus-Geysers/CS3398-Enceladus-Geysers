@@ -146,7 +146,7 @@ public class Main implements KeyListener {
 			
 		};
 		
-		Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60) {
+		/*Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -161,10 +161,10 @@ public class Main implements KeyListener {
 			
 			}
 			
-		};
+		};*/
 		
 		title.addGraphic(titleScene);
-		title.addGraphic(startButton);
+		//title.addGraphic(startButton);
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
