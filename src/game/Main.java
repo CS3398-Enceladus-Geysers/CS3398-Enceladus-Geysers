@@ -1,6 +1,8 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,7 +18,7 @@ import javax.swing.WindowConstants;
 public class Main implements KeyListener {
 	/** A list of all the scenes. */
 	enum ScenesEnum {
-	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE
+	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
 	}
 
 	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
@@ -88,8 +90,7 @@ public class Main implements KeyListener {
 		player = new Player(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		GameObject healthbar = new GameObject(10.0 / 60, 10.0 / 60);
-		Graphic healthbarGraphic = new Graphic(0, 0) {
+		Graphic healthbarGraphic = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
 
@@ -102,25 +103,77 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics g) {
-				int health = player.getHP();
 				// TODO Draw something based on health.
+				g.drawRect(1, 1, 150, 25);
+				g.setColor(Color.red);
+				g.fillRect(1, 1, player.getHP(), 25);
 			}
 		};
-		healthbar.addGraphic(healthbarGraphic);
-		level.addGameObject(healthbar);
-		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 200.0 / 60, 100.0 / 60, 100.0 / 60, "assets/dirt.png",
-				8, 1);
+		level.addGraphic(healthbarGraphic);
+		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 200.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 8, 1);
 		level.addGameObject(dirt1);
 		Terrain dirt2 = new Terrain(level.getCameraLocation(), 400.0 / 60, -50.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/dirt.png", 1, 1);
+				"assets/block.png", 1, 1);
 		level.addGameObject(dirt2);
 		Terrain dirt3 = new Terrain(level.getCameraLocation(), 700.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/dirt.png", 1, 1);
+				"assets/block.png", 1, 1);
 		level.addGameObject(dirt3);
 		Terrain dirt4 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/dirt.png", 1, 1);
+				"assets/block.png", 1, 1);
 		level.addGameObject(dirt4);
+
+		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0 / 60, 150.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/spikes.png", 1, 1, 20);
+		level.addGameObject(obs1);
+
+		// Graphic background = new ImageGraphic("assets/space.png",0,0,16,9);
+		// level.addGraphic(background);
 		// End level construction.
+
+		// Start of Title construction
+		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
+		Graphic titleScene = new Graphic(0, 0, 150, 50) {
+
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				repaint();
+			}
+
+			@Override
+			public void paintComponent(Graphics t) {
+
+				t.setFont(new Font("Arial", Font.BOLD, 24));
+				t.setColor(Color.blue);
+				t.drawString("Lunar Rebellion", 0, 10);
+
+			}
+		};
+
+		title.addGraphic(titleScene);
+
+		/*
+		 * Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 /
+		 * 60, 100.0 / 60) { private static final long serialVersionUID =
+		 * 3237106029139727237L;
+		 * 
+		 * @Override public void mouseClicked(MouseEvent arg0) {
+		 * transitionScene(ScenesEnum.START_MENU);
+		 * 
+		 * }
+		 * 
+		 * @Override public void paintComponent(Graphics m) { m.drawRect(60, 60, 60,
+		 * 60);
+		 * 
+		 * }
+		 * 
+		 * };
+		 */
+
+		// title.addGraphic(startButton);
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */

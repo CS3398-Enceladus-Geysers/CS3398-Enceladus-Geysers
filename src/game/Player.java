@@ -8,7 +8,8 @@ public class Player extends Character {
 
 	public Player(Point cameraLocation) throws Exception {
 		super(cameraLocation, 0, 0, WIDTH, HEIGHT, true);
-		addGraphic(new ImageGraphic("assets/player.png", 0, 0, WIDTH, HEIGHT));
+		addGraphic(new ImageGraphic("assets/player2.png", 0, 0, WIDTH, HEIGHT));
+		setHP(150);
 	}
 
 	@Override
@@ -35,5 +36,9 @@ public class Player extends Character {
 				accelerate(false, INFLUENCE, 0);
 			}
 		}
+	}
+	
+	public boolean exclusionPrinciple(Obstacle trr) {
+		return super.exclusionPrinciple(trr);
 	}
 }

@@ -83,7 +83,7 @@ public abstract class Entity extends CameraObservedObject {
 
 	private void applyGravityAcceleration() {
 		accelerate(true, GRAVITY_CONSTANT, MAX_FALLING_SPEED);
-	}
+  }
 
 	/**
 	 * Moves this entity to not collide with {@code trr}
@@ -92,7 +92,7 @@ public abstract class Entity extends CameraObservedObject {
 	 * @return True if this entity is on top of the terrain and is therefore now
 	 *         grounded.
 	 */
-	public final boolean exclusionPrinciple(Terrain trr) {
+	public boolean exclusionPrinciple(Terrain trr) {
 		Point[] entityCorners = { occupiedSpace.getCorner(true, true), occupiedSpace.getCorner(true, false),
 				occupiedSpace.getCorner(false, true), occupiedSpace.getCorner(false, false) };// TODO Make this a single
 																								// call getCorners();
