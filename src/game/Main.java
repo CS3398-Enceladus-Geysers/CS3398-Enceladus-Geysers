@@ -164,15 +164,18 @@ public class Main implements KeyListener {
 
 			}
 		};
-		//Graphic backgroundTitle = new ImageGraphic("assets/space.png", 0, 0, 16, 9);
-		//title.addGraphic(backgroundTitle);
+		
+		Graphic backgroundTitle = new ImageGraphic("assets/space.png", 0, 0, 16, 9);
+		title.addGraphic(backgroundTitle);
+		
 		title.addGraphic(titleScene);
 
-		Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60) {
+		Graphic startButton = new ClickableGraphic(0, 0, 200, 75) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
 				transitionScene(ScenesEnum.START_MENU);
 
 			}
@@ -180,42 +183,71 @@ public class Main implements KeyListener {
 			@Override
 			public void paintComponent(Graphics m) {
 				
-				try {
-				   Graphic start = new ImageGraphic("assets/startbutton.png", 0, 0, 16, 9);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				title.addGraphic(start);
+				m.setFont(new Font("Arial", Font.BOLD, 18));
+				m.setColor(Color.green);
+				m.drawString("START", 450, 300);
+			
 			}
 		};
-
+	
 	    title.addGraphic(startButton);
-	}
+	
 
-	/** We can use this method to listen for keyboard input from our window. */
-	@Override
-	public void keyPressed(KeyEvent e) {
-		CURRENTLY_PRESSED_KEYS.add(e.getKeyCode());
-	}
+	
+	    // Construction of Start Menu
+	    // Start of Title construction
+	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
+	    
+	    Graphic menuScene = new Graphic(0, 0, 150, 50) {
 
-	/** We can use this method to listen for keyboard input from our window. */
-	@Override
-	public void keyReleased(KeyEvent e) {
-		CURRENTLY_PRESSED_KEYS.remove(e.getKeyCode());
-	}
+	    	private static final long serialVersionUID = 3237106029139727237L;
 
-	/** Let's not use this one, it's for typing. */
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+	    	@Override
+	    	public void act() {
+					// TODO Auto-generated method stub
+	    		repaint();
+	    	}
 
-	/** Swap out scenes to the scene specified in the parameter. */
-	private void transitionScene(ScenesEnum scene) {
-		if (Main.scene != null)
-			GAME_WINDOW.remove(SCENES_MAP.get(Main.scene));
-		Main.scene = scene;
-		GAME_WINDOW.add(SCENES_MAP.get(scene));
-		GAME_WINDOW.repaint();
+	    	@Override
+	    	public void paintComponent(Graphics s) {
+
+	    		s.setFont(new Font("Arial", Font.BOLD, 24));
+	    		s.setColor(Color.blue);
+	    		s.drawString("MENU", 400, 150);
+	    	}
+	  
+	     };
+	  
+	     menu.addGraphic(menuScene);
 	}
+	
+	
+	
+	    /** We can use this method to listen for keyboard input from our window. */
+	    @Override
+	    public void keyPressed(KeyEvent e) {
+	    	CURRENTLY_PRESSED_KEYS.add(e.getKeyCode());
+	    }
+
+	    /** We can use this method to listen for keyboard input from our window. */
+	    @Override
+	    public void keyReleased(KeyEvent e) {
+	    	CURRENTLY_PRESSED_KEYS.remove(e.getKeyCode());
+	    }
+
+	    /** Let's not use this one, it's for typing. */
+	    @Override
+	    public void keyTyped(KeyEvent e) {
+	    }
+
+	    /** Swap out scenes to the scene specified in the parameter. */
+	    private void transitionScene(ScenesEnum scene) {
+	    	if (Main.scene != null)
+	    		GAME_WINDOW.remove(SCENES_MAP.get(Main.scene));
+	    		Main.scene = scene;
+	    		GAME_WINDOW.add(SCENES_MAP.get(scene));
+	    		GAME_WINDOW.repaint();
+	    }
+	 
 }
+	
