@@ -10,20 +10,38 @@ import javax.swing.JComponent;
  */
 public abstract class Graphic extends JComponent {
 	private static final long serialVersionUID = 5084265228790714409L;
+
 	private static final Dimension scaledSize(double width, double height) {
 		return new Dimension((int) (width * Main.SIZE_FACTOR), (int) (height * Main.SIZE_FACTOR));
 	}
+
 	private boolean expired;
 
 	private final int xoffset, yoffset;
 
+	/**
+	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
+	 * its location to the top left of the {@link GameObject} to which it belongs.
+	 * 
+	 * @param width  the x dimension of this {@link Graphic}
+	 * @param height the y dimension of this {@link Graphic}
+	 */
 	public Graphic(double width, double height) {
-		setSize(scaledSize(width, height));
-		xoffset = 0;
-		yoffset = 0;
-		setLocation(0, 0);
+		this(0, 0, width, height);
 	}
 
+	/**
+	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
+	 * its location to offset from the top left of the {@link GameObject} to which
+	 * it belongs according to {@code xoffset} and {@code yoffset}.
+	 * 
+	 * @param xoffset the distance from the {@link GameObject}'s top-left corner in
+	 *                the X-axis.
+	 * @param yoffset the distance from the {@link GameObject}'s top-left corner in
+	 *                the Y-axis.
+	 * @param width   the x dimension of this {@link Graphic}
+	 * @param height  the y dimension of this {@link Graphic}
+	 */
 	public Graphic(double xoffset, double yoffset, double width, double height) {
 		setSize(scaledSize(width, height));
 		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
@@ -31,6 +49,9 @@ public abstract class Graphic extends JComponent {
 		setLocation(0, 0);
 	}
 
+	/**
+	 * A method to handle all per-frame operations.
+	 */
 	public abstract void act();
 
 	/**

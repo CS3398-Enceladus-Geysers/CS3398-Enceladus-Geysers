@@ -22,7 +22,15 @@ public class Main implements KeyListener {
 	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
 	}
 
+	/**
+	 * A {@link HashSet} which represents the currently pressed keys for as long as
+	 * they remain pressed.
+	 */
 	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
+	/**
+	 * The FPS limit for this game. The main {@link Thread} sleeps until it is time
+	 * for the next frame.
+	 */
 	public static final int FPS_LIMIT = 30;
 	/** This determines how big the game is. */
 	public static final Integer SIZE_FACTOR = 60;
@@ -43,6 +51,9 @@ public class Main implements KeyListener {
 		return SCENES_MAP.get(scene);
 	}
 
+	/**
+	 * @return the {@link Player} object.
+	 */
 	public static final Player getPlayer() {
 		return player;
 	}
