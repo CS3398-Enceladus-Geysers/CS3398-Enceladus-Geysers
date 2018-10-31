@@ -21,6 +21,10 @@ public class ImageGraphic extends Graphic {
 	 * This constructor loads and scales an image, and also sets its size.
 	 * 
 	 * @param fileName File name for image to be loaded.
+	 * @param xoffset  The distance for this image to be rendered measured in the
+	 *                 X-axis from the top-left corner.
+	 * @param yoffset  The distance for this image to be rendered measured in the
+	 *                 Y-axis from the top-left corner.
 	 * @param width    Width of this graphic, before scaling by
 	 *                 {@link Main#SIZE_FACTOR}
 	 * @param height   Height of this graphic, before scaling by

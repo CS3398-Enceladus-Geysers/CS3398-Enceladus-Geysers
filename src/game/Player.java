@@ -2,10 +2,20 @@ package game;
 
 import java.awt.Point;
 
+/**
+ * A class to represent the player, controlled by the user's input.
+ */
 public class Player extends Character {
 	private static final double JUMP_VELOCITY = 1.5 / 6, MOVESPEED = 1.0 / 12, INFLUENCE = 1.0 / 120, WIDTH = 50.0 / 60,
 			HEIGHT = 100.0 / 60;
 
+	/**
+	 * Creates a {@link Player} object using the reserved player assets and
+	 * predefined player stats.
+	 * 
+	 * @param cameraLocation
+	 * @throws Exception
+	 */
 	public Player(Point cameraLocation) throws Exception {
 		super(cameraLocation, 0, 0, WIDTH, HEIGHT, true);
 		addGraphic(new ImageGraphic("assets/player2.png", 0, 0, WIDTH, HEIGHT));
@@ -36,9 +46,5 @@ public class Player extends Character {
 				accelerate(false, INFLUENCE, 0);
 			}
 		}
-	}
-	
-	public boolean exclusionPrinciple(Obstacle trr) {
-		return super.exclusionPrinciple(trr);
 	}
 }

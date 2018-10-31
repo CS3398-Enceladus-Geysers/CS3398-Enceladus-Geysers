@@ -27,10 +27,7 @@ public abstract class Graphic extends JComponent {
 	 * @param height the y dimension of this {@link Graphic}
 	 */
 	public Graphic(double width, double height) {
-		setSize(scaledSize(width, height));
-		xoffset = 0;
-		yoffset = 0;
-		setLocation(0, 0);
+		this(0, 0, width, height);
 	}
 
 	/**

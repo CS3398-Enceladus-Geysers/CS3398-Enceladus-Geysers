@@ -26,30 +26,39 @@ public abstract class Character extends Entity {
 	public Character(Point cameraLocation, double x, double y, double width, double height, boolean gravitational) {
 		super(cameraLocation, x, y, width, height, gravitational);
 	}
-  
+
+	/**
+	 * Sets the HP for this character
+	 * 
+	 * @param x The HP to set.
+	 */
 	public void setHP(int x) {
 		HP = x;
 	}
-  
+
 	/**
 	 * @return The HP of this character.
 	 */
 	public final int getHP() {
 		return HP;
 	}
-	
+
+	/**
+	 * Causes the player to take damage equal to {@code x}
+	 * 
+	 * @param x The amount of damage for the {@link Character} to take.
+	 */
 	public void takeDmg(int x) {
 		setHP(getHP() - x);
 	}
-	
-	
+
 	@Override
 	public boolean exclusionPrinciple(Terrain trr) {
-		if(trr instanceof Obstacle) {
+		if (trr instanceof Obstacle) {
 			Obstacle obs = (Obstacle) trr;
 			takeDmg(obs.dmg);
 		}
 		return super.exclusionPrinciple(trr);
 	}
-	
+
 }
