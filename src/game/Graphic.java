@@ -20,6 +20,14 @@ public abstract class Graphic extends JComponent {
 
 	private final int xoffset, yoffset;
 
+	public final int getXOffset() {
+		return xoffset;
+	}
+
+	public final int getYOffset() {
+		return yoffset;
+	}
+
 	public Graphic(double width, double height) {
 		this(0, 0, width, height);
 	}
