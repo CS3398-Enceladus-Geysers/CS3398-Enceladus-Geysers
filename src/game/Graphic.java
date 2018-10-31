@@ -9,6 +9,7 @@ import javax.swing.JComponent;
  * One graphical component in the game to be drawn in a custom way.
  */
 public abstract class Graphic extends JComponent {
+	private final boolean foreground;
 	private static final long serialVersionUID = 5084265228790714409L;
 
 	private static final Dimension scaledSize(double width, double height) {
@@ -19,6 +20,18 @@ public abstract class Graphic extends JComponent {
 
 	private final int xoffset, yoffset;
 
+	public Graphic(double width, double height) {
+		this(0, 0, width, height);
+	}
+
+	public Graphic(double xoffset, double yoffset, double width, double height, boolean foreground) {
+		this.foreground = foreground;
+		setSize(scaledSize(width, height));
+		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
+		this.yoffset = (int) (yoffset * Main.SIZE_FACTOR);
+		setLocation(0, 0);
+	}
+
 	/**
 	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
 	 * its location to the top left of the {@link GameObject} to which it belongs.
@@ -26,8 +39,8 @@ public abstract class Graphic extends JComponent {
 	 * @param width  the x dimension of this {@link Graphic}
 	 * @param height the y dimension of this {@link Graphic}
 	 */
-	public Graphic(double width, double height) {
-		this(0, 0, width, height);
+	public Graphic(double width, double height, boolean foreground) {
+		this(0, 0, width, height, foreground);
 	}
 
 	/**
@@ -43,10 +56,7 @@ public abstract class Graphic extends JComponent {
 	 * @param height  the y dimension of this {@link Graphic}
 	 */
 	public Graphic(double xoffset, double yoffset, double width, double height) {
-		setSize(scaledSize(width, height));
-		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
-		this.yoffset = (int) (yoffset * Main.SIZE_FACTOR);
-		setLocation(0, 0);
+		this(xoffset, yoffset, width, height, true);
 	}
 
 	/**
@@ -88,5 +98,9 @@ public abstract class Graphic extends JComponent {
 	@Override
 	public void setLocation(int x, int y) {
 		super.setLocation(x + xoffset, y + yoffset);
+	}
+
+	public boolean isForeground() {
+		return foreground;
 	}
 }

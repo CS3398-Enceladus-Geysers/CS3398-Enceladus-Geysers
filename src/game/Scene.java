@@ -41,8 +41,9 @@ public class Scene extends JPanel {
 	/**
 	 * Adds a {@link Graphic} to the default {@link GameObject}
 	 * 
-	 * @param g The {@link Graphic} to be added to the screen, offset from the
-	 *          top-left of the scene.
+	 * @param g     The {@link Graphic} to be added to the screen, offset from the
+	 *              top-left of the scene.
+	 * @param depth
 	 */
 	public final void addGraphic(Graphic g) {
 		defaultGameObject.addGraphic(g);
@@ -104,41 +105,37 @@ public class Scene extends JPanel {
 				for (Graphic g : go.getGraphics()) {
 					boolean flag = true;
 					Component[] c = getComponents();
-					for (int x = 0; x < c.length; x++) {
-						if (c[x] == g) {
+					for (int x = 0; x < c.length; x++)
+						if (c[x] == g)
 							flag = false;
-						}
-					}
-					if (flag)
+					if (flag) {
 						add(g);
+						if (go == defaultGameObject)
+							setComponentZOrder(g, g.isForeground() ? 0 : 2);
+						else
+							setComponentZOrder(g, 1);
+					}
 				}
 			}
-
 		}
 		for (Entity grv : gravitational) {
 			boolean grounded = false;
-			for (Terrain trr : terrain) {
-				if (grv.collidesWith(trr)) {
+			for (Terrain trr : terrain)
+				if (grv.collidesWith(trr))
 					grounded |= grv.exclusionPrinciple(trr);
-				}
-			}
 			grv.setGrounded(grounded);
 		}
 		Component[] c = getComponents();
-		for (int x = 0; x < c.length; x++) {
+		for (int x = 0; x < c.length; x++)
 			if (((Graphic) c[x]).isExpired())
 				remove(c[x]);
-		}
 		if (followsPlayer)
 			followPlayerWithCamera();
-		for (GameObject go : gameObjects) {
+		for (GameObject go : gameObjects)
 			if (go instanceof CameraObservedObject)
 				((CameraObservedObject) go).updateLocation();
-		}
-
-		for (Component g : getComponents()) {
+		for (Component g : getComponents())
 			((Graphic) g).act();
-		}
 	}
 
 	/**
