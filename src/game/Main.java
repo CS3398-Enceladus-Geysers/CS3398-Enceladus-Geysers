@@ -1,3 +1,4 @@
+//TODO Figure out why there's blank space around the background. positioning, maybe?
 package game;
 
 import java.awt.Color;
@@ -36,7 +37,6 @@ public class Main implements KeyListener {
 	/** This is the dimensions for the panel which is always displayed. */
 	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
-	// TODO Add javadocs on everything.
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
@@ -80,7 +80,7 @@ public class Main implements KeyListener {
 		constructScenes();
 		transitionScene(ScenesEnum.LEVEL);
 		GAME_WINDOW.addKeyListener(this);
-		GAME_WINDOW.pack();
+		GAME_WINDOW.setSize(GAME_PANEL_DIMENSION);
 		GAME_WINDOW.setResizable(false);
 		GAME_WINDOW.setLocationRelativeTo(null);
 		GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -191,7 +191,6 @@ public class Main implements KeyListener {
 		// Start of Title construction
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 		Graphic titleScene = new Graphic(0, 0, 150, 50) {
-
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -202,11 +201,9 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics t) {
-
 				t.setFont(new Font("Arial", Font.BOLD, 24));
 				t.setColor(Color.blue);
 				t.drawString("Lunar Rebellion", 0, 10);
-
 			}
 		};
 

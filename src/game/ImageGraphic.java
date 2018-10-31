@@ -17,6 +17,20 @@ public class ImageGraphic extends Graphic {
 	private final Image facingRight;
 //	private final Image facingLeft;
 
+	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height,
+			boolean foreground) throws Exception {
+		super(xoffset, yoffset, width, height, foreground);
+		if (RESOURCES.containsKey(fileName)) {
+			facingRight = RESOURCES.get(fileName);
+		} else {
+			facingRight = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName)))
+					.getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
+			RESOURCES.put(fileName, facingRight);
+		}
+		// TODO Uncomment facingLeft and implement an Image Flip.
+		// TODO Also differentiate different facing images in RESOURCES HashMap.
+	}
+
 	/**
 	 * This constructor loads and scales an image, and also sets its size.
 	 * 

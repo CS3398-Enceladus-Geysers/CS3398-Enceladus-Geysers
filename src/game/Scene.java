@@ -61,10 +61,11 @@ public class Scene extends JPanel {
 		screenHeightFraction = 0;
 		cameraLocation = new Point(0, 0);
 		setLayout(null);
+		setSize(Main.GAME_PANEL_DIMENSION);
 	}
 
 	/**
-	 * The default {@link Scene} constructor which will not follow the player.
+	 * The {@link Scene} constructor which will follow the player.
 	 * 
 	 * @param screenWidthFraction  specifies the location of the {@link Scene} that
 	 *                             the {@link Player} should be centered at, offset
@@ -83,6 +84,7 @@ public class Scene extends JPanel {
 		this.screenHeightFraction = screenHeightFraction;
 		cameraLocation = new Point(0, 0);
 		setLayout(null);
+		setSize(Main.GAME_PANEL_DIMENSION);
 	}
 
 	/** Will be called on every frame. */
@@ -109,11 +111,18 @@ public class Scene extends JPanel {
 						if (c[x] == g)
 							flag = false;
 					if (flag) {
-						add(g);
 						if (go == defaultGameObject)
-							setComponentZOrder(g, g.isForeground() ? 0 : 2);
-						else
-							setComponentZOrder(g, 1);
+							add(g, g.isForeground() ? 0 : -1);
+						else {
+							boolean flag2 = true;
+							for (int x = 0; x < getComponentCount() && flag2; x++)
+								if (!((Graphic) getComponent(x)).isForeground()) {
+									add(g, x);
+									flag2 = false;
+								}
+							if (flag2)
+								add(g, -1);
+						}
 					}
 				}
 			}
