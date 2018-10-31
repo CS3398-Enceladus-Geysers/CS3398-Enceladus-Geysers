@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.EnumMap;
 import java.util.HashSet;
 
@@ -67,7 +68,7 @@ public class Main implements KeyListener {
 				SCENES_MAP.put(s, new Scene());
 		}
 		constructScenes();
-		transitionScene(ScenesEnum.LEVEL);
+		transitionScene(ScenesEnum.TITLE);
 		GAME_WINDOW.addKeyListener(this);
 		GAME_WINDOW.pack();
 		GAME_WINDOW.setResizable(false);
@@ -148,32 +149,37 @@ public class Main implements KeyListener {
 
 				t.setFont(new Font("Arial", Font.BOLD, 24));
 				t.setColor(Color.blue);
-				t.drawString("Lunar Rebellion", 0, 10);
+				t.drawString("Lunar Rebellion", 400, 250);
 
 			}
 		};
-
+		//Graphic backgroundTitle = new ImageGraphic("assets/space.png", 0, 0, 16, 9);
+		//title.addGraphic(backgroundTitle);
 		title.addGraphic(titleScene);
 
-		/*
-		 * Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 /
-		 * 60, 100.0 / 60) { private static final long serialVersionUID =
-		 * 3237106029139727237L;
-		 * 
-		 * @Override public void mouseClicked(MouseEvent arg0) {
-		 * transitionScene(ScenesEnum.START_MENU);
-		 * 
-		 * }
-		 * 
-		 * @Override public void paintComponent(Graphics m) { m.drawRect(60, 60, 60,
-		 * 60);
-		 * 
-		 * }
-		 * 
-		 * };
-		 */
+		Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60) {
+			private static final long serialVersionUID = 3237106029139727237L;
 
-		// title.addGraphic(startButton);
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				transitionScene(ScenesEnum.START_MENU);
+
+			}
+
+			@Override
+			public void paintComponent(Graphics m) {
+				
+				try {
+				   Graphic start = new ImageGraphic("assets/startbutton.png", 0, 0, 16, 9);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				title.addGraphic(start);
+			}
+		};
+
+	    title.addGraphic(startButton);
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
