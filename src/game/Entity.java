@@ -2,21 +2,43 @@ package game;
 
 import java.awt.Point;
 
+/**
+ * A CameraObservedObject that can move and may be affected by gravity and
+ * terrain collision.
+ */
 public abstract class Entity extends CameraObservedObject {
 	enum Direction {
 		DOWN, LEFT, RIGHT, UP;
 	}
+
 	private static final double GRAVITY_CONSTANT = 1.0 / 60, MAX_FALLING_SPEED = 1.0 / 6;
 	private double dx, dy;
 	private final boolean gravitational;
 
 	private boolean grounded;
 
+	/**
+	 * @param cameraLocation
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param gravitational  Whether or not the entity is subject to gravity and
+	 *                       terrain collision.
+	 */
 	public Entity(Point cameraLocation, double x, double y, double width, double height, boolean gravitational) {
 		super(cameraLocation, x, y, width, height);
 		this.gravitational = gravitational;
 	}
 
+	/**
+	 * Accelerates this entity in a target axis, up to a specified maximum velocity.
+	 * 
+	 * @param isVertical           Specifies the axis of acceleration
+	 * @param accelerationConstant Specifies the constant rate of acceleration, may
+	 *                             be negative
+	 * @param maximumVelocity      Specifies the maximum velocity, may be negative
+	 */
 	protected final void accelerate(boolean isVertical, double accelerationConstant, double maximumVelocity) {
 		if (maximumVelocity == 0) {
 			if (isVertical) {
@@ -61,8 +83,15 @@ public abstract class Entity extends CameraObservedObject {
 
 	private void applyGravityAcceleration() {
 		accelerate(true, GRAVITY_CONSTANT, MAX_FALLING_SPEED);
-	}
+  }
 
+	/**
+	 * Moves this entity to not collide with {@code trr}
+	 * 
+	 * @param trr The {@link Terrain} object that this {@link Entity} collides with.
+	 * @return True if this entity is on top of the terrain and is therefore now
+	 *         grounded.
+	 */
 	public boolean exclusionPrinciple(Terrain trr) {
 		Point[] entityCorners = { occupiedSpace.getCorner(true, true), occupiedSpace.getCorner(true, false),
 				occupiedSpace.getCorner(false, true), occupiedSpace.getCorner(false, false) };// TODO Make this a single
@@ -143,22 +172,38 @@ public abstract class Entity extends CameraObservedObject {
 		return toMove == Direction.UP;
 	}
 
+	/**
+	 * @return The velocity of this object in the X-axis.
+	 */
 	protected double getDx() {
 		return dx;
 	}
 
+	/**
+	 * @return The velocity of this object in the Y-axis.
+	 */
 	protected double getDy() {
 		return dy;
 	}
 
+	/**
+	 * @return {@code dy/dx} the slope of this object's velocity
+	 */
 	public final double getVelocitySlope() {
 		return dy / dx;
 	}
 
+	/**
+	 * @return true if this object is subject to gravity and {@link Terrain}
+	 *         collision.
+	 */
 	public final boolean isGravitational() {
 		return gravitational;
 	}
 
+	/**
+	 * @return true if this object is currently on top of {@link Terrain}.
+	 */
 	protected final boolean isGrounded() {
 		return grounded;
 	}
@@ -171,17 +216,40 @@ public abstract class Entity extends CameraObservedObject {
 		return dx > 0;
 	}
 
+	/**
+	 * Sets the velocity of this {@link Entity} in the X-axis, after scaling it by
+	 * {@link Main#SIZE_FACTOR}.
+	 * 
+	 * @param dx the velocity to be set, before scaling by {@link Main#SIZE_FACTOR}.
+	 */
 	protected void setDx(double dx) {
 		this.dx = dx * Main.SIZE_FACTOR;
 	}
 
+	/**
+	 * Sets the velocity of this {@link Entity} in the Y-axis, after scaling it by
+	 * {@link Main#SIZE_FACTOR}.
+	 * 
+	 * @param dy the velocity to be set, before scaling by {@link Main#SIZE_FACTOR}.
+	 */
 	protected void setDy(double dy) {
 		this.dy = dy * Main.SIZE_FACTOR;
 	}
 
+	/**
+	 * Sets whether or not this {@link Entity} is currently on top of
+	 * {@link Terrain}
+	 * 
+	 * @param grounded Whether or not this {@link Entity} is currently on top of
+	 *                 {@link Terrain}
+	 */
 	public final void setGrounded(boolean grounded) {
 		this.grounded = grounded;
 	}
 
+	/**
+	 * An abstract method to be overridden in order to allow for changes in
+	 * velocity.
+	 */
 	public abstract void updateVelocity();
 }

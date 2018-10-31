@@ -1,17 +1,29 @@
 package game;
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * A graphic with the ability to perform actions when clicked on.
+ */
 public abstract class ClickableGraphic extends Graphic implements MouseListener {
 	private static final long serialVersionUID = -1126958728064484219L;
+	private final Graphic underlyingGraphic;
 
-	public ClickableGraphic(double width, double height) {
-		super(width, height);
+	@Override
+	public void paintComponent(Graphics g) {
+		underlyingGraphic.paintComponent(g);
 	}
 
-	public ClickableGraphic(double xoffset, double yoffset, double width, double height) {
-		super(xoffset, yoffset, width, height);
+	/**
+	 * See {@link Graphic#Graphic(double, double)} this constructor also adds itself
+	 * as a {@link MouseListener} to itself.
+	 */
+	public ClickableGraphic(Graphic g) {
+		super(g.getXOffset(), g.getYOffset(), g.getWidth(), g.getHeight());
+		addMouseListener(this);
+		underlyingGraphic = g;
 	}
 
 	@Override
