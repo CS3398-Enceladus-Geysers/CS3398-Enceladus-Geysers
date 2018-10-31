@@ -1,11 +1,11 @@
 package game;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
 import java.util.EnumMap;
 import java.util.HashSet;
 
@@ -21,13 +21,21 @@ public class Main implements KeyListener {
 	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
 	}
 
+	/**
+	 * A {@link HashSet} which represents the currently pressed keys for as long as
+	 * they remain pressed.
+	 */
 	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
+	/**
+	 * The FPS limit for this game. The main {@link Thread} sleeps until it is time
+	 * for the next frame.
+	 */
 	public static final int FPS_LIMIT = 30;
 	/** This determines how big the game is. */
 	public static final Integer SIZE_FACTOR = 60;
 	/** This is the dimensions for the panel which is always displayed. */
 	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
-	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");;
+	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	// TODO Add javadocs on everything.
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
@@ -42,6 +50,9 @@ public class Main implements KeyListener {
 		return SCENES_MAP.get(scene);
 	}
 
+	/**
+	 * @return the {@link Player} object.
+	 */
 	public static final Player getPlayer() {
 		return player;
 	}
@@ -90,7 +101,7 @@ public class Main implements KeyListener {
 		player = new Player(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		Graphic healthbarGraphic = new Graphic(4.0/60, 3.0/60, 150, 50) {
+		Graphic healthbarGraphic = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
 
@@ -131,47 +142,50 @@ public class Main implements KeyListener {
 		//Graphic background = new ImageGraphic("assets/space.png",0,0,16,9);
 		//level.addGraphic(background);
 		// End level construction.
-		
+
 		// Start of Title construction
-		SCENES_MAP.put(ScenesEnum.TITLE, new Scene(1.0 / 2, 2.0 / 3));
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		Graphic titleScene = new Graphic(100.0/60, 100.0/60, 100.0/60, 100.0/60) {
+		Graphic titleScene = new Graphic(0, 0, 150, 50) {
 
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
-				
+				repaint();
 			}
 
 			@Override
 			public void paintComponent(Graphics t) {
-				t.drawString("Lunar Rebellion", 60, 60);
-				
+
+				t.setFont(new Font("Arial", Font.BOLD, 24));
+				t.setColor(Color.blue);
+				t.drawString("Lunar Rebellion", 0, 10);
+
 			}
-			
 		};
-		
-		/*Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60) {
-			private static final long serialVersionUID = 3237106029139727237L;
 
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.START_MENU);
-				
-			}
-
-			@Override
-			public void paintComponent(Graphics m) {
-				m.drawRect(60, 60, 60, 60);
-			
-			}
-			
-		};*/
-		
 		title.addGraphic(titleScene);
-		//title.addGraphic(startButton);
+
+		/*
+		 * Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 /
+		 * 60, 100.0 / 60) { private static final long serialVersionUID =
+		 * 3237106029139727237L;
+		 * 
+		 * @Override public void mouseClicked(MouseEvent arg0) {
+		 * transitionScene(ScenesEnum.START_MENU);
+		 * 
+		 * }
+		 * 
+		 * @Override public void paintComponent(Graphics m) { m.drawRect(60, 60, 60,
+		 * 60);
+		 * 
+		 * }
+		 * 
+		 * };
+		 */
+
+		// title.addGraphic(startButton);
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
