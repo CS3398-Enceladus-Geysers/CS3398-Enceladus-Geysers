@@ -45,7 +45,6 @@ public class GameObject {
 	 */
 	protected final void addGraphic(Graphic graphic) {
 		graphics.add(graphic);
-		repaint();
 	}
 
 	/**

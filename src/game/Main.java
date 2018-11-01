@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.EnumMap;
 import java.util.HashSet;
 
@@ -207,56 +208,93 @@ public class Main implements KeyListener {
 			public void paintComponent(Graphics t) {
 				t.setFont(new Font("Arial", Font.BOLD, 24));
 				t.setColor(Color.blue);
-				t.drawString("Lunar Rebellion", 0, 10);
+				t.drawString("Lunar Rebellion", 400, 250);
 			}
 		};
-
+		
+		Graphic backgroundTitle = new ImageGraphic("assets/space.png", 0, 0, 16, 9);
+		title.addGraphic(backgroundTitle);
+		
 		title.addGraphic(titleScene);
 
-		/*
-		 * Graphic startButton = new ClickableGraphic(900.0 / 60, 100.0 / 60, 100.0 /
-		 * 60, 100.0 / 60) { private static final long serialVersionUID =
-		 * 3237106029139727237L;
-		 * 
-		 * @Override public void mouseClicked(MouseEvent arg0) {
-		 * transitionScene(ScenesEnum.START_MENU);
-		 * 
-		 * }
-		 * 
-		 * @Override public void paintComponent(Graphics m) { m.drawRect(60, 60, 60,
-		 * 60);
-		 * 
-		 * }
-		 * 
-		 * };
-		 */
+		Graphic startButton = new ClickableGraphic(0, 0, 200, 75) {
+			private static final long serialVersionUID = 3237106029139727237L;
 
-		// title.addGraphic(startButton);
-	}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				transitionScene(ScenesEnum.LEVEL);
 
-	/** We can use this method to listen for keyboard input from our window. */
-	@Override
-	public void keyPressed(KeyEvent e) {
-		CURRENTLY_PRESSED_KEYS.add(e.getKeyCode());
-	}
+			}
 
-	/** We can use this method to listen for keyboard input from our window. */
-	@Override
-	public void keyReleased(KeyEvent e) {
-		CURRENTLY_PRESSED_KEYS.remove(e.getKeyCode());
-	}
+			@Override
+			public void paintComponent(Graphics m) {
+				
+				m.setFont(new Font("Arial", Font.BOLD, 18));
+				m.setColor(Color.green);
+				m.drawString("START", 450, 300);
+			
+			}
+		};
+	
+	    title.addGraphic(startButton);
+	
 
-	/** Let's not use this one, it's for typing. */
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+	
+	    // Construction of Start Menu
+	    // Start of Title construction
+	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
+	    
+	    Graphic menuScene = new Graphic(0, 0, 150, 50) {
 
-	/** Swap out scenes to the scene specified in the parameter. */
-	private void transitionScene(ScenesEnum scene) {
-		if (Main.scene != null)
-			GAME_WINDOW.remove(SCENES_MAP.get(Main.scene));
-		Main.scene = scene;
-		GAME_WINDOW.add(SCENES_MAP.get(scene));
-		GAME_WINDOW.repaint();
+	    	private static final long serialVersionUID = 3237106029139727237L;
+
+	    	@Override
+	    	public void act() {
+					// TODO Auto-generated method stub
+	    		repaint();
+	    	}
+
+	    	@Override
+	    	public void paintComponent(Graphics s) {
+
+	    		s.setFont(new Font("Arial", Font.BOLD, 24));
+	    		s.setColor(Color.blue);
+	    		s.drawString("MENU", 400, 150);
+	    	}
+	  
+	     };
+	  
+	     menu.addGraphic(menuScene);
 	}
+	
+	
+	
+	    /** We can use this method to listen for keyboard input from our window. */
+	    @Override
+	    public void keyPressed(KeyEvent e) {
+	    	CURRENTLY_PRESSED_KEYS.add(e.getKeyCode());
+	    }
+
+	    /** We can use this method to listen for keyboard input from our window. */
+	    @Override
+	    public void keyReleased(KeyEvent e) {
+	    	CURRENTLY_PRESSED_KEYS.remove(e.getKeyCode());
+	    }
+
+	    /** Let's not use this one, it's for typing. */
+	    @Override
+	    public void keyTyped(KeyEvent e) {
+	    }
+
+	    /** Swap out scenes to the scene specified in the parameter. */
+	    private void transitionScene(ScenesEnum scene) {
+	    	if (Main.scene != null)
+	    		GAME_WINDOW.remove(SCENES_MAP.get(Main.scene));
+	    		Main.scene = scene;
+	    		GAME_WINDOW.add(SCENES_MAP.get(scene));
+	    		GAME_WINDOW.repaint();
+	    }
+	 
 }
+	
