@@ -36,8 +36,7 @@ public class Main implements KeyListener {
 	public static final Integer SIZE_FACTOR = 60;
 	/** This is the dimensions for the panel which is always displayed. */
 	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
-	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");;
-	// TODO Add javadocs on everything.
+	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
@@ -81,10 +80,11 @@ public class Main implements KeyListener {
 		constructScenes();
 		transitionScene(ScenesEnum.LEVEL);
 		GAME_WINDOW.addKeyListener(this);
-		GAME_WINDOW.pack();
+		GAME_WINDOW.setSize(GAME_PANEL_DIMENSION);
 		GAME_WINDOW.setResizable(false);
 		GAME_WINDOW.setLocationRelativeTo(null);
 		GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		currentScene().act();
 		GAME_WINDOW.setVisible(true);
 		long lastFrameTime = System.currentTimeMillis();
 		while (true) {
@@ -122,31 +122,80 @@ public class Main implements KeyListener {
 			}
 		};
 		level.addGraphic(healthbarGraphic);
-		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 200.0 / 60, 100.0 / 60, 100.0 / 60,
+		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/block.png", 8, 1);
 		level.addGameObject(dirt1);
-		Terrain dirt2 = new Terrain(level.getCameraLocation(), 400.0 / 60, -50.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
-		level.addGameObject(dirt2);
-		Terrain dirt3 = new Terrain(level.getCameraLocation(), 700.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
-		level.addGameObject(dirt3);
-		Terrain dirt4 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
-		level.addGameObject(dirt4);
-
-		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 1100.0 / 60, 150.0 / 60, 100.0 / 60, 100.0 / 60,
+		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/spikes.png", 1, 1, 20);
 		level.addGameObject(obs1);
+		Terrain dirt3 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 2, 1);
+		level.addGameObject(dirt3);
+		Terrain dirt4 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 1, 1);
+		level.addGameObject(dirt4);
+		Terrain dirt5 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/blockBottom.png", 1, 1);
+		level.addGameObject(dirt5);
+		Terrain dirt6 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 1, 1);
+		level.addGameObject(dirt6);
+		Obstacle obs2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/spikes.png", 1, 1, 20);
+		level.addGameObject(obs2);
+		Terrain dirt7 = new Terrain(level.getCameraLocation(), 1300.0 / 60, -120.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 1, 1);
+		level.addGameObject(dirt7);
+		Terrain dirt8 = new Terrain(level.getCameraLocation(), 1400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 1, 1);
+		level.addGameObject(dirt8);
+		Terrain dirt9 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/blockBottom.png", 1, 1);
+		level.addGameObject(dirt9);
+		Terrain dirt10 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 1, 1);
+		level.addGameObject(dirt10);
+		Terrain dirt11 = new Terrain(level.getCameraLocation(), 1600.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/blockBottom.png", 1, 2);
+		level.addGameObject(dirt11);
+		Terrain dirt12 = new Terrain(level.getCameraLocation(), 1600.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 1, 1);
+		level.addGameObject(dirt12);
+		Terrain dirt13 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/blockBottom.png", 1, 3);
+		level.addGameObject(dirt13);
+		Terrain dirt14 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 1, 1);
+		level.addGameObject(dirt14);
+		Obstacle obs3 = new Obstacle(level.getCameraLocation(), 1800.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/spikes.png", 1, 1, 20);
+		level.addGameObject(obs3);
+		Obstacle obs4 = new Obstacle(level.getCameraLocation(), 1900.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/spikes.png", 1, 1, 20);
+		level.addGameObject(obs4);
+		Obstacle obs5 = new Obstacle(level.getCameraLocation(), 2000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/spikes.png", 1, 1, 20);
+		level.addGameObject(obs5);
+		Obstacle obs6 = new Obstacle(level.getCameraLocation(), 2100.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/spikes.png", 1, 1, 20);
+		level.addGameObject(obs6);
+		Terrain dirt15 = new Terrain(level.getCameraLocation(), 1800.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/blockBottom.png", 4, 4);
+		level.addGameObject(dirt15);
+		Terrain dirt16 = new Terrain(level.getCameraLocation(), 1920.0 / 60, -300.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/block.png", 4, 1);
+		level.addGameObject(dirt16);
+		Terrain portal = new Terrain(level.getCameraLocation(), 2200.0 / 60, -400.0 / 60, 100.0 / 60, 100.0 / 60,
+				"assets/portal.png", 1, 1);
+		level.addGameObject(portal);
 
-		// Graphic background = new ImageGraphic("assets/space.png",0,0,16,9);
-		// level.addGraphic(background);
+		Graphic background = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
+		level.addGraphic(background);
 		// End level construction.
 
 		// Start of Title construction
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 		Graphic titleScene = new Graphic(0, 0, 150, 50) {
-
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -157,11 +206,9 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics t) {
-
 				t.setFont(new Font("Arial", Font.BOLD, 24));
 				t.setColor(Color.blue);
 				t.drawString("Lunar Rebellion", 400, 250);
-
 			}
 		};
 		

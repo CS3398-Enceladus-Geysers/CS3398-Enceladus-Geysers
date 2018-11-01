@@ -2,6 +2,9 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.HashMap;
@@ -12,10 +15,39 @@ import javax.imageio.ImageIO;
  * A graphic which is represented by a still image, as opposed to an animation.
  */
 public class ImageGraphic extends Graphic {
-	private static final HashMap<String, Image> RESOURCES = new HashMap<String, Image>();
+	private static final HashMap<String, Image[]> RESOURCES = new HashMap<String, Image[]>();
 	private static final long serialVersionUID = 7604033494188278910L;
-	private final Image facingRight;
-//	private final Image facingLeft;
+	private Image[] image = new Image[2];
+	private int facing = 1;
+	AffineTransformOp flipHorizontal = new AffineTransformOp(new AffineTransform(-1, 0, 0, 1, getWidth(), 0),
+			AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+
+	public final int getFacing() {
+		return facing;
+	}
+
+	public final void flip() {
+		facing = 1 - facing;
+	}
+
+	private final void loadAndFlip(String fileName) throws Exception {
+		if (RESOURCES.containsKey(fileName)) {
+			image = RESOURCES.get(fileName);
+		} else {
+			image[1] = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName)))
+					.getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
+			BufferedImage b = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+			b.getGraphics().drawImage(image[1], 0, 0, null);
+			image[0] = flipHorizontal.filter(b, null);
+			RESOURCES.put(fileName, image);
+		}
+	}
+
+	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height,
+			boolean foreground) throws Exception {
+		super(xoffset, yoffset, width, height, foreground);
+		loadAndFlip(fileName);
+	}
 
 	/**
 	 * This constructor loads and scales an image, and also sets its size.
@@ -33,15 +65,7 @@ public class ImageGraphic extends Graphic {
 	 */
 	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height) throws Exception {
 		super(xoffset, yoffset, width, height);
-		if (RESOURCES.containsKey(fileName)) {
-			facingRight = RESOURCES.get(fileName);
-		} else {
-			facingRight = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName)))
-					.getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
-			RESOURCES.put(fileName, facingRight);
-		}
-		// TODO Uncomment facingLeft and implement an Image Flip.
-		// TODO Also differentiate different facing images in RESOURCES HashMap.
+		loadAndFlip(fileName);
 	}
 
 	@Override
@@ -55,6 +79,6 @@ public class ImageGraphic extends Graphic {
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
-		g.drawImage(facingRight, 0, 0, null);
+		g.drawImage(image[facing], 0, 0, null);
 	}
 }
