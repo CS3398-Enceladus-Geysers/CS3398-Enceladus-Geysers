@@ -78,7 +78,7 @@ public class Main implements KeyListener {
 				SCENES_MAP.put(s, new Scene());
 		}
 		constructScenes();
-		transitionScene(ScenesEnum.LEVEL);
+		transitionScene(ScenesEnum.TITLE);
 		GAME_WINDOW.addKeyListener(this);
 		GAME_WINDOW.setSize(GAME_PANEL_DIMENSION);
 		GAME_WINDOW.setResizable(false);
@@ -189,13 +189,13 @@ public class Main implements KeyListener {
 				"assets/portal.png", 1, 1);
 		level.addGameObject(portal);
 
-		Graphic background = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
-		level.addGraphic(background);
+		/*Graphic background = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
+		level.addGraphic(background);*/
 		// End level construction.
 
 		// Start of Title construction
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		Graphic titleScene = new Graphic(0, 0, 150, 50) {
+		/*Graphic titleScene = new Graphic(0, 0, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -210,36 +210,27 @@ public class Main implements KeyListener {
 				t.setColor(Color.blue);
 				t.drawString("Lunar Rebellion", 400, 250);
 			}
-		};
+		};*/
 		
-		Graphic backgroundTitle = new ImageGraphic("assets/space.png", 0, 0, 16, 9);
+		Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, false);
+		
 		title.addGraphic(backgroundTitle);
 		
-		title.addGraphic(titleScene);
+		Graphic start = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, true);
+		Graphic startButton = new ClickableGraphic(start) {
 
-		Graphic startButton = new ClickableGraphic(0, 0, 200, 75) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
 				transitionScene(ScenesEnum.LEVEL);
-
-			}
-
-			@Override
-			public void paintComponent(Graphics m) {
 				
-				m.setFont(new Font("Arial", Font.BOLD, 18));
-				m.setColor(Color.green);
-				m.drawString("START", 450, 300);
-			
 			}
+			
 		};
+		
 	
-	    title.addGraphic(startButton);
-	
-
+		title.addGraphic(startButton);
 	
 	    // Construction of Start Menu
 	    // Start of Title construction
