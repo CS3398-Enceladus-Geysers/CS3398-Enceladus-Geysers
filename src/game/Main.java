@@ -78,7 +78,7 @@ public class Main implements KeyListener {
 				SCENES_MAP.put(s, new Scene());
 		}
 		constructScenes();
-		transitionScene(ScenesEnum.LEVEL);
+		transitionScene(ScenesEnum.TITLE);
 		GAME_WINDOW.addKeyListener(this);
 		GAME_WINDOW.setSize(GAME_PANEL_DIMENSION);
 		GAME_WINDOW.setResizable(false);
@@ -217,7 +217,7 @@ public class Main implements KeyListener {
 		
 		title.addGraphic(titleScene);
 
-		Graphic startButton = new ClickableGraphic(0, 0, 200, 75) {
+		/*Graphic startButton = new ClickableGraphic(0, 0, 200, 75) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -237,7 +237,7 @@ public class Main implements KeyListener {
 			}
 		};
 	
-	    title.addGraphic(startButton);
+	    title.addGraphic(startButton);*/
 	
 
 	
