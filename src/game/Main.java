@@ -79,7 +79,7 @@ public class Main implements KeyListener {
 				SCENES_MAP.put(s, new Scene());
 		}
 		constructScenes();
-		transitionScene(ScenesEnum.TITLE);
+		transitionScene(ScenesEnum.LEVEL);
 		GAME_WINDOW.addKeyListener(this);
 		GAME_WINDOW.pack();
 		GAME_WINDOW.setResizable(false);
@@ -176,7 +176,7 @@ public class Main implements KeyListener {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				transitionScene(ScenesEnum.START_MENU);
+				transitionScene(ScenesEnum.LEVEL);
 
 			}
 
