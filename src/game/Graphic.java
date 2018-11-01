@@ -28,8 +28,15 @@ public abstract class Graphic extends JComponent {
 		return yoffset;
 	}
 
+	/**
+	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
+	 * its location to the top left of the {@link GameObject} to which it belongs.
+	 * 
+	 * @param width  the x dimension of this {@link Graphic}
+	 * @param height the y dimension of this {@link Graphic}
+	 */
 	public Graphic(double width, double height) {
-		this(0, 0, width, height);
+		this(0, 0, width, height, true);
 	}
 
 	public Graphic(double xoffset, double yoffset, double width, double height, boolean foreground) {
@@ -40,13 +47,6 @@ public abstract class Graphic extends JComponent {
 		setLocation(0, 0);
 	}
 
-	/**
-	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
-	 * its location to the top left of the {@link GameObject} to which it belongs.
-	 * 
-	 * @param width  the x dimension of this {@link Graphic}
-	 * @param height the y dimension of this {@link Graphic}
-	 */
 	public Graphic(double width, double height, boolean foreground) {
 		this(0, 0, width, height, foreground);
 	}
