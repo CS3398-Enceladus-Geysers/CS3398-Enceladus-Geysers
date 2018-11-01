@@ -195,7 +195,7 @@ public class Main implements KeyListener {
 
 		// Start of Title construction
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		Graphic titleScene = new Graphic(0, 0, 150, 50) {
+		/*Graphic titleScene = new Graphic(0, 0, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -210,12 +210,12 @@ public class Main implements KeyListener {
 				t.setColor(Color.blue);
 				t.drawString("Lunar Rebellion", 400, 250);
 			}
-		};
+		};*/
 		
-		Graphic backgroundTitle = new ImageGraphic("assets/space.png", 0, 0, 16, 9);
+		Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5);
 		title.addGraphic(backgroundTitle);
 		
-		title.addGraphic(titleScene);
+		//title.addGraphic(titleScene);
 
 		/*Graphic startButton = new ClickableGraphic(0, 0, 200, 75) {
 			private static final long serialVersionUID = 3237106029139727237L;
