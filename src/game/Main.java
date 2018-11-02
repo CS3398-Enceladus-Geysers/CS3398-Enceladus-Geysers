@@ -299,7 +299,7 @@ public class Main implements KeyListener {
 					public void paintComponent(Graphics t) {
 						t.setFont(new Font("Arial", Font.BOLD, 18));
 						t.setColor(Color.green);
-						t.drawString("OPTIONS", 375, 250);
+						t.drawString("SETTINGS", 375, 250);
 					}
 			     };			
 			     
@@ -309,7 +309,7 @@ public class Main implements KeyListener {
 
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						transitionScene(ScenesEnum.LEVEL);
+						transitionScene(ScenesEnum.SETTINGS);
 							
 					}
 						
