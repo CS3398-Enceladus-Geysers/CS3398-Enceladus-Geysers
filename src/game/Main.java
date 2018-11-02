@@ -211,7 +211,7 @@ public class Main implements KeyListener {
 
 				@Override
 				public void paintComponent(Graphics t) {
-					t.setFont(new Font("Arial", Font.BOLD, 36));
+					t.setFont(new Font("Arial", Font.BOLD, 32));
 					t.setColor(Color.CYAN);
 					t.drawString("START ", 600, 500);
 				}
@@ -231,9 +231,11 @@ public class Main implements KeyListener {
 		title.addGraphic(startButton);
 	
 	    // Construction of Start Menu
-	    // Start of Title construction
 	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
 	    
+		Graphic backgroundMenu = new ImageGraphic("assets/enceladus.png", 0, 0, 16, 9, false);
+		menu.addGraphic(backgroundMenu);
+		
 	    Graphic menuScene = new Graphic(0, 0, 150, 50) {
 
 	    	private static final long serialVersionUID = 3237106029139727237L;
@@ -283,11 +285,68 @@ public class Main implements KeyListener {
 				}
 				
 			};
+		
+		 Graphic optionsB = new Graphic(0, 0, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void act() {
+						// TODO Auto-generated method stub
+						repaint();
+					}
+
+					@Override
+					public void paintComponent(Graphics t) {
+						t.setFont(new Font("Arial", Font.BOLD, 18));
+						t.setColor(Color.green);
+						t.drawString("OPTIONS", 375, 250);
+					}
+			     };			
+			     
+		  Graphic options = new ClickableGraphic(optionsB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						transitionScene(ScenesEnum.LEVEL);
+							
+					}
+						
+			};
+			
+			Graphic quitB = new Graphic(0, 0, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void act() {
+						// TODO Auto-generated method stub
+						repaint();
+					}
+
+					@Override
+					public void paintComponent(Graphics t) {
+						t.setFont(new Font("Arial", Font.BOLD, 18));
+						t.setColor(Color.green);
+						t.drawString("QUIT", 375, 300);
+					}
+			     };			
+			     
+		  Graphic quitting = new ClickableGraphic(quitB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						transitionScene(ScenesEnum.LEVEL);
+							
+					}
+						
+			};
 			
 		 menu.addGraphic(startGame);
-	     
-	     
-	     
+	     menu.addGraphic(options);
+	     menu.addGraphic(quitting);
 	     
 	     
 	     
