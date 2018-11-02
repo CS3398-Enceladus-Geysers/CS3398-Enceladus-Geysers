@@ -189,8 +189,8 @@ public class Main implements KeyListener {
 				"assets/portal.png", 1, 1);
 		level.addGameObject(portal);
 
-		/*Graphic background = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
-		level.addGraphic(background);*/
+		Graphic background = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
+		level.addGraphic(background);
 		// End level construction.
 
 		// Start of Title construction
