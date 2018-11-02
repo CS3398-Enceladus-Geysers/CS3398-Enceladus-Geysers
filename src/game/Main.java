@@ -200,7 +200,22 @@ public class Main implements KeyListener {
 		
 		title.addGraphic(backgroundTitle);
 		
-		Graphic start = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, true);
+		 Graphic start = new Graphic(0, 0, 150, 50, true) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					repaint();
+				}
+
+				@Override
+				public void paintComponent(Graphics t) {
+					t.setFont(new Font("Arial", Font.BOLD, 36));
+					t.setColor(Color.CYAN);
+					t.drawString("START ", 600, 500);
+				}
+		     };
 		Graphic startButton = new ClickableGraphic(start) {
 
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -213,7 +228,6 @@ public class Main implements KeyListener {
 			
 		};
 		
-	
 		title.addGraphic(startButton);
 	
 	    // Construction of Start Menu
@@ -235,7 +249,7 @@ public class Main implements KeyListener {
 
 	    		s.setFont(new Font("Arial", Font.BOLD, 24));
 	    		s.setColor(Color.blue);
-	    		s.drawString("MENU", 400, 100);
+	    		s.drawString("MAIN MENU", 400, 100);
 	    	}
 	  
 	     };
@@ -255,7 +269,7 @@ public class Main implements KeyListener {
 			public void paintComponent(Graphics t) {
 				t.setFont(new Font("Arial", Font.BOLD, 18));
 				t.setColor(Color.green);
-				t.drawString("START GAME", 400, 250);
+				t.drawString("START GAME", 375, 200);
 			}
 	     };
 	     Graphic startGame = new ClickableGraphic(startB) {
