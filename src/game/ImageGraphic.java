@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 
 /**
@@ -17,37 +16,10 @@ import javax.imageio.ImageIO;
 public class ImageGraphic extends Graphic {
 	private static final HashMap<String, Image[]> RESOURCES = new HashMap<String, Image[]>();
 	private static final long serialVersionUID = 7604033494188278910L;
-	private Image[] image = new Image[2];
 	private int facing = 1;
 	AffineTransformOp flipHorizontal = new AffineTransformOp(new AffineTransform(-1, 0, 0, 1, getWidth(), 0),
 			AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-
-	public final int getFacing() {
-		return facing;
-	}
-
-	public final void flip() {
-		facing = 1 - facing;
-	}
-
-	private final void loadAndFlip(String fileName) throws Exception {
-		if (RESOURCES.containsKey(fileName)) {
-			image = RESOURCES.get(fileName);
-		} else {
-			image[1] = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName)))
-					.getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
-			BufferedImage b = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-			b.getGraphics().drawImage(image[1], 0, 0, null);
-			image[0] = flipHorizontal.filter(b, null);
-			RESOURCES.put(fileName, image);
-		}
-	}
-
-	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height,
-			boolean foreground) throws Exception {
-		super(xoffset, yoffset, width, height, foreground);
-		loadAndFlip(fileName);
-	}
+	private Image[] image = new Image[2];
 
 	/**
 	 * This constructor loads and scales an image, and also sets its size.
@@ -68,8 +40,35 @@ public class ImageGraphic extends Graphic {
 		loadAndFlip(fileName);
 	}
 
+	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height,
+			boolean foreground) throws Exception {
+		super(xoffset, yoffset, width, height, foreground);
+		loadAndFlip(fileName);
+	}
+
 	@Override
 	public void act() {
+	}
+
+	public final void flip() {
+		facing = 1 - facing;
+	}
+
+	public final int getFacing() {
+		return facing;
+	}
+
+	private final void loadAndFlip(String fileName) throws Exception {
+		if (RESOURCES.containsKey(fileName)) {
+			image = RESOURCES.get(fileName);
+		} else {
+			image[1] = ImageIO.read(new BufferedInputStream(new FileInputStream(fileName)))
+					.getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
+			BufferedImage b = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+			b.getGraphics().drawImage(image[1], 0, 0, null);
+			image[0] = flipHorizontal.filter(b, null);
+			RESOURCES.put(fileName, image);
+		}
 	}
 
 	/**

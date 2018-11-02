@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 /**
@@ -19,6 +18,7 @@ public class Scene extends JPanel {
 	 * {@link CameraObservedObject}s are displayed.
 	 */
 	protected final Point cameraLocation;
+	private final GameObject defaultGameObject;
 	private final boolean followsPlayer;
 	/**
 	 * The collection of all {@link GameObject}s owned by this {@link Scene}.
@@ -36,18 +36,6 @@ public class Scene extends JPanel {
 	 * are {@link Terrain} objects.
 	 */
 	protected final ArrayList<Terrain> terrain = new ArrayList<Terrain>();
-	private final GameObject defaultGameObject;
-
-	/**
-	 * Adds a {@link Graphic} to the default {@link GameObject}
-	 * 
-	 * @param g     The {@link Graphic} to be added to the screen, offset from the
-	 *              top-left of the scene.
-	 * @param depth
-	 */
-	public final void addGraphic(Graphic g) {
-		defaultGameObject.addGraphic(g);
-	}
 
 	/**
 	 * The default {@link Scene} constructor which will not follow the player.
@@ -163,6 +151,17 @@ public class Scene extends JPanel {
 			Terrain trr = (Terrain) go;
 			terrain.add(trr);
 		}
+	}
+
+	/**
+	 * Adds a {@link Graphic} to the default {@link GameObject}
+	 * 
+	 * @param g     The {@link Graphic} to be added to the screen, offset from the
+	 *              top-left of the scene.
+	 * @param depth
+	 */
+	public final void addGraphic(Graphic g) {
+		defaultGameObject.addGraphic(g);
 	}
 
 	private final void followPlayerWithCamera() {

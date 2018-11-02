@@ -8,10 +8,9 @@ import java.io.Serializable;
  */
 public class GameSave implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@SuppressWarnings("unused")
-	private int level;
 	// private Items items;
 	@SuppressWarnings("unused")
 	private int HP;
-
+	@SuppressWarnings("unused")
+	private int level;
 }

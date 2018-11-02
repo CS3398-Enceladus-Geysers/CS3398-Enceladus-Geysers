@@ -7,8 +7,8 @@ import java.awt.Graphics;
  */
 public class Animation extends Graphic {
 	private static final long serialVersionUID = 3016242110618863938L;
-	// TODO Allocate Variables for assets.
 
+	// TODO Allocate Variables for assets.
 	/**
 	 * A constructor for creating an animation.
 	 * 
