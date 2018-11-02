@@ -195,24 +195,8 @@ public class Main implements KeyListener {
 
 		// Start of Title construction
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		/*Graphic titleScene = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Arial", Font.BOLD, 24));
-				t.setColor(Color.blue);
-				t.drawString("Lunar Rebellion", 400, 250);
-			}
-		};*/
 		
-		Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, false);
+	    Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, false);
 		
 		title.addGraphic(backgroundTitle);
 		
@@ -223,7 +207,7 @@ public class Main implements KeyListener {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.LEVEL);
+				transitionScene(ScenesEnum.START_MENU);
 				
 			}
 			
@@ -251,12 +235,50 @@ public class Main implements KeyListener {
 
 	    		s.setFont(new Font("Arial", Font.BOLD, 24));
 	    		s.setColor(Color.blue);
-	    		s.drawString("MENU", 400, 150);
+	    		s.drawString("MENU", 400, 100);
 	    	}
 	  
 	     };
 	  
 	     menu.addGraphic(menuScene);
+	     
+	     Graphic startB = new Graphic(0, 0, 150, 50) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				repaint();
+			}
+
+			@Override
+			public void paintComponent(Graphics t) {
+				t.setFont(new Font("Arial", Font.BOLD, 18));
+				t.setColor(Color.green);
+				t.drawString("START GAME", 400, 250);
+			}
+	     };
+	     Graphic startGame = new ClickableGraphic(startB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					transitionScene(ScenesEnum.LEVEL);
+					
+				}
+				
+			};
+			
+		 menu.addGraphic(startGame);
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
 	}
 	
 	
