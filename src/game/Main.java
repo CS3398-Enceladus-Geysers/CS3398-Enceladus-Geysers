@@ -186,10 +186,10 @@ public class Main implements KeyListener {
 				"assets/block.png", 4, 1);
 		level.addGameObject(dirt16);
 		Terrain portal = new Terrain(level.getCameraLocation(), 2200.0 / 60, -400.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/portal.png", 1, 1);
+				"assets/portal2.png", 1, 1);
 		level.addGameObject(portal);
 
-		Graphic background = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
+		Graphic background = new ImageGraphic("assets/enceladus.png", 0, 0, 16, 9, false);
 		level.addGraphic(background);
 		// End level construction.
 
