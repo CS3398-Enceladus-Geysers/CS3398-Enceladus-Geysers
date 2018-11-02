@@ -242,7 +242,7 @@ public class Main implements KeyListener {
 
 	    	@Override
 	    	public void act() {
-					// TODO Auto-generated method stub
+					// FIXME Review this.
 	    		repaint();
 	    	}
 
