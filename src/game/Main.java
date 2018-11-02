@@ -230,6 +230,8 @@ public class Main implements KeyListener {
 		
 		title.addGraphic(startButton);
 	
+		// END OF TITLE CONSTRUCTION
+		
 	    // Construction of Start Menu
 	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
 	    
@@ -299,7 +301,7 @@ public class Main implements KeyListener {
 					public void paintComponent(Graphics t) {
 						t.setFont(new Font("Arial", Font.BOLD, 18));
 						t.setColor(Color.green);
-						t.drawString("OPTIONS", 375, 250);
+						t.drawString("SETTINGS", 375, 250);
 					}
 			     };			
 			     
@@ -309,7 +311,7 @@ public class Main implements KeyListener {
 
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						transitionScene(ScenesEnum.LEVEL);
+						transitionScene(ScenesEnum.SETTINGS);
 							
 					}
 						
@@ -348,7 +350,7 @@ public class Main implements KeyListener {
 	     menu.addGraphic(options);
 	     menu.addGraphic(quitting);
 	     
-	     
+	     // END OF START MENU CONSTRUCTION
 	     
 	     
 	     
