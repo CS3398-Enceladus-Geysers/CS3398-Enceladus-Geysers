@@ -230,6 +230,8 @@ public class Main implements KeyListener {
 		
 		title.addGraphic(startButton);
 	
+		// END OF TITLE CONSTRUCTION
+		
 	    // Construction of Start Menu
 	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
 	    
@@ -348,7 +350,7 @@ public class Main implements KeyListener {
 	     menu.addGraphic(options);
 	     menu.addGraphic(quitting);
 	     
-	     
+	     // END OF START MENU CONSTRUCTION
 	     
 	     
 	     
