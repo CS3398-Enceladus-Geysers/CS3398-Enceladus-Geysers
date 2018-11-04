@@ -124,11 +124,6 @@ public class Scene extends JPanel {
 								add(g, -1);
 						}
 					}
-
-					if (flag)
-						add(g);
-					g.repaint();
-
 				}
 			}
 		}
