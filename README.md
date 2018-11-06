@@ -35,3 +35,4 @@ At the end of sprint 2, we completed level one by buidling the platforms and cre
 Next steps for Sprint 3
 
 Kristof York, I will start building the next level by placing platforms and obstacles.
+Laura Rice, in the next sprint I plan to implement Game Over/Reset Methods using the GameSave and ResourceManager classes that I made in sprint 2.  
