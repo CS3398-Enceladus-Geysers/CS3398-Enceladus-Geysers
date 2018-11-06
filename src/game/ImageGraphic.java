@@ -23,11 +23,15 @@ public class ImageGraphic extends Graphic {
 			AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 
 	public final void faceLeft() {
-		facing = 0;
+		if (facing == 1) {
+			flip();
+		}
 	}
 
 	public final void faceRight() {
-		facing = 1;
+		if (facing == 0) {
+			flip();
+		}
 	}
 
 	public final int getFacing() {
@@ -36,6 +40,7 @@ public class ImageGraphic extends Graphic {
 
 	public final void flip() {
 		facing = 1 - facing;
+		repaint();
 	}
 
 	private final void loadAndFlip(String fileName) throws Exception {
