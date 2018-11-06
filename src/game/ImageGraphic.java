@@ -22,6 +22,14 @@ public class ImageGraphic extends Graphic {
 	AffineTransformOp flipHorizontal = new AffineTransformOp(new AffineTransform(-1, 0, 0, 1, getWidth(), 0),
 			AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 
+	public final void faceLeft() {
+		facing = 0;
+	}
+
+	public final void faceRight() {
+		facing = 1;
+	}
+
 	public final int getFacing() {
 		return facing;
 	}
