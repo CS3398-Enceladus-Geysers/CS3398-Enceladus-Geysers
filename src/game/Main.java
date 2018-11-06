@@ -195,47 +195,49 @@ public class Main implements KeyListener {
 
 		// Start of Title construction
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		/*Graphic titleScene = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Arial", Font.BOLD, 24));
-				t.setColor(Color.blue);
-				t.drawString("Lunar Rebellion", 400, 250);
-			}
-		};*/
 		
-		Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, false);
+	    Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, false);
 		
 		title.addGraphic(backgroundTitle);
 		
-		Graphic start = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, true);
+		 Graphic start = new Graphic(0, 0, 150, 50, true) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					repaint();
+				}
+
+				@Override
+				public void paintComponent(Graphics t) {
+					t.setFont(new Font("Arial", Font.BOLD, 32));
+					t.setColor(Color.CYAN);
+					t.drawString("START ", 600, 500);
+				}
+		     };
 		Graphic startButton = new ClickableGraphic(start) {
 
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.LEVEL);
+				transitionScene(ScenesEnum.START_MENU);
 				
 			}
 			
 		};
 		
-	
 		title.addGraphic(startButton);
 	
+		// END OF TITLE CONSTRUCTION
+		
 	    // Construction of Start Menu
-	    // Start of Title construction
 	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
 	    
+		Graphic backgroundMenu = new ImageGraphic("assets/enceladus.png", 0, 0, 16, 9, false);
+		menu.addGraphic(backgroundMenu);
+		
 	    Graphic menuScene = new Graphic(0, 0, 150, 50) {
 
 	    	private static final long serialVersionUID = 3237106029139727237L;
@@ -251,12 +253,107 @@ public class Main implements KeyListener {
 
 	    		s.setFont(new Font("Arial", Font.BOLD, 24));
 	    		s.setColor(Color.blue);
-	    		s.drawString("MENU", 400, 150);
+	    		s.drawString("MAIN MENU", 400, 100);
 	    	}
 	  
 	     };
 	  
 	     menu.addGraphic(menuScene);
+	     
+	     Graphic startB = new Graphic(0, 0, 150, 50) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				repaint();
+			}
+
+			@Override
+			public void paintComponent(Graphics t) {
+				t.setFont(new Font("Arial", Font.BOLD, 18));
+				t.setColor(Color.green);
+				t.drawString("START GAME", 375, 200);
+			}
+	     };
+	     Graphic startGame = new ClickableGraphic(startB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					transitionScene(ScenesEnum.LEVEL);
+					
+				}
+				
+			};
+		
+		 Graphic optionsB = new Graphic(0, 0, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void act() {
+						// TODO Auto-generated method stub
+						repaint();
+					}
+
+					@Override
+					public void paintComponent(Graphics t) {
+						t.setFont(new Font("Arial", Font.BOLD, 18));
+						t.setColor(Color.green);
+						t.drawString("SETTINGS", 375, 250);
+					}
+			     };			
+			     
+		  Graphic options = new ClickableGraphic(optionsB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						transitionScene(ScenesEnum.SETTINGS);
+							
+					}
+						
+			};
+			
+			Graphic quitB = new Graphic(0, 0, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void act() {
+						// TODO Auto-generated method stub
+						repaint();
+					}
+
+					@Override
+					public void paintComponent(Graphics t) {
+						t.setFont(new Font("Arial", Font.BOLD, 18));
+						t.setColor(Color.green);
+						t.drawString("QUIT", 375, 300);
+					}
+			     };			
+			     
+		  Graphic quitting = new ClickableGraphic(quitB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						transitionScene(ScenesEnum.LEVEL);
+							
+					}
+						
+			};
+			
+		 menu.addGraphic(startGame);
+	     menu.addGraphic(options);
+	     menu.addGraphic(quitting);
+	     
+	     // END OF START MENU CONSTRUCTION
+	     
+	     
+	     
 	}
 	
 	
