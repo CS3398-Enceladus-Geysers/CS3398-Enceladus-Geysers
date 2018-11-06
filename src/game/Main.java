@@ -123,7 +123,7 @@ public class Main implements KeyListener {
 		};
 		level.addGraphic(healthbarGraphic);
 		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 8, 1);
+				"assets/bb.png", 8, 1);
 		level.addGameObject(dirt1);
 		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/spikes.png", 1, 1, 20);
