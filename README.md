@@ -27,3 +27,7 @@ Jazmine C. - I'm going to finish the level and character design.
 Laura R. - I'm planning to implement when a player death and start working on the overworld map.
 Maria J. - I'm planning to continue working on Title scene and Start Menu
 Peter Wesley H. - I'm planning to work on the overworld.
+
+5 Project Status after Sprint 2
+
+At the end of sprint 2, we completed level one by buidling the platforms and creating the obstacle class. We also added assets to the platforms and obstacles to match the aesthetic of the world. We also added a static space background. We also finished title screen and almost finished the main menu.  
