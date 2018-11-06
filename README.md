@@ -24,6 +24,16 @@ For Sprint 2, our main objectives will be to implement a main menu, the overworl
 Things to do next...
 Kristof Y. - I'm going to finish the healthbar display and work on the damage functions.
 Jazmine C. - I'm going to finish the level and character design.
-Laura R. - I'm planning to implement when a player death and start working on the overworld map.
+Laura R. - I'm planning to implement the game save class and start working on the overworld map asset.
 Maria J. - I'm planning to continue working on Title scene and Start Menu
 Peter Wesley H. - I'm planning to work on the overworld.
+
+5 Project Status after Sprint 2
+
+At the end of sprint 2, we completed level one by buidling the platforms and creating the obstacle class. We also added assets to the platforms and obstacles to match the aesthetic of the world. We also added a static space background. We also finished title screen and almost finished the main menu.  
+
+Next steps for Sprint 3
+
+Kristof York, I will start building the next level by placing platforms and obstacles.
+Laura Rice, in the next sprint I plan to implement Game Over/Reset Methods using the GameSave and ResourceManager classes that I made in sprint 2.  
+Jazmine Castillo, I will create an overworld and design the enemies and collectible items.
