@@ -22,12 +22,25 @@ public class ImageGraphic extends Graphic {
 	AffineTransformOp flipHorizontal = new AffineTransformOp(new AffineTransform(-1, 0, 0, 1, getWidth(), 0),
 			AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 
+	public final void faceLeft() {
+		if (facing == 1) {
+			flip();
+		}
+	}
+
+	public final void faceRight() {
+		if (facing == 0) {
+			flip();
+		}
+	}
+
 	public final int getFacing() {
 		return facing;
 	}
 
 	public final void flip() {
 		facing = 1 - facing;
+		repaint();
 	}
 
 	private final void loadAndFlip(String fileName) throws Exception {
