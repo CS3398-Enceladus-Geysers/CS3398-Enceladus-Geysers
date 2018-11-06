@@ -31,3 +31,7 @@ Peter Wesley H. - I'm planning to work on the overworld.
 5 Project Status after Sprint 2
 
 At the end of sprint 2, we completed level one by buidling the platforms and creating the obstacle class. We also added assets to the platforms and obstacles to match the aesthetic of the world. We also added a static space background. We also finished title screen and almost finished the main menu.  
+
+Next steps for Sprint 3
+
+Kristof York, I will start building the next level by placing platforms and obstacles.
