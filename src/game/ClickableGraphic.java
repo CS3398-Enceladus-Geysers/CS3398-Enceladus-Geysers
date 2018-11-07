@@ -21,7 +21,7 @@ public abstract class ClickableGraphic extends Graphic implements MouseListener 
 	 * as a {@link MouseListener} to itself.
 	 */
 	public ClickableGraphic(Graphic g) {
-		super(g.getXOffset(), g.getYOffset(), g.getWidth(), g.getHeight());
+		super(g);
 		addMouseListener(this);
 		underlyingGraphic = g;
 	}
