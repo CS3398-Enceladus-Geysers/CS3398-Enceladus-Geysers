@@ -193,12 +193,13 @@ public class Main implements KeyListener {
 		level.addGraphic(background);
 		// End level construction.
 
-		// Start of Title construction
+		// START OF TITLE CONSTRUCTION
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 		
 	    Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, false);
 		
 		title.addGraphic(backgroundTitle);
+	
 		
 		 Graphic start = new Graphic(0, 0, 150, 50, true) {
 				private static final long serialVersionUID = 3237106029139727237L;
@@ -216,7 +217,7 @@ public class Main implements KeyListener {
 					t.drawString("START ", 600, 500);
 				}
 		     };
-		Graphic startButton = new ClickableGraphic(start) {
+		Graphic starting = new ClickableGraphic(start) {
 
 			private static final long serialVersionUID = 3237106029139727237L;
 
@@ -228,11 +229,12 @@ public class Main implements KeyListener {
 			
 		};
 		
-		title.addGraphic(startButton);
+		title.addGraphic(starting);
 	
 		// END OF TITLE CONSTRUCTION
 		
-	    // Construction of Start Menu
+		
+	    // BEGINNING OF START MENU CONSTRUCTION
 	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
 	    
 		Graphic backgroundMenu = new ImageGraphic("assets/enceladus.png", 0, 0, 16, 9, false);
@@ -353,9 +355,39 @@ public class Main implements KeyListener {
 	     // END OF START MENU CONSTRUCTION
 	     
 	     
+	 	// BEGINNING OF SETTINGS CONSTRUCTION
+	 	
+	 	Scene settings = SCENES_MAP.get(ScenesEnum.SETTINGS);
 	     
+	 	Graphic settingsBackground = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
+	 	settings.addGraphic(settingsBackground);
+	 	
+	     Graphic settingsScene = new Graphic(0, 0, 150, 50) {
+
+	     	private static final long serialVersionUID = 3237106029139727237L;
+
+	     	@Override
+	     	public void act() {
+	 				// FIXME Review this.
+	     		repaint();
+	     	}
+
+	     	@Override
+	     	public void paintComponent(Graphics s) {
+
+	     		s.setFont(new Font("Arial", Font.BOLD, 24));
+	     		s.setColor(Color.black);
+	     		s.drawString("SETTINGS", 400, 100);
+	     	}
+	   
+	      };
+	   
+	      settings.addGraphic(settingsScene);
+	 	 
+	      // END OF SETTINGS CONSTRUCTION
 	}
 	
+
 	
 	
 	    /** We can use this method to listen for keyboard input from our window. */
