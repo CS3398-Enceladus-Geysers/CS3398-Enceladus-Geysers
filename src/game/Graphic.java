@@ -39,6 +39,14 @@ public abstract class Graphic extends JComponent {
 		this(0, 0, width, height, true);
 	}
 
+	protected Graphic(Graphic g) {
+		foreground = g.isForeground();
+		setSize(g.getSize());
+		xoffset = g.getXOffset();
+		yoffset = g.getYOffset();
+		setLocation(0, 0);
+	}
+
 	public Graphic(double xoffset, double yoffset, double width, double height, boolean foreground) {
 		this.foreground = foreground;
 		setSize(scaledSize(width, height));
