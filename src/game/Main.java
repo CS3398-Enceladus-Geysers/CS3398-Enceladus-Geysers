@@ -29,7 +29,7 @@ public class Main implements KeyListener {
 	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
 	/**
 	 * The FPS limit for this game. The main {@link Thread} sleeps until it is time
-	 * for the next frame.
+	 * for the next frame. 
 	 */
 	public static final int FPS_LIMIT = 30;
 	/** This determines how big the game is. */
@@ -38,6 +38,7 @@ public class Main implements KeyListener {
 	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	private static Player player;
+	private static Enemy enemy;
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
 	/**
@@ -102,6 +103,8 @@ public class Main implements KeyListener {
 		player = new Player(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
+		//level.addGameObject(enemy);
+		
 		Graphic healthbarGraphic = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
@@ -211,9 +214,9 @@ public class Main implements KeyListener {
 
 				@Override
 				public void paintComponent(Graphics t) {
-					t.setFont(new Font("Arial", Font.BOLD, 32));
-					t.setColor(Color.CYAN);
-					t.drawString("START ", 600, 500);
+					t.setFont(new Font("Venus Rising", Font.BOLD, 28));
+					t.setColor(new Color(63,0,255));
+					t.drawString("Start", 395, 300);
 				}
 		     };
 		Graphic startButton = new ClickableGraphic(start) {
@@ -251,8 +254,8 @@ public class Main implements KeyListener {
 	    	@Override
 	    	public void paintComponent(Graphics s) {
 
-	    		s.setFont(new Font("Arial", Font.BOLD, 24));
-	    		s.setColor(Color.blue);
+	    		s.setFont(new Font("Venus Rising", Font.BOLD, 24));
+	    		s.setColor(Color.WHITE);
 	    		s.drawString("MAIN MENU", 400, 100);
 	    	}
 	  
@@ -271,8 +274,8 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Arial", Font.BOLD, 18));
-				t.setColor(Color.green);
+				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+				t.setColor(Color.WHITE);
 				t.drawString("START GAME", 375, 200);
 			}
 	     };
@@ -299,8 +302,8 @@ public class Main implements KeyListener {
 
 					@Override
 					public void paintComponent(Graphics t) {
-						t.setFont(new Font("Arial", Font.BOLD, 18));
-						t.setColor(Color.green);
+						t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+						t.setColor(Color.WHITE);
 						t.drawString("SETTINGS", 375, 250);
 					}
 			     };			
@@ -328,8 +331,8 @@ public class Main implements KeyListener {
 
 					@Override
 					public void paintComponent(Graphics t) {
-						t.setFont(new Font("Arial", Font.BOLD, 18));
-						t.setColor(Color.green);
+						t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+						t.setColor(Color.WHITE);
 						t.drawString("QUIT", 375, 300);
 					}
 			     };			
