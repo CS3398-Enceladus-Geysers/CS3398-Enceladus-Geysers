@@ -119,6 +119,9 @@ public class Main implements KeyListener {
 				g.drawRect(1, 1, 150, 25);
 				g.setColor(Color.red);
 				g.fillRect(1, 1, player.getHP(), 25);
+				g.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+				g.setColor(Color.white);
+				g.drawString("HP: " + player.getHP(), 60, 15);
 			}
 		};
 		level.addGraphic(healthbarGraphic);
@@ -214,9 +217,9 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Arial", Font.BOLD, 32));
-				t.setColor(Color.CYAN);
-				t.drawString("START ", 600, 500);
+				t.setFont(new Font("Venus Rising", Font.BOLD, 28));
+				t.setColor(new Color(63, 0, 255));
+				t.drawString("Start", 395, 300);
 			}
 		};
 		Graphic startButton = new ClickableGraphic(start) {
@@ -235,7 +238,7 @@ public class Main implements KeyListener {
 
 		// END OF TITLE CONSTRUCTION
 
-		// Construction of Start Menu
+		// BEGINNING OF START MENU CONSTRUCTION
 		Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
 
 		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
@@ -254,8 +257,8 @@ public class Main implements KeyListener {
 			@Override
 			public void paintComponent(Graphics s) {
 
-				s.setFont(new Font("Arial", Font.BOLD, 24));
-				s.setColor(Color.blue);
+				s.setFont(new Font("Venus Rising", Font.BOLD, 24));
+				s.setColor(Color.WHITE);
 				s.drawString("MAIN MENU", 400, 100);
 			}
 
@@ -274,8 +277,8 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Arial", Font.BOLD, 18));
-				t.setColor(Color.green);
+				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+				t.setColor(Color.WHITE);
 				t.drawString("START GAME", 375, 200);
 			}
 		};
@@ -302,8 +305,8 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Arial", Font.BOLD, 18));
-				t.setColor(Color.green);
+				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+				t.setColor(Color.WHITE);
 				t.drawString("SETTINGS", 375, 250);
 			}
 		};
@@ -331,8 +334,8 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Arial", Font.BOLD, 18));
-				t.setColor(Color.green);
+				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+				t.setColor(Color.WHITE);
 				t.drawString("QUIT", 375, 300);
 			}
 		};
@@ -355,6 +358,36 @@ public class Main implements KeyListener {
 
 		// END OF START MENU CONSTRUCTION
 
+		// BEGINNING OF SETTINGS CONSTRUCTION
+
+		Scene settings = SCENES_MAP.get(ScenesEnum.SETTINGS);
+
+		Graphic settingsBackground = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
+		settings.addGraphic(settingsBackground);
+
+		Graphic settingsScene = new Graphic(0, 0, 150, 50) {
+
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void act() {
+				// FIXME Review this.
+				repaint();
+			}
+
+			@Override
+			public void paintComponent(Graphics s) {
+
+				s.setFont(new Font("Arial", Font.BOLD, 24));
+				s.setColor(Color.black);
+				s.drawString("SETTINGS", 400, 100);
+			}
+
+		};
+
+		settings.addGraphic(settingsScene);
+
+		// END OF SETTINGS CONSTRUCTION
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
