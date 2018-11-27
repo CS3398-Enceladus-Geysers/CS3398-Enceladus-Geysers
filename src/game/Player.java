@@ -8,7 +8,7 @@ import java.awt.Point;
 public class Player extends Character {
 	private static final double JUMP_VELOCITY = 1.5 / 6, MOVESPEED = 1.0 / 12, INFLUENCE = 1.0 / 120, WIDTH = 50.0 / 60,
 			HEIGHT = 100.0 / 60;
-	private ImageGraphic sprite = new ImageGraphic("assets/player2.png", 0, 0, WIDTH, HEIGHT);
+	private ImageGraphic sprite = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
 
 	/**
 	 * Creates a {@link Player} object using the reserved player assets and

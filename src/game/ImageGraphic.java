@@ -34,10 +34,6 @@ public class ImageGraphic extends Graphic {
 		}
 	}
 
-	public final int getFacing() {
-		return facing;
-	}
-
 	public final void flip() {
 		facing = 1 - facing;
 		repaint();

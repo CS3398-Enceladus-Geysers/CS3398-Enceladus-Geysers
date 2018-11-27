@@ -28,11 +28,20 @@ public class Terrain extends CameraObservedObject {
 	 */
 	public Terrain(Point cameraLocation, double x, double y, double imageWidth, double imageHeight, String fileName,
 			int horizontalImages, int verticalImages) throws Exception {
+		this(cameraLocation, x, y, imageWidth, imageHeight, fileName, horizontalImages, verticalImages, false);
+	}
+
+	public Terrain(Point cameraLocation, double x, double y, double imageWidth, double imageHeight, String fileName,
+			int horizontalImages, int verticalImages, boolean animated) throws Exception {
 		super(cameraLocation, x, y, imageWidth * horizontalImages, imageHeight * verticalImages);
 		for (int imageXIndex = 0; imageXIndex < horizontalImages; imageXIndex++) {
 			for (int imageYIndex = 0; imageYIndex < verticalImages; imageYIndex++) {
-				addGraphic(new ImageGraphic(fileName, imageWidth * imageXIndex, imageHeight * imageYIndex, imageWidth,
-						imageHeight));
+				if (animated)
+					addGraphic(new Animation(fileName, imageWidth * imageXIndex, imageHeight * imageYIndex, imageWidth,
+							imageHeight));
+				else
+					addGraphic(new ImageGraphic(fileName, imageWidth * imageXIndex, imageHeight * imageYIndex,
+							imageWidth, imageHeight));
 			}
 		}
 	}
