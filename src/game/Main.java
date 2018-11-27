@@ -39,6 +39,7 @@ public class Main implements KeyListener {
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	private static Player player;
 	private static Enemy enemy;
+
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
 	/**
@@ -101,9 +102,10 @@ public class Main implements KeyListener {
 		SCENES_MAP.put(ScenesEnum.LEVEL, new Scene(1.0 / 2, 2.0 / 3));
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
 		player = new Player(level.getCameraLocation());
+		enemy = new Enemy(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		//level.addGameObject(enemy);
+		level.addGameObject(enemy);
 		
 		Graphic healthbarGraphic = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
