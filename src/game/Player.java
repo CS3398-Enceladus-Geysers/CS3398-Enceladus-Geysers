@@ -9,6 +9,22 @@ public class Player extends Character {
 	private static final double JUMP_VELOCITY = 1.5 / 6, MOVESPEED = 1.0 / 12, INFLUENCE = 1.0 / 120, WIDTH = 50.0 / 60,
 			HEIGHT = 100.0 / 60;
 	private ImageGraphic sprite = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
+	private int invincibleFrames = 0;
+
+	@Override
+	public void act() {
+		super.act();
+		if (invincibleFrames > 0)
+			invincibleFrames--;
+	}
+
+	@Override
+	public void takeDmg(int x) {
+		if (invincibleFrames == 0) {
+			setHP(getHP() - x);
+			invincibleFrames = 90;
+		}
+	}
 
 	/**
 	 * Creates a {@link Player} object using the reserved player assets and
