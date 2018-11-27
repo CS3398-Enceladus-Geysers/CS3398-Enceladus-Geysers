@@ -188,6 +188,9 @@ public class Main implements KeyListener {
 		Terrain portal = new Terrain(level.getCameraLocation(), 2200.0 / 60, -400.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/animated/portal/", 1, 1, true);
 		level.addGameObject(portal);
+		Item gun = new Item(level.getCameraLocation(), 2000.0 / 60, -800 / 60, 100.0 / 60, 100.0 / 60, "gun",
+				"assets/still/gun.png", false);
+		level.addGameObject(gun);
 
 		Graphic background = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		level.addGraphic(background);

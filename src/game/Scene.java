@@ -36,6 +36,7 @@ public class Scene extends JPanel {
 	 * are {@link Terrain} objects.
 	 */
 	protected final ArrayList<Terrain> terrain = new ArrayList<Terrain>();
+	protected final ArrayList<Item> items = new ArrayList<Item>();
 	private final GameObject defaultGameObject;
 
 	/**
@@ -89,9 +90,10 @@ public class Scene extends JPanel {
 
 	/** Will be called on every frame. */
 	public void act() {
+		ArrayList<GameObject> expired = new ArrayList<GameObject>();
 		for (GameObject go : gameObjects) {
 			if (go.isExpired()) {
-				gameObjects.remove(go);
+				expired.add(go);
 				if (go instanceof Entity) {
 					Entity ent = (Entity) go;
 					if (ent.isGravitational())
@@ -99,6 +101,9 @@ public class Scene extends JPanel {
 				} else if (go instanceof Terrain) {
 					Terrain trr = (Terrain) go;
 					terrain.remove(trr);
+				} else if (go instanceof Item) {
+					Item itm = (Item) go;
+					items.remove(itm);
 				}
 			} else
 				go.act();
@@ -127,12 +132,21 @@ public class Scene extends JPanel {
 				}
 			}
 		}
+		for (GameObject toRemove : expired) {
+			gameObjects.remove(toRemove);
+		}
 		for (Entity grv : gravitational) {
 			boolean grounded = false;
 			for (Terrain trr : terrain)
 				if (grv.collidesWith(trr))
 					grounded |= grv.exclusionPrinciple(trr);
 			grv.setGrounded(grounded);
+		}
+		for (Item itm : items) {
+			if (Main.getPlayer().collidesWith(itm)) {
+				Main.getPlayer().addItem(itm);
+				itm.expire();
+			}
 		}
 		Component[] c = getComponents();
 		for (int x = 0; x < c.length; x++)
@@ -153,12 +167,17 @@ public class Scene extends JPanel {
 	 * @param go The {@link GameObject} to be added to the {@link Scene}.
 	 */
 	public void addGameObject(GameObject go) {
-		gameObjects.add(go);
 		go.repaint();
+		gameObjects.add(go);
 		if (go instanceof Entity) {
 			Entity ent = (Entity) go;
-			if (ent.isGravitational())
+			if (ent.isGravitational()) {
 				gravitational.add(ent);
+				if (go instanceof Item) {
+					Item itm = (Item) go;
+					items.add(itm);
+				}
+			}
 		} else if (go instanceof Terrain) {
 			Terrain trr = (Terrain) go;
 			terrain.add(trr);

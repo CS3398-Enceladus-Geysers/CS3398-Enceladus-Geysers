@@ -77,6 +77,11 @@ public class ImageGraphic extends Graphic {
 		loadAndFlip(fileName);
 	}
 
+	public ImageGraphic(String fileName, double width, double height) throws Exception {
+		super(width, height);
+		loadAndFlip(fileName);
+	}
+
 	@Override
 	public void act() {
 	}
