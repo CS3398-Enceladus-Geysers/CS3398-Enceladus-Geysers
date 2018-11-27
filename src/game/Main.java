@@ -19,7 +19,7 @@ import javax.swing.WindowConstants;
 public class Main implements KeyListener {
 	/** A list of all the scenes. */
 	enum ScenesEnum {
-	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
+	LEVEL, LEVEL2, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
 	}
 
 	/**
@@ -122,11 +122,14 @@ public class Main implements KeyListener {
 			public void paintComponent(Graphics g) {
 				// TODO Draw something based on health.
 				g.drawRect(1, 1, 150, 25);
+				g.setColor(Color.white);
+				g.fillRect(1, 1, 150, 25);
+				g.drawRect(1, 1, 150, 25);
 				g.setColor(Color.red);
 				g.fillRect(1, 1, player.getHP(), 25);
-			    g.setFont(new Font("TimesRoman", Font.PLAIN, 12));
-			    g.setColor(Color.white);
-				g.drawString("HP: " + player.getHP(), 60, 15);
+			    g.setFont(new Font("TimesRoman", Font.BOLD, 12));
+			    g.setColor(Color.black);
+				g.drawString("HP: " + player.getHP(), 55, 15);
 			}
 		};
 		level.addGraphic(healthbarGraphic);
