@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  * A class to represent the player, controlled by the user's input.
@@ -8,7 +9,24 @@ import java.awt.Point;
 public class Player extends Character {
 	private static final double JUMP_VELOCITY = 1.5 / 6, MOVESPEED = 1.0 / 12, INFLUENCE = 1.0 / 120, WIDTH = 50.0 / 60,
 			HEIGHT = 100.0 / 60;
-	private ImageGraphic sprite = new ImageGraphic("assets/player2.png", 0, 0, WIDTH, HEIGHT);
+	private ImageGraphic sprite = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
+	private int invincibilityFrames = 0;
+	private final ArrayList<Item> items = new ArrayList<Item>();
+
+	@Override
+	public void act() {
+		super.act();
+		if (invincibilityFrames > 0)
+			invincibilityFrames--;
+	}
+
+	@Override
+	public void takeDmg(int x) {
+		if (invincibilityFrames == 0) {
+			super.takeDmg(x);
+			invincibilityFrames = 90;
+		}
+	}
 
 	/**
 	 * Creates a {@link Player} object using the reserved player assets and
@@ -52,5 +70,9 @@ public class Player extends Character {
 		} else if (getDx() < 0) {
 			sprite.faceLeft();
 		}
+	}
+
+	public void addItem(Item itm) {
+		items.add(itm);
 	}
 }

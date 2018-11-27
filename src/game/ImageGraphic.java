@@ -34,10 +34,6 @@ public class ImageGraphic extends Graphic {
 		}
 	}
 
-	public final int getFacing() {
-		return facing;
-	}
-
 	public final void flip() {
 		facing = 1 - facing;
 		repaint();
@@ -78,6 +74,11 @@ public class ImageGraphic extends Graphic {
 	 */
 	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height) throws Exception {
 		super(xoffset, yoffset, width, height);
+		loadAndFlip(fileName);
+	}
+
+	public ImageGraphic(String fileName, double width, double height) throws Exception {
+		super(width, height);
 		loadAndFlip(fileName);
 	}
 

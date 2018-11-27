@@ -126,85 +126,88 @@ public class Main implements KeyListener {
 		};
 		level.addGraphic(healthbarGraphic);
 		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 8, 1);
+				"assets/still/block.png", 8, 1);
 		level.addGameObject(dirt1);
 		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 20);
 		level.addGameObject(obs1);
 		Terrain dirt3 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 2, 1);
+				"assets/still/block.png", 2, 1);
 		level.addGameObject(dirt3);
 		Terrain dirt4 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
+				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt4);
 		Terrain dirt5 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/blockBottom.png", 1, 1);
+				"assets/still/blockBottom.png", 1, 1);
 		level.addGameObject(dirt5);
 		Terrain dirt6 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
+				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt6);
 		Obstacle obs2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 20);
 		level.addGameObject(obs2);
 		Terrain dirt7 = new Terrain(level.getCameraLocation(), 1300.0 / 60, -120.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
+				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt7);
 		Terrain dirt8 = new Terrain(level.getCameraLocation(), 1400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
+				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt8);
 		Terrain dirt9 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/blockBottom.png", 1, 1);
+				"assets/still/blockBottom.png", 1, 1);
 		level.addGameObject(dirt9);
 		Terrain dirt10 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
+				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt10);
 		Terrain dirt11 = new Terrain(level.getCameraLocation(), 1600.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/blockBottom.png", 1, 2);
+				"assets/still/blockBottom.png", 1, 2);
 		level.addGameObject(dirt11);
 		Terrain dirt12 = new Terrain(level.getCameraLocation(), 1600.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
+				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt12);
 		Terrain dirt13 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/blockBottom.png", 1, 3);
+				"assets/still/blockBottom.png", 1, 3);
 		level.addGameObject(dirt13);
 		Terrain dirt14 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 1, 1);
+				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt14);
 		Obstacle obs3 = new Obstacle(level.getCameraLocation(), 1800.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 20);
 		level.addGameObject(obs3);
 		Obstacle obs4 = new Obstacle(level.getCameraLocation(), 1900.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 20);
 		level.addGameObject(obs4);
 		Obstacle obs5 = new Obstacle(level.getCameraLocation(), 2000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 20);
 		level.addGameObject(obs5);
 		Obstacle obs6 = new Obstacle(level.getCameraLocation(), 2100.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 20);
 		level.addGameObject(obs6);
 		Terrain dirt15 = new Terrain(level.getCameraLocation(), 1800.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/blockBottom.png", 4, 4);
+				"assets/still/blockBottom.png", 4, 4);
 		level.addGameObject(dirt15);
 		Terrain dirt16 = new Terrain(level.getCameraLocation(), 1920.0 / 60, -300.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/block.png", 4, 1);
+				"assets/still/block.png", 4, 1);
 		level.addGameObject(dirt16);
 		Terrain portal = new Terrain(level.getCameraLocation(), 2200.0 / 60, -400.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/portal2.png", 1, 1);
+				"assets/animated/portal/", 1, 1, true);
 		level.addGameObject(portal);
+		Item gun = new Item(level.getCameraLocation(), 2000.0 / 60, -800 / 60, 100.0 / 60, 100.0 / 60, "gun",
+				"assets/still/gun.png", false);
+		level.addGameObject(gun);
 
-		Graphic background = new ImageGraphic("assets/enceladus.png", 0, 0, 16, 9, false);
+		Graphic background = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		level.addGraphic(background);
 		// End level construction.
 
 		// Start of Title construction
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		
-	    Graphic backgroundTitle = new ImageGraphic("assets/title.png", 0, 0, 16, 8.5, false);
-		
+
+		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
+
 		title.addGraphic(backgroundTitle);
-		
-		 Graphic start = new Graphic(0, 0, 150, 50, true) {
-				private static final long serialVersionUID = 3237106029139727237L;
+
+		Graphic start = new Graphic(0, 0, 150, 50, true) {
+			private static final long serialVersionUID = 3237106029139727237L;
 
 				@Override
 				public void act() {
@@ -219,6 +222,7 @@ public class Main implements KeyListener {
 					t.drawString("Start", 395, 300);
 				}
 		     };
+    
 		Graphic startButton = new ClickableGraphic(start) {
 
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -226,24 +230,24 @@ public class Main implements KeyListener {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				transitionScene(ScenesEnum.START_MENU);
-				
+
 			}
-			
+
 		};
-		
+
 		title.addGraphic(startButton);
-	
+
 		// END OF TITLE CONSTRUCTION
-		
-	    // Construction of Start Menu
-	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
-	    
-		Graphic backgroundMenu = new ImageGraphic("assets/enceladus.png", 0, 0, 16, 9, false);
+
+		// Construction of Start Menu
+		Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
+
+		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		menu.addGraphic(backgroundMenu);
 		
 	    Graphic menuScene = new Graphic(0, 0, 150, 50) {
-
-	    	private static final long serialVersionUID = 3237106029139727237L;
+	    
+	private static final long serialVersionUID = 3237106029139727237L;
 
 	    	@Override
 	    	public void act() {
@@ -264,6 +268,7 @@ public class Main implements KeyListener {
 	     menu.addGraphic(menuScene);
 	     
 	     Graphic startB = new Graphic(0, 0, 150, 50) {
+
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -278,6 +283,7 @@ public class Main implements KeyListener {
 				t.setColor(Color.WHITE);
 				t.drawString("START GAME", 375, 200);
 			}
+
 	     };
 	     Graphic startGame = new ClickableGraphic(startB) {
 
@@ -354,38 +360,33 @@ public class Main implements KeyListener {
 	     menu.addGraphic(quitting);
 	     
 	     // END OF START MENU CONSTRUCTION
-	     
-	     
-	     
+	    
 	}
-	
-	
-	
-	    /** We can use this method to listen for keyboard input from our window. */
-	    @Override
-	    public void keyPressed(KeyEvent e) {
-	    	CURRENTLY_PRESSED_KEYS.add(e.getKeyCode());
-	    }
 
-	    /** We can use this method to listen for keyboard input from our window. */
-	    @Override
-	    public void keyReleased(KeyEvent e) {
-	    	CURRENTLY_PRESSED_KEYS.remove(e.getKeyCode());
-	    }
+	/** We can use this method to listen for keyboard input from our window. */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		CURRENTLY_PRESSED_KEYS.add(e.getKeyCode());
+	}
 
-	    /** Let's not use this one, it's for typing. */
-	    @Override
-	    public void keyTyped(KeyEvent e) {
-	    }
+	/** We can use this method to listen for keyboard input from our window. */
+	@Override
+	public void keyReleased(KeyEvent e) {
+		CURRENTLY_PRESSED_KEYS.remove(e.getKeyCode());
+	}
 
-	    /** Swap out scenes to the scene specified in the parameter. */
-	    private void transitionScene(ScenesEnum scene) {
-	    	if (Main.scene != null)
-	    		GAME_WINDOW.remove(SCENES_MAP.get(Main.scene));
-	    		Main.scene = scene;
-	    		GAME_WINDOW.add(SCENES_MAP.get(scene));
-	    		GAME_WINDOW.repaint();
-	    }
-	 
+	/** Let's not use this one, it's for typing. */
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	/** Swap out scenes to the scene specified in the parameter. */
+	private void transitionScene(ScenesEnum scene) {
+		if (Main.scene != null)
+			GAME_WINDOW.remove(SCENES_MAP.get(Main.scene));
+		Main.scene = scene;
+		GAME_WINDOW.add(SCENES_MAP.get(scene));
+		GAME_WINDOW.repaint();
+	}
+
 }
-	
