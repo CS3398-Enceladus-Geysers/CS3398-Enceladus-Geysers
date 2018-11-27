@@ -28,6 +28,7 @@ public class Animation extends Graphic {
 	private final void loadAndFlip(String pathName) {
 		if (RESOURCES.containsKey(pathName)) {
 			frames = RESOURCES.get(pathName);
+			numFrames=frames.length/2;
 		} else {
 			ArrayList<BufferedInputStream> frameStreams = new ArrayList<BufferedInputStream>();
 			try {
