@@ -18,8 +18,10 @@ import javax.swing.WindowConstants;
  */
 public class Main implements KeyListener {
 	/** A list of all the scenes. */
-	enum ScenesEnum {
+
+	public enum ScenesEnum {
 	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
+
 	}
 
 	/**
@@ -29,7 +31,7 @@ public class Main implements KeyListener {
 	public static final HashSet<Integer> CURRENTLY_PRESSED_KEYS = new HashSet<Integer>();
 	/**
 	 * The FPS limit for this game. The main {@link Thread} sleeps until it is time
-	 * for the next frame.
+	 * for the next frame. 
 	 */
 	public static final int FPS_LIMIT = 30;
 	/** This determines how big the game is. */
@@ -38,6 +40,8 @@ public class Main implements KeyListener {
 	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	private static Player player;
+	private static Enemy enemy;
+
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
 	/**
@@ -96,12 +100,187 @@ public class Main implements KeyListener {
 	}
 
 	private final void constructScenes() throws Exception {
+		
+		constructLevel();
+	
+		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
+
+		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
+
+		title.addGraphic(backgroundTitle);
+
+		Graphic start = new Graphic(0, 0, 150, 50, true) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					repaint();
+				}
+
+				@Override
+				public void paintComponent(Graphics t) {
+					t.setFont(new Font("Venus Rising", Font.BOLD, 28));
+					t.setColor(new Color(63,0,255));
+					t.drawString("Start", 395, 300);
+				}
+		     };
+
+    
+		Graphic startButton = new ClickableGraphic(start) {
+
+
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				transitionScene(ScenesEnum.START_MENU);
+
+			}
+
+		};
+	
+		title.addGraphic(startButton);
+
+		// END OF TITLE CONSTRUCTION
+		
+		
+	    // BEGINNING OF START MENU CONSTRUCTION
+	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
+	    
+		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
+
+		menu.addGraphic(backgroundMenu);
+		
+	    Graphic menuScene = new Graphic(0, 0, 150, 50) {
+	    
+	private static final long serialVersionUID = 3237106029139727237L;
+
+	    	@Override
+	    	public void act() {
+					// FIXME Review this.
+	    		repaint();
+	    	}
+
+	    	@Override
+	    	public void paintComponent(Graphics s) {
+
+	    		s.setFont(new Font("Venus Rising", Font.BOLD, 24));
+	    		s.setColor(Color.WHITE);
+	    		s.drawString("MAIN MENU", 400, 100);
+	    	}
+	  
+	     };
+	  
+	     menu.addGraphic(menuScene);
+	     
+	     Graphic startB = new Graphic(0, 0, 150, 50) {
+
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				repaint();
+			}
+
+			@Override
+			public void paintComponent(Graphics t) {
+				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+				t.setColor(Color.WHITE);
+				t.drawString("START GAME", 375, 200);
+			}
+
+	     };
+	     Graphic startGame = new ClickableGraphic(startB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					transitionScene(ScenesEnum.LEVEL);
+					
+				}
+				
+			};
+		
+		 Graphic optionsB = new Graphic(0, 0, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void act() {
+						// TODO Auto-generated method stub
+						repaint();
+					}
+
+					@Override
+					public void paintComponent(Graphics t) {
+						t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+						t.setColor(Color.WHITE);
+						t.drawString("SETTINGS", 375, 250);
+					}
+			     };			
+			     
+		  Graphic options = new ClickableGraphic(optionsB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						transitionScene(ScenesEnum.SETTINGS);
+							
+					}
+						
+			};
+			
+			Graphic quitB = new Graphic(0, 0, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void act() {
+						// TODO Auto-generated method stub
+						repaint();
+					}
+
+					@Override
+					public void paintComponent(Graphics t) {
+						t.setFont(new Font("Venus Rising", Font.BOLD, 18));
+						t.setColor(Color.WHITE);
+						t.drawString("QUIT", 375, 300);
+					}
+			     };			
+			     
+		  Graphic quitting = new ClickableGraphic(quitB) {
+
+				private static final long serialVersionUID = 3237106029139727237L;
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						transitionScene(ScenesEnum.LEVEL);
+							
+					}
+						
+			};
+			
+		 menu.addGraphic(startGame);
+	     menu.addGraphic(options);
+	     menu.addGraphic(quitting);
+	     
+	     // END OF START MENU CONSTRUCTION
+
+	    
+	}
+
+	public static void constructLevel() throws Exception{
 		// Start level construction.
 		SCENES_MAP.put(ScenesEnum.LEVEL, new Scene(1.0 / 2, 2.0 / 3));
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
 		player = new Player(level.getCameraLocation());
+		enemy = new Enemy(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
+		level.addGameObject(enemy);
+		
 		Graphic healthbarGraphic = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
 			private static final long serialVersionUID = 3237106029139727237L;
 			int lastHP;
@@ -412,12 +591,13 @@ public class Main implements KeyListener {
 	}
 
 	/** Swap out scenes to the scene specified in the parameter. */
-	private void transitionScene(ScenesEnum scene) {
+	public static void transitionScene(ScenesEnum scene) {
 		if (Main.scene != null)
 			GAME_WINDOW.remove(SCENES_MAP.get(Main.scene));
 		Main.scene = scene;
 		GAME_WINDOW.add(SCENES_MAP.get(scene));
 		GAME_WINDOW.repaint();
 	}
+
 
 }

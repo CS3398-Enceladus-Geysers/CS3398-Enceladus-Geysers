@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Player extends Character {
 	private static final double JUMP_VELOCITY = 1.5 / 6, MOVESPEED = 1.0 / 12, INFLUENCE = 1.0 / 120, WIDTH = 50.0 / 60,
 			HEIGHT = 100.0 / 60;
+	private static final int PLAYER_HEALTH = 150;
 	private ImageGraphic sprite = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
 	private int invincibilityFrames = 0;
 	private final ArrayList<Item> items = new ArrayList<Item>();
@@ -18,13 +19,24 @@ public class Player extends Character {
 		super.act();
 		if (invincibilityFrames > 0)
 			invincibilityFrames--;
+		checkBounds();
 	}
 
 	@Override
-	public void takeDmg(int x) {
+	public void takeDmg(int x){
 		if (invincibilityFrames == 0) {
 			super.takeDmg(x);
 			invincibilityFrames = 90;
+		}
+		
+		if(getHP() <= 0) {
+			try {
+			Main.constructLevel();
+			Main.transitionScene(Main.ScenesEnum.LEVEL);
+			}
+			catch(Exception e) {
+				
+			}
 		}
 	}
 
@@ -38,7 +50,7 @@ public class Player extends Character {
 	public Player(Point cameraLocation) throws Exception {
 		super(cameraLocation, 0, 0, WIDTH, HEIGHT, true);
 		addGraphic(sprite);
-		setHP(150);
+		setHP(PLAYER_HEALTH);
 	}
 
 	@Override
@@ -74,5 +86,13 @@ public class Player extends Character {
 
 	public void addItem(Item itm) {
 		items.add(itm);
+	}
+	
+	public void checkBounds() {
+		
+		if(absoluteLocation.getY() > 200)
+		{
+			takeDmg(PLAYER_HEALTH);
+		}
 	}
 }
