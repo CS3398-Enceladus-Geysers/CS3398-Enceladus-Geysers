@@ -23,10 +23,20 @@ public class Player extends Character {
 	}
 
 	@Override
-	public void takeDmg(int x) {
+	public void takeDmg(int x){
 		if (invincibilityFrames == 0) {
 			super.takeDmg(x);
 			invincibilityFrames = 90;
+		}
+		
+		if(getHP() <= 0) {
+			try {
+			Main.constructLevel();
+			Main.transitionScene(Main.ScenesEnum.LEVEL);
+			}
+			catch(Exception e) {
+				
+			}
 		}
 	}
 
