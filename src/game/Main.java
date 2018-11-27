@@ -18,8 +18,10 @@ import javax.swing.WindowConstants;
  */
 public class Main implements KeyListener {
 	/** A list of all the scenes. */
+
 	public enum ScenesEnum {
 	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, TITLE, START_MENU
+
 	}
 
 	/**
@@ -100,8 +102,7 @@ public class Main implements KeyListener {
 	private final void constructScenes() throws Exception {
 		
 		constructLevel();
-		
-		// Start of Title construction
+	
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 
 		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
@@ -124,8 +125,10 @@ public class Main implements KeyListener {
 					t.drawString("Start", 395, 300);
 				}
 		     };
+
     
 		Graphic startButton = new ClickableGraphic(start) {
+
 
 			private static final long serialVersionUID = 3237106029139727237L;
 
@@ -136,17 +139,17 @@ public class Main implements KeyListener {
 			}
 
 		};
-		
 	
-		
 		title.addGraphic(startButton);
 
 		// END OF TITLE CONSTRUCTION
+		
+		
+	    // BEGINNING OF START MENU CONSTRUCTION
+	    Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
+	    
+		Graphic backgroundMenu = new ImageGraphic("assets/enceladus.png", 0, 0, 16, 9, false);
 
-		// Construction of Start Menu
-		Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
-
-		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		menu.addGraphic(backgroundMenu);
 		
 	    Graphic menuScene = new Graphic(0, 0, 150, 50) {
@@ -264,6 +267,7 @@ public class Main implements KeyListener {
 	     menu.addGraphic(quitting);
 	     
 	     // END OF START MENU CONSTRUCTION
+
 	    
 	}
 
@@ -397,5 +401,6 @@ public class Main implements KeyListener {
 		GAME_WINDOW.add(SCENES_MAP.get(scene));
 		GAME_WINDOW.repaint();
 	}
+
 
 }
