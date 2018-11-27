@@ -362,7 +362,7 @@ public class Main implements KeyListener {
 
 		Scene settings = SCENES_MAP.get(ScenesEnum.SETTINGS);
 
-		Graphic settingsBackground = new ImageGraphic("assets/space.png", 0, 0, 16, 9, false);
+		Graphic settingsBackground = new ImageGraphic("assets/still/space.png", 0, 0, 16, 9, false);
 		settings.addGraphic(settingsBackground);
 
 		Graphic settingsScene = new Graphic(0, 0, 150, 50) {
