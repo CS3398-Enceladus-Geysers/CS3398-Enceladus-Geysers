@@ -11,11 +11,6 @@ public abstract class ClickableGraphic extends Graphic implements MouseListener 
 	private static final long serialVersionUID = -1126958728064484219L;
 	private final Graphic underlyingGraphic;
 
-	@Override
-	public void paintComponent(Graphics g) {
-		underlyingGraphic.paintComponent(g);
-	}
-
 	/**
 	 * See {@link Graphic#Graphic(double, double)} this constructor also adds itself
 	 * as a {@link MouseListener} to itself.
@@ -44,5 +39,10 @@ public abstract class ClickableGraphic extends Graphic implements MouseListener 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {// Unused.
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		underlyingGraphic.paintComponent(g);
 	}
 }

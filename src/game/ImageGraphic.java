@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 
 /**
@@ -17,10 +16,44 @@ import javax.imageio.ImageIO;
 public class ImageGraphic extends Graphic {
 	private static final HashMap<String, Image[]> RESOURCES = new HashMap<String, Image[]>();
 	private static final long serialVersionUID = 7604033494188278910L;
-	private Image[] image = new Image[2];
 	private int facing = 1;
 	AffineTransformOp flipHorizontal = new AffineTransformOp(new AffineTransform(-1, 0, 0, 1, getWidth(), 0),
 			AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+	private Image[] image = new Image[2];
+
+	public ImageGraphic(String fileName, double width, double height) throws Exception {
+		super(width, height);
+		loadAndFlip(fileName);
+	}
+
+	/**
+	 * This constructor loads and scales an image, and also sets its size.
+	 * 
+	 * @param fileName File name for image to be loaded.
+	 * @param xoffset  The distance for this image to be rendered measured in the
+	 *                 X-axis from the top-left corner.
+	 * @param yoffset  The distance for this image to be rendered measured in the
+	 *                 Y-axis from the top-left corner.
+	 * @param width    Width of this graphic, before scaling by
+	 *                 {@link Main#SIZE_FACTOR}
+	 * @param height   Height of this graphic, before scaling by
+	 *                 {@link Main#SIZE_FACTOR}
+	 * @throws Exception In case a file is missing.
+	 */
+	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height) throws Exception {
+		super(xoffset, yoffset, width, height);
+		loadAndFlip(fileName);
+	}
+
+	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height,
+			boolean foreground) throws Exception {
+		super(xoffset, yoffset, width, height, foreground);
+		loadAndFlip(fileName);
+	}
+
+	@Override
+	public void act() {
+	}
 
 	public final void faceLeft() {
 		if (facing == 1) {
@@ -50,40 +83,6 @@ public class ImageGraphic extends Graphic {
 			image[0] = flipHorizontal.filter(b, null);
 			RESOURCES.put(fileName, image);
 		}
-	}
-
-	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height,
-			boolean foreground) throws Exception {
-		super(xoffset, yoffset, width, height, foreground);
-		loadAndFlip(fileName);
-	}
-
-	/**
-	 * This constructor loads and scales an image, and also sets its size.
-	 * 
-	 * @param fileName File name for image to be loaded.
-	 * @param xoffset  The distance for this image to be rendered measured in the
-	 *                 X-axis from the top-left corner.
-	 * @param yoffset  The distance for this image to be rendered measured in the
-	 *                 Y-axis from the top-left corner.
-	 * @param width    Width of this graphic, before scaling by
-	 *                 {@link Main#SIZE_FACTOR}
-	 * @param height   Height of this graphic, before scaling by
-	 *                 {@link Main#SIZE_FACTOR}
-	 * @throws Exception In case a file is missing.
-	 */
-	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height) throws Exception {
-		super(xoffset, yoffset, width, height);
-		loadAndFlip(fileName);
-	}
-
-	public ImageGraphic(String fileName, double width, double height) throws Exception {
-		super(width, height);
-		loadAndFlip(fileName);
-	}
-
-	@Override
-	public void act() {
 	}
 
 	/**

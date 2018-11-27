@@ -7,7 +7,6 @@ import java.awt.Point;
  * {@link Character} when touched.
  */
 public class Obstacle extends Terrain {
-
 	/**
 	 * The amount of damage a {@link Character} is to receive upon touching the
 	 * {@link Obstacle}.
@@ -35,5 +34,4 @@ public class Obstacle extends Terrain {
 		super(cameraLocation, x, y, imageWidth, imageHeight, fileName, horizontalImages, verticalImages);
 		dmg = damage;
 	}
-
 }

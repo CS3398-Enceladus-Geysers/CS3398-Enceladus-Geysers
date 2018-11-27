@@ -2,14 +2,12 @@ package game;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-
 import javax.swing.JComponent;
 
 /**
  * One graphical component in the game to be drawn in a custom way.
  */
 public abstract class Graphic extends JComponent {
-	private final boolean foreground;
 	private static final long serialVersionUID = 5084265228790714409L;
 
 	private static final Dimension scaledSize(double width, double height) {
@@ -17,16 +15,8 @@ public abstract class Graphic extends JComponent {
 	}
 
 	private boolean expired;
-
+	private final boolean foreground;
 	private final int xoffset, yoffset;
-
-	public final int getXOffset() {
-		return xoffset;
-	}
-
-	public final int getYOffset() {
-		return yoffset;
-	}
 
 	/**
 	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
@@ -37,22 +27,6 @@ public abstract class Graphic extends JComponent {
 	 */
 	public Graphic(double width, double height) {
 		this(0, 0, width, height, true);
-	}
-
-	protected Graphic(Graphic g) {
-		foreground = g.isForeground();
-		setSize(g.getSize());
-		xoffset = g.getXOffset();
-		yoffset = g.getYOffset();
-		setLocation(0, 0);
-	}
-
-	public Graphic(double xoffset, double yoffset, double width, double height, boolean foreground) {
-		this.foreground = foreground;
-		setSize(scaledSize(width, height));
-		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
-		this.yoffset = (int) (yoffset * Main.SIZE_FACTOR);
-		setLocation(0, 0);
 	}
 
 	public Graphic(double width, double height, boolean foreground) {
@@ -73,6 +47,22 @@ public abstract class Graphic extends JComponent {
 	 */
 	public Graphic(double xoffset, double yoffset, double width, double height) {
 		this(xoffset, yoffset, width, height, true);
+	}
+
+	public Graphic(double xoffset, double yoffset, double width, double height, boolean foreground) {
+		this.foreground = foreground;
+		setSize(scaledSize(width, height));
+		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
+		this.yoffset = (int) (yoffset * Main.SIZE_FACTOR);
+		setLocation(0, 0);
+	}
+
+	protected Graphic(Graphic g) {
+		foreground = g.isForeground();
+		setSize(g.getSize());
+		xoffset = g.getXOffset();
+		yoffset = g.getYOffset();
+		setLocation(0, 0);
 	}
 
 	/**
@@ -98,6 +88,14 @@ public abstract class Graphic extends JComponent {
 		return getSize();
 	}
 
+	public final int getXOffset() {
+		return xoffset;
+	}
+
+	public final int getYOffset() {
+		return yoffset;
+	}
+
 	/**
 	 * Test to see if this object should be destroyed.
 	 * 
@@ -107,6 +105,10 @@ public abstract class Graphic extends JComponent {
 		return expired;
 	}
 
+	public boolean isForeground() {
+		return foreground;
+	}
+
 	/** Must be overridden. */
 	@Override
 	public abstract void paintComponent(Graphics g);
@@ -114,9 +116,5 @@ public abstract class Graphic extends JComponent {
 	@Override
 	public void setLocation(int x, int y) {
 		super.setLocation(x + xoffset, y + yoffset);
-	}
-
-	public boolean isForeground() {
-		return foreground;
 	}
 }

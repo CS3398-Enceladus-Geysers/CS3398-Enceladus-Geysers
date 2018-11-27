@@ -13,20 +13,6 @@ import java.io.Serializable;
  * {@link Serializable} objects.
  */
 public class ResourceManager {
-
-	/**
-	 * Save a {@link Serializable} object to a file specified by {@code fileName}
-	 * 
-	 * @param data     The {@link Serializable} object to be saved to a file.
-	 * @param fileName The name of the file to be saved to.
-	 * @throws Exception in the case of IO failure.
-	 */
-	public static void save(Serializable data, String fileName) throws Exception {
-		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
-		oos.writeObject(data);
-		oos.close();
-	}
-
 	/**
 	 * Load a {@link Serializable} object from a file specified by {@code fileName}
 	 * 
@@ -39,5 +25,18 @@ public class ResourceManager {
 		Object ret = ois.readObject();
 		ois.close();
 		return ret;
+	}
+
+	/**
+	 * Save a {@link Serializable} object to a file specified by {@code fileName}
+	 * 
+	 * @param data     The {@link Serializable} object to be saved to a file.
+	 * @param fileName The name of the file to be saved to.
+	 * @throws Exception in the case of IO failure.
+	 */
+	public static void save(Serializable data, String fileName) throws Exception {
+		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
+		oos.writeObject(data);
+		oos.close();
 	}
 }

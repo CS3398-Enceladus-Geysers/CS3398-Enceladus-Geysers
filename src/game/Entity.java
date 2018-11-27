@@ -14,7 +14,6 @@ public abstract class Entity extends CameraObservedObject {
 	private static final double GRAVITY_CONSTANT = 1.0 / 60, MAX_FALLING_SPEED = 1.0 / 6;
 	private double dx, dy;
 	private final boolean gravitational;
-
 	private boolean grounded;
 
 	/**
@@ -83,7 +82,7 @@ public abstract class Entity extends CameraObservedObject {
 
 	private void applyGravityAcceleration() {
 		accelerate(true, GRAVITY_CONSTANT, MAX_FALLING_SPEED);
-  }
+	}
 
 	/**
 	 * Moves this entity to not collide with {@code trr}
