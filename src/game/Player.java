@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Player extends Character {
 	private static final double JUMP_VELOCITY = 1.5 / 6, MOVESPEED = 1.0 / 12, INFLUENCE = 1.0 / 120, WIDTH = 50.0 / 60,
 			HEIGHT = 100.0 / 60;
-	private static final int PLAYER_HEALTH = 150;
+	private static final int PLAYER_HEALTH = 200;
 	private int invincibilityFrames = 0;
 	private final ArrayList<Item> items = new ArrayList<Item>();
 	private ImageGraphic sprite = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);

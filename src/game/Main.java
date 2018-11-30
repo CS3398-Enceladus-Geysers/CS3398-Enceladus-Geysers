@@ -69,15 +69,15 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics g) {
-				g.drawRect(1, 1, 150, 25);
+				g.drawRect(1, 1, 200, 25);
 				g.setColor(Color.white);
-				g.fillRect(1, 1, 150, 25);
-				g.drawRect(1, 1, 150, 25);
+				g.fillRect(1, 1, 200, 25);
+				g.drawRect(1, 1, 200, 25);
 				g.setColor(Color.red);
 				g.fillRect(1, 1, player.getHP(), 25);
 				g.setFont(new Font("TimesRoman", Font.BOLD, 12));
 				g.setColor(Color.black);
-				g.drawString("HP: " + player.getHP(), 55, 15);
+				g.drawString("HP: " + player.getHP(), 65, 15);
 			}
 		};
 		level.addGraphic(healthbarGraphic);
