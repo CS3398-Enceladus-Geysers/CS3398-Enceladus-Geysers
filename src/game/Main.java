@@ -159,6 +159,8 @@ public class Main implements KeyListener {
 			// End level construction.
 			break;
 		case 2:
+			Graphic background1 = new ImageGraphic("assets/still/titan.png", 0, 0, 16, 9, false);
+			level.addGraphic(background1);
 			// TODO Level 2 construction.
 			break;
 		}
