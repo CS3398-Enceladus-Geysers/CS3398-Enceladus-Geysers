@@ -220,7 +220,11 @@ public class Main implements KeyListener {
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
 		title.addGraphic(backgroundTitle);
-		Graphic start = new Graphic(0, 0, 150, 50, true) {
+		Graphic start = new TextGraphic(475.0 / 60, 275.0 / 60, 150.0 / 60, 24.0 / 60, "START", "Venus Rising",
+				new Color(63, 0, 255));
+
+				/*
+				new Graphic(0, 0, 150, 50, true) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
@@ -235,7 +239,7 @@ public class Main implements KeyListener {
 				t.setColor(new Color(63, 0, 255));
 				t.drawString("Start", 395, 300);
 			}
-		};
+		};*/
 
 		Graphic startButton = new ClickableGraphic(start) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -247,6 +251,7 @@ public class Main implements KeyListener {
 		};
 
 		title.addGraphic(startButton);
+		
 		// END OF TITLE CONSTRUCTION
 
 		// BEGINNING OF START MENU CONSTRUCTION
@@ -345,7 +350,7 @@ public class Main implements KeyListener {
 		menu.addGraphic(startGame);
 		menu.addGraphic(options);
 		menu.addGraphic(quitting);
-		menu.repaint();
+	
 
 		// END OF START MENU CONSTRUCTION
 
