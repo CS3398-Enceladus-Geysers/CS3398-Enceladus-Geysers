@@ -175,14 +175,14 @@ public abstract class Entity extends CameraObservedObject {
 	 * @return The velocity of this object in the X-axis.
 	 */
 	protected double getDx() {
-		return dx;
+		return dx / Main.SIZE_FACTOR;
 	}
 
 	/**
 	 * @return The velocity of this object in the Y-axis.
 	 */
 	protected double getDy() {
-		return dy;
+		return dy / Main.SIZE_FACTOR;
 	}
 
 	/**
