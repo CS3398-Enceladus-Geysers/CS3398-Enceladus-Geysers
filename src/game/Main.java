@@ -75,7 +75,7 @@ public class Main implements KeyListener {
 				g.drawRect(1, 1, 200, 25);
 				g.setColor(Color.red);
 				g.fillRect(1, 1, player.getHP(), 25);
-				g.setFont(new Font("TimesRoman", Font.BOLD, 12));
+				g.setFont(new Font("Venus Rising", Font.BOLD, 12));
 				g.setColor(Color.black);
 				g.drawString("HP: " + player.getHP(), 65, 15);
 			}
