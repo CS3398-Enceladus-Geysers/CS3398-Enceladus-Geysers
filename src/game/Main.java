@@ -18,7 +18,7 @@ import javax.swing.WindowConstants;
 public class Main implements KeyListener {
 	/** A list of all the scenes. */
 	public enum ScenesEnum {
-	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, START_MENU, TITLE
+	LEVEL, MAIN_MENU, CHARACTERS, SETTINGS, START_MENU, TITLE
 	}
 
 	/**
@@ -69,15 +69,15 @@ public class Main implements KeyListener {
 
 			@Override
 			public void paintComponent(Graphics g) {
-				g.drawRect(1, 1, 150, 25);
+				g.drawRect(1, 1, 200, 25);
 				g.setColor(Color.white);
-				g.fillRect(1, 1, 150, 25);
-				g.drawRect(1, 1, 150, 25);
+				g.fillRect(1, 1, 200, 25);
+				g.drawRect(1, 1, 200, 25);
 				g.setColor(Color.red);
 				g.fillRect(1, 1, player.getHP(), 25);
 				g.setFont(new Font("Venus Rising", Font.BOLD, 12));
 				g.setColor(Color.black);
-				g.drawString("HP: " + player.getHP(), 55, 15);
+				g.drawString("HP: " + player.getHP(), 65, 15);
 			}
 		};
 		level.addGraphic(healthbarGraphic);
@@ -220,26 +220,8 @@ public class Main implements KeyListener {
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
 		title.addGraphic(backgroundTitle);
-		Graphic start = new TextGraphic(475.0 / 60, 275.0 / 60, 150.0 / 60, 24.0 / 60, "START", "Venus Rising",
-				new Color(63, 0, 255));
-
-				/*
-				new Graphic(0, 0, 150, 50, true) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 28));
-				t.setColor(new Color(63, 0, 255));
-				t.drawString("Start", 395, 300);
-			}
-		};*/
+		Graphic start = new TextGraphic(425.0 / 60, 275.0 / 60, 150.0 / 60, 24.0 / 60, "START", "Comic Sans",
+				Color.GREEN);
 
 		Graphic startButton = new ClickableGraphic(start) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -259,27 +241,14 @@ public class Main implements KeyListener {
 
 		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		menu.addGraphic(backgroundMenu);
-		Graphic menuScene = new TextGraphic(400.0 / 60, 100.0 / 60, 150.0 / 60, 24.0 / 60, "MAIN MENU", "Venus Rising",
+		Graphic menuScene = new TextGraphic(375.0 / 60, 100.0 / 60, 150.0 / 60, 24.0 / 60, "MAIN MENU", "Comic Sans",
 				Color.WHITE);
 
 		menu.addGraphic(menuScene);
 
-		Graphic startB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("START GAME", 375, 200);
-			}
-		};
+		Graphic startB = new TextGraphic(375.0 / 60, 200.0 / 60, 175.0 / 60, 24.0 / 60, "START GAME", "Comic Sans",
+				Color.WHITE);
+		
 		Graphic startGame = new ClickableGraphic(startB) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
@@ -288,25 +257,10 @@ public class Main implements KeyListener {
 				transitionScene(ScenesEnum.LEVEL);
 
 			}
-
 		};
 
-		Graphic optionsB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("SETTINGS", 375, 250);
-			}
-		};
+		Graphic optionsB = new TextGraphic(375.0 / 60, 250.0 / 60, 175.0 / 60, 24.0 / 60, "SETTINGS", "Comic Sans",
+				Color.WHITE);
 
 		Graphic options = new ClickableGraphic(optionsB) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -319,30 +273,15 @@ public class Main implements KeyListener {
 
 		};
 
-		Graphic quitB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("QUIT", 375, 300);
-			}
-		};
-
+		Graphic quitB = new TextGraphic(375.0 / 60, 300.0 / 60, 175.0 / 60, 24.0 / 60, "QUIT", "Comic Sans",
+				Color.WHITE);
+		
 		Graphic quitting = new ClickableGraphic(quitB) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.LEVEL);
-
+				System.exit(0);
 			}
 
 		};
@@ -350,10 +289,60 @@ public class Main implements KeyListener {
 		menu.addGraphic(startGame);
 		menu.addGraphic(options);
 		menu.addGraphic(quitting);
-	
-
 		// END OF START MENU CONSTRUCTION
+        // START SETTINGS CONSTRUCTION
+		
+		Scene settings = SCENES_MAP.get(ScenesEnum.SETTINGS);
 
+		Graphic backgroundSettings = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
+		settings.addGraphic(backgroundSettings);
+		Graphic settingScene = new TextGraphic(375.0 / 60, 100.0 / 60, 150.0 / 60, 24.0 / 60, "SETTINGS", "Comic Sans",
+				Color.WHITE);
+
+		settings.addGraphic(settingScene);
+		
+		
+		Graphic resizeB = new TextGraphic(375.0 / 60, 200.0 / 60, 175.0 / 60, 24.0 / 60, "FULL SCREEN", "Comic Sans",
+				Color.WHITE);
+
+		Graphic resize = new ClickableGraphic(resizeB) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				fullscreen();
+			}
+		};
+
+		settings.addGraphic(resize);
+		
+		Graphic newCharacterB = new TextGraphic(375.0 / 60, 250.0 / 60, 350.0 / 60, 24.0 / 60, "CHOOSE NEW CHARACTER", "Comic Sans",
+				Color.WHITE);
+
+		Graphic newCharacter = new ClickableGraphic(newCharacterB) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				transitionScene(ScenesEnum.CHARACTERS);
+			}
+		};
+		settings.addGraphic(newCharacter);
+		// END OF SETTINGS CONSTRUCTION
+		// BEGINNING OF CHARACTERS CONSTRUCTION
+		Scene characters = SCENES_MAP.get(ScenesEnum.CHARACTERS);
+
+		Graphic backgroundCharacters = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
+		characters.addGraphic(backgroundCharacters);
+		Graphic charactersScene = new TextGraphic(375.0 / 60, 100.0 / 60, 175.0 / 60, 24.0 / 60, "CHARACTERS", "Comic Sans",
+				Color.WHITE);
+        characters.addGraphic(charactersScene);
+	}
+
+	
+	protected void fullscreen() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
