@@ -27,4 +27,18 @@ public class Enemy extends Character {
 	private final void reverseDirection() {
 		setDx(-getDx());
 	}
+	
+	public void doDmgCollision(Character ply) {
+		if(ply instanceof Player) {
+			if(this.occupiedSpace.collidesWith(ply.occupiedSpace)) {
+				ply.takeDmg(35);
+			}
+		}
+	}
+	
+	@Override
+	public void act() {
+		super.act();
+		doDmgCollision(Main.getPlayer());
+	}
 }

@@ -42,7 +42,7 @@ public class Player extends Character {
 	public void checkBounds() {
 
 		if (absoluteLocation.getY() > 200) {
-		takeDmg(PLAYER_HEALTH);
+			takeDmg(PLAYER_HEALTH);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class Player extends Character {
 	public void takeDmg(int x) {
 		if (invincibilityFrames == 0) {
 			super.takeDmg(x);
-			invincibilityFrames = 60;
+			invincibilityFrames = 90;
 		}
 
 		if (getHP() <= 0) {
