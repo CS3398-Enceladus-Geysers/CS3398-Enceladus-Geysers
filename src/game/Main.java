@@ -85,7 +85,7 @@ public class Main implements KeyListener {
 				"assets/still/block.png", 8, 1);
 		level.addGameObject(dirt1);
 		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 50);
 		level.addGameObject(obs1);
 		Terrain dirt3 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/still/block.png", 2, 1);
@@ -100,7 +100,7 @@ public class Main implements KeyListener {
 				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt6);
 		Obstacle obs2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 50);
 		level.addGameObject(obs2);
 		Terrain dirt7 = new Terrain(level.getCameraLocation(), 1300.0 / 60, -120.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/still/block.png", 1, 1);
@@ -127,16 +127,16 @@ public class Main implements KeyListener {
 				"assets/still/block.png", 1, 1);
 		level.addGameObject(dirt14);
 		Obstacle obs3 = new Obstacle(level.getCameraLocation(), 1800.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 50);
 		level.addGameObject(obs3);
 		Obstacle obs4 = new Obstacle(level.getCameraLocation(), 1900.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 50);
 		level.addGameObject(obs4);
 		Obstacle obs5 = new Obstacle(level.getCameraLocation(), 2000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 50);
 		level.addGameObject(obs5);
 		Obstacle obs6 = new Obstacle(level.getCameraLocation(), 2100.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 20);
+				"assets/still/spikes.png", 1, 1, 50);
 		level.addGameObject(obs6);
 		Terrain dirt15 = new Terrain(level.getCameraLocation(), 1800.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
 				"assets/still/blockBottom.png", 4, 4);
