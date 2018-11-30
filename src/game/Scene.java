@@ -147,6 +147,7 @@ public class Scene extends JPanel {
 				((CameraObservedObject) go).updateLocation();
 		for (Component g : getComponents())
 			((Graphic) g).act();
+		repaint();
 	}
 
 	/**
