@@ -13,6 +13,11 @@ public class Obstacle extends Terrain {
 	 */
 	public int dmg;
 
+	public Obstacle(Point cameraLocation, double x, double y, double imageWidth, double imageHeight, String fileName,
+			int horizontalImages, int verticalImages, int damage) throws Exception {
+		this(cameraLocation, x, y, imageWidth, imageHeight, fileName, horizontalImages, verticalImages, damage, false);
+	}
+
 	/**
 	 * See
 	 * {@link Terrain#Terrain(Point, double, double, double, double, String, int, int)}
@@ -30,8 +35,8 @@ public class Obstacle extends Terrain {
 	 * @throws Exception
 	 */
 	public Obstacle(Point cameraLocation, double x, double y, double imageWidth, double imageHeight, String fileName,
-			int horizontalImages, int verticalImages, int damage) throws Exception {
-		super(cameraLocation, x, y, imageWidth, imageHeight, fileName, horizontalImages, verticalImages);
+			int horizontalImages, int verticalImages, int damage, boolean animated) throws Exception {
+		super(cameraLocation, x, y, imageWidth, imageHeight, fileName, horizontalImages, verticalImages, animated);
 		dmg = damage;
 	}
 }
