@@ -153,155 +153,6 @@ public class Main implements KeyListener {
 		Graphic background = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		level.addGraphic(background);
 		// End level construction.
-		// Start of Title construction
-		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
-		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
-		title.addGraphic(backgroundTitle);
-		Graphic start = new Graphic(0, 0, 150, 50, true) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 28));
-				t.setColor(new Color(63, 0, 255));
-				t.drawString("Start", 395, 300);
-			}
-		};
-		Graphic startButton = new ClickableGraphic(start) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.START_MENU);
-			}
-		};
-		title.addGraphic(startButton);
-		// END OF TITLE CONSTRUCTION
-		// BEGINNING OF START MENU CONSTRUCTION
-		Scene menu = SCENES_MAP.get(ScenesEnum.START_MENU);
-		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
-		menu.addGraphic(backgroundMenu);
-		Graphic menuScene = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// FIXME Review this.
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics s) {
-				s.setFont(new Font("Venus Rising", Font.BOLD, 24));
-				s.setColor(Color.WHITE);
-				s.drawString("MAIN MENU", 400, 100);
-			}
-		};
-		menu.addGraphic(menuScene);
-		Graphic startB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("START GAME", 375, 200);
-			}
-		};
-		Graphic startGame = new ClickableGraphic(startB) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.LEVEL);
-			}
-		};
-		Graphic optionsB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("SETTINGS", 375, 250);
-			}
-		};
-		Graphic options = new ClickableGraphic(optionsB) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.SETTINGS);
-			}
-		};
-		Graphic quitB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("QUIT", 375, 300);
-			}
-		};
-		Graphic quitting = new ClickableGraphic(quitB) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.LEVEL);
-			}
-		};
-		menu.addGraphic(startGame);
-		menu.addGraphic(options);
-		menu.addGraphic(quitting);
-		// END OF START MENU CONSTRUCTION
-		// BEGINNING OF SETTINGS CONSTRUCTION
-		Scene settings = SCENES_MAP.get(ScenesEnum.SETTINGS);
-		Graphic settingsBackground = new ImageGraphic("assets/still/space.png", 0, 0, 16, 9, false);
-		settings.addGraphic(settingsBackground);
-		Graphic settingsScene = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// FIXME Review this.
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics s) {
-				s.setFont(new Font("Arial", Font.BOLD, 24));
-				s.setColor(Color.black);
-				s.drawString("SETTINGS", 400, 100);
-			}
-		};
-		settings.addGraphic(settingsScene);
-		// END OF SETTINGS CONSTRUCTION
 	}
 
 	private static final Scene currentScene() {
@@ -403,25 +254,8 @@ public class Main implements KeyListener {
 
 		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		menu.addGraphic(backgroundMenu);
-
-		Graphic menuScene = new Graphic(0, 0, 150, 50) {
-
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// FIXME Review this.
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics s) {
-				s.setFont(new Font("Venus Rising", Font.BOLD, 24));
-				s.setColor(Color.WHITE);
-				s.drawString("MAIN MENU", 400, 100);
-			}
-
-		};
+		Graphic menuScene = new TextGraphic(400.0 / 60, 100.0 / 60, 150.0 / 60, 24.0 / 60, "MAIN MENU", "Venus Rising",
+				Color.WHITE);
 
 		menu.addGraphic(menuScene);
 
@@ -511,6 +345,7 @@ public class Main implements KeyListener {
 		menu.addGraphic(startGame);
 		menu.addGraphic(options);
 		menu.addGraphic(quitting);
+		menu.repaint();
 
 		// END OF START MENU CONSTRUCTION
 
