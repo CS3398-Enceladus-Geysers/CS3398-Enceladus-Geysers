@@ -14,6 +14,13 @@ public class Player extends Character {
 	private final ArrayList<Item> items = new ArrayList<Item>();
 	private ImageGraphic sprite = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
 
+	@Override
+	public boolean exclusionPrinciple(Terrain trr) {
+		if (trr instanceof Portal)
+			((Portal) trr).teleport();
+		return super.exclusionPrinciple(trr);
+	}
+
 	/**
 	 * Creates a {@link Player} object using the reserved player assets and
 	 * predefined player stats.
@@ -55,7 +62,7 @@ public class Player extends Character {
 
 		if (getHP() <= 0) {
 			try {
-				Main.constructLevel();
+				Main.constructLevel(Main.currentLevel);
 				Main.transitionScene(Main.ScenesEnum.LEVEL);
 			} catch (Exception e) {
 

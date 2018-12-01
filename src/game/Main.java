@@ -18,7 +18,7 @@ import javax.swing.WindowConstants;
 public class Main implements KeyListener {
 	/** A list of all the scenes. */
 	public enum ScenesEnum {
-	LEVEL, MAIN_MENU, OVERWORLD, SETTINGS, START_MENU, TITLE
+	LEVEL, MAIN_MENU, CHARACTERS, SETTINGS, START_MENU, TITLE
 	}
 
 	/**
@@ -40,119 +40,180 @@ public class Main implements KeyListener {
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
+	public static int currentLevel;
 	/**
 	 * This is a Map for holding scenes, which are just JPanels which get switched
 	 * from title to game, etc.
 	 */
 	private static final EnumMap<ScenesEnum, Scene> SCENES_MAP = new EnumMap<ScenesEnum, Scene>(ScenesEnum.class);
 
-	public static void constructLevel() throws Exception {
+	public static void constructLevel(int levelNumber) throws Exception {
+		currentLevel = levelNumber;
 		// Start level construction.
 		SCENES_MAP.put(ScenesEnum.LEVEL, new Scene(1.0 / 2, 2.0 / 3));
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
 		player = new Player(level.getCameraLocation());
-		enemy = new Enemy(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		level.addGameObject(enemy);
+		switch (levelNumber) {
+		case 1:
+			enemy = new Enemy(level.getCameraLocation());
+			level.addGameObject(enemy);
 
-		Graphic healthbarGraphic = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-			int lastHP;
+			Graphic healthbarGraphic = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+				int lastHP;
 
-			@Override
-			public void act() {
-				if (player.getHP() != lastHP)
-					repaint();
-				lastHP = player.getHP();
-			}
+				@Override
+				public void act() {
+					if (player.getHP() != lastHP)
+						repaint();
+					lastHP = player.getHP();
+				}
 
-			@Override
-			public void paintComponent(Graphics g) {
-				g.drawRect(1, 1, 200, 25);
-				g.setColor(Color.white);
-				g.fillRect(1, 1, 200, 25);
-				g.drawRect(1, 1, 200, 25);
-				g.setColor(Color.red);
-				g.fillRect(1, 1, player.getHP(), 25);
-				g.setFont(new Font("Venus Rising", Font.BOLD, 12));
-				g.setColor(Color.black);
-				g.drawString("HP: " + player.getHP(), 65, 15);
-			}
-		};
-		level.addGraphic(healthbarGraphic);
-		Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 8, 1);
-		level.addGameObject(dirt1);
-		Obstacle obs1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 50);
-		level.addGameObject(obs1);
-		Terrain dirt3 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 2, 1);
-		level.addGameObject(dirt3);
-		Terrain dirt4 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 1, 1);
-		level.addGameObject(dirt4);
-		Terrain dirt5 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/blockBottom.png", 1, 1);
-		level.addGameObject(dirt5);
-		Terrain dirt6 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 1, 1);
-		level.addGameObject(dirt6);
-		Obstacle obs2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 50);
-		level.addGameObject(obs2);
-		Terrain dirt7 = new Terrain(level.getCameraLocation(), 1300.0 / 60, -120.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 1, 1);
-		level.addGameObject(dirt7);
-		Terrain dirt8 = new Terrain(level.getCameraLocation(), 1400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 1, 1);
-		level.addGameObject(dirt8);
-		Terrain dirt9 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/blockBottom.png", 1, 1);
-		level.addGameObject(dirt9);
-		Terrain dirt10 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 1, 1);
-		level.addGameObject(dirt10);
-		Terrain dirt11 = new Terrain(level.getCameraLocation(), 1600.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/blockBottom.png", 1, 2);
-		level.addGameObject(dirt11);
-		Terrain dirt12 = new Terrain(level.getCameraLocation(), 1600.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 1, 1);
-		level.addGameObject(dirt12);
-		Terrain dirt13 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/blockBottom.png", 1, 3);
-		level.addGameObject(dirt13);
-		Terrain dirt14 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 1, 1);
-		level.addGameObject(dirt14);
-		Obstacle obs3 = new Obstacle(level.getCameraLocation(), 1800.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 50);
-		level.addGameObject(obs3);
-		Obstacle obs4 = new Obstacle(level.getCameraLocation(), 1900.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 50);
-		level.addGameObject(obs4);
-		Obstacle obs5 = new Obstacle(level.getCameraLocation(), 2000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 50);
-		level.addGameObject(obs5);
-		Obstacle obs6 = new Obstacle(level.getCameraLocation(), 2100.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/spikes.png", 1, 1, 50);
-		level.addGameObject(obs6);
-		Terrain dirt15 = new Terrain(level.getCameraLocation(), 1800.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/blockBottom.png", 4, 4);
-		level.addGameObject(dirt15);
-		Terrain dirt16 = new Terrain(level.getCameraLocation(), 1920.0 / 60, -300.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/still/block.png", 4, 1);
-		level.addGameObject(dirt16);
-		Terrain portal = new Terrain(level.getCameraLocation(), 2200.0 / 60, -400.0 / 60, 100.0 / 60, 100.0 / 60,
-				"assets/animated/portal/", 1, 1, true);
-		level.addGameObject(portal);
-		Item gun = new Item(level.getCameraLocation(), 2000.0 / 60, -800 / 60, 100.0 / 60, 100.0 / 60, "gun",
-				"assets/still/gun.png", false);
-		level.addGameObject(gun);
-		Graphic background = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
-		level.addGraphic(background);
-		// End level construction.
+				@Override
+				public void paintComponent(Graphics g) {
+					g.drawRect(1, 1, 200, 25);
+					g.setColor(Color.white);
+					g.fillRect(1, 1, 200, 25);
+					g.drawRect(1, 1, 200, 25);
+					g.setColor(Color.red);
+					g.fillRect(1, 1, player.getHP(), 25);
+					g.setFont(new Font("Venus Rising", Font.BOLD, 12));
+					g.setColor(Color.black);
+					g.drawString("HP: " + player.getHP(), 65, 15);
+				}
+			};
+			level.addGraphic(healthbarGraphic);
+			Terrain dirt1 = new Terrain(level.getCameraLocation(), 0, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 8, 1);
+			level.addGameObject(dirt1);
+			Obstacle obs1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/spikes.png", 1, 1, 50);
+			level.addGameObject(obs1);
+			Terrain dirt3 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 2, 1);
+			level.addGameObject(dirt3);
+			Terrain dirt4 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(dirt4);
+			Terrain dirt5 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/blockBottom.png", 1, 1);
+			level.addGameObject(dirt5);
+			Terrain dirt6 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(dirt6);
+			Obstacle obs2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/spikes.png", 1, 1, 50);
+			level.addGameObject(obs2);
+			Terrain dirt7 = new Terrain(level.getCameraLocation(), 1300.0 / 60, -120.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(dirt7);
+			Terrain dirt8 = new Terrain(level.getCameraLocation(), 1400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(dirt8);
+			Terrain dirt9 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/blockBottom.png", 1, 1);
+			level.addGameObject(dirt9);
+			Terrain dirt10 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(dirt10);
+			Terrain dirt11 = new Terrain(level.getCameraLocation(), 1600.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/blockBottom.png", 1, 2);
+			level.addGameObject(dirt11);
+			Terrain dirt12 = new Terrain(level.getCameraLocation(), 1600.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(dirt12);
+			Terrain dirt13 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/blockBottom.png", 1, 3);
+			level.addGameObject(dirt13);
+			Terrain dirt14 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(dirt14);
+			Obstacle obs3 = new Obstacle(level.getCameraLocation(), 1800.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/spikes.png", 1, 1, 50);
+			level.addGameObject(obs3);
+			Obstacle obs4 = new Obstacle(level.getCameraLocation(), 1900.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/spikes.png", 1, 1, 50);
+			level.addGameObject(obs4);
+			Obstacle obs5 = new Obstacle(level.getCameraLocation(), 2000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/spikes.png", 1, 1, 50);
+			level.addGameObject(obs5);
+			Obstacle obs6 = new Obstacle(level.getCameraLocation(), 2100.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/spikes.png", 1, 1, 50);
+			level.addGameObject(obs6);
+			Terrain dirt15 = new Terrain(level.getCameraLocation(), 1800.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/blockBottom.png", 4, 4);
+			level.addGameObject(dirt15);
+			Terrain dirt16 = new Terrain(level.getCameraLocation(), 1920.0 / 60, -300.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 4, 1);
+			level.addGameObject(dirt16);
+			Terrain portal = new Portal(level.getCameraLocation(), 2200.0 / 60, -400.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/portal/", 2);
+			level.addGameObject(portal);
+			Item gun = new Item(level.getCameraLocation(), 2000.0 / 60, -800 / 60, 100.0 / 60, 100.0 / 60, "gun",
+					"assets/still/gun.png", false);
+			level.addGameObject(gun);
+			Graphic background = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
+			level.addGraphic(background);
+			// End level construction.
+			break;
+		case 2:
+			Graphic background1 = new ImageGraphic("assets/still/titan.png", 0, 0, 16, 9, false);
+			level.addGraphic(background1);
+			
+			enemy = new Enemy(level.getCameraLocation());
+			level.addGameObject(enemy);
+			Graphic healthbarGraphic1 = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
+				private static final long serialVersionUID = 3237106029139727237L;
+				int lastHP;
+
+				@Override
+				public void act() {
+					if (player.getHP() != lastHP)
+						repaint();
+					lastHP = player.getHP();
+				}
+
+				@Override
+				public void paintComponent(Graphics g) {
+					g.drawRect(1, 1, 200, 25);
+					g.setColor(Color.white);
+					g.fillRect(1, 1, 200, 25);
+					g.drawRect(1, 1, 200, 25);
+					g.setColor(Color.red);
+					g.fillRect(1, 1, player.getHP(), 25);
+					g.setFont(new Font("Venus Rising", Font.BOLD, 12));
+					g.setColor(Color.black);
+					g.drawString("HP: " + player.getHP(), 65, 15);
+				}
+			};
+			
+			level.addGraphic(healthbarGraphic1);
+			Terrain terr1 = new Terrain(level.getCameraLocation(), 0, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 8, 1);
+			level.addGameObject(terr1);
+			Obstacle lava1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/lava.png", 1, 1, 50, true);
+			level.addGameObject(lava1);
+			Terrain terr2 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 2, 1);
+			level.addGameObject(terr2);
+			Terrain terr3 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(terr3);
+			Terrain terr4 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/blockBottom.png", 1, 1);
+			level.addGameObject(terr4);
+			Terrain terr5 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(terr5);
+			Obstacle lava2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/spikes.png", 1, 1, 50, true);
+			level.addGameObject(lava2);
+			// TODO Level 2 construction.
+			break;
+		}
 	}
 
 	private static final Scene currentScene() {
@@ -215,31 +276,13 @@ public class Main implements KeyListener {
 
 	private final void constructScenes() throws Exception {
 
-		constructLevel();
+		constructLevel(1);
 
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
 		title.addGraphic(backgroundTitle);
-		Graphic start = new TextGraphic(475.0 / 60, 275.0 / 60, 150.0 / 60, 24.0 / 60, "START", "Venus Rising",
-				new Color(63, 0, 255));
-
-				/*
-				new Graphic(0, 0, 150, 50, true) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 28));
-				t.setColor(new Color(63, 0, 255));
-				t.drawString("Start", 395, 300);
-			}
-		};*/
+		Graphic start = new TextGraphic(425.0 / 60, 275.0 / 60, 150.0 / 60, 24.0 / 60, "START", "Comic Sans",
+				Color.GREEN);
 
 		Graphic startButton = new ClickableGraphic(start) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -251,7 +294,7 @@ public class Main implements KeyListener {
 		};
 
 		title.addGraphic(startButton);
-		
+
 		// END OF TITLE CONSTRUCTION
 
 		// BEGINNING OF START MENU CONSTRUCTION
@@ -259,27 +302,14 @@ public class Main implements KeyListener {
 
 		Graphic backgroundMenu = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		menu.addGraphic(backgroundMenu);
-		Graphic menuScene = new TextGraphic(400.0 / 60, 100.0 / 60, 150.0 / 60, 24.0 / 60, "MAIN MENU", "Venus Rising",
+		Graphic menuScene = new TextGraphic(375.0 / 60, 100.0 / 60, 150.0 / 60, 24.0 / 60, "MAIN MENU", "Comic Sans",
 				Color.WHITE);
 
 		menu.addGraphic(menuScene);
 
-		Graphic startB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("START GAME", 375, 200);
-			}
-		};
+		Graphic startB = new TextGraphic(375.0 / 60, 200.0 / 60, 175.0 / 60, 24.0 / 60, "START GAME", "Comic Sans",
+				Color.WHITE);
+		
 		Graphic startGame = new ClickableGraphic(startB) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
@@ -291,22 +321,8 @@ public class Main implements KeyListener {
 
 		};
 
-		Graphic optionsB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("SETTINGS", 375, 250);
-			}
-		};
+		Graphic optionsB = new TextGraphic(375.0 / 60, 250.0 / 60, 175.0 / 60, 24.0 / 60, "SETTINGS", "Comic Sans",
+				Color.WHITE);
 
 		Graphic options = new ClickableGraphic(optionsB) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -319,30 +335,15 @@ public class Main implements KeyListener {
 
 		};
 
-		Graphic quitB = new Graphic(0, 0, 150, 50) {
-			private static final long serialVersionUID = 3237106029139727237L;
-
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				repaint();
-			}
-
-			@Override
-			public void paintComponent(Graphics t) {
-				t.setFont(new Font("Venus Rising", Font.BOLD, 18));
-				t.setColor(Color.WHITE);
-				t.drawString("QUIT", 375, 300);
-			}
-		};
-
+		Graphic quitB = new TextGraphic(375.0 / 60, 300.0 / 60, 175.0 / 60, 24.0 / 60, "QUIT", "Comic Sans",
+				Color.WHITE);
+		
 		Graphic quitting = new ClickableGraphic(quitB) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				transitionScene(ScenesEnum.LEVEL);
-
+				System.exit(0);
 			}
 
 		};
@@ -350,10 +351,61 @@ public class Main implements KeyListener {
 		menu.addGraphic(startGame);
 		menu.addGraphic(options);
 		menu.addGraphic(quitting);
-	
-
 		// END OF START MENU CONSTRUCTION
+        // START SETTINGS CONSTRUCTION
+		
+		Scene settings = SCENES_MAP.get(ScenesEnum.SETTINGS);
 
+		Graphic backgroundSettings = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
+		settings.addGraphic(backgroundSettings);
+		Graphic settingScene = new TextGraphic(375.0 / 60, 100.0 / 60, 150.0 / 60, 24.0 / 60, "SETTINGS", "Comic Sans",
+				Color.WHITE);
+
+		settings.addGraphic(settingScene);
+		
+		
+		Graphic resizeB = new TextGraphic(375.0 / 60, 200.0 / 60, 175.0 / 60, 24.0 / 60, "FULL SCREEN", "Comic Sans",
+				Color.WHITE);
+
+		Graphic resize = new ClickableGraphic(resizeB) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				fullscreen();
+			}
+
+		};
+
+		settings.addGraphic(resize);
+		
+		Graphic newCharacterB = new TextGraphic(375.0 / 60, 250.0 / 60, 350.0 / 60, 24.0 / 60, "CHOOSE NEW CHARACTER", "Comic Sans",
+				Color.WHITE);
+
+		Graphic newCharacter = new ClickableGraphic(newCharacterB) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				transitionScene(ScenesEnum.CHARACTERS);
+			}
+		};
+		settings.addGraphic(newCharacter);
+		// END OF SETTINGS CONSTRUCTION
+		// BEGINNING OF CHARACTERS CONSTRUCTION
+		Scene characters = SCENES_MAP.get(ScenesEnum.CHARACTERS);
+
+		Graphic backgroundCharacters = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
+		characters.addGraphic(backgroundCharacters);
+		Graphic charactersScene = new TextGraphic(375.0 / 60, 100.0 / 60, 175.0 / 60, 24.0 / 60, "CHARACTERS", "Comic Sans",
+				Color.WHITE);
+        characters.addGraphic(charactersScene);
+	}
+
+	
+	protected void fullscreen() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */
