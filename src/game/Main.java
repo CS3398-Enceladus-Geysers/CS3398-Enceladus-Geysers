@@ -246,6 +246,9 @@ public class Main implements KeyListener, WindowListener {
 			Terrain terr16 = new Terrain(level.getCameraLocation(), 1900.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr16);
+			Terrain terr17 = new Terrain(level.getCameraLocation(), 2000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr17);
 			// TODO Level 2 construction.
 			break;
 		}
