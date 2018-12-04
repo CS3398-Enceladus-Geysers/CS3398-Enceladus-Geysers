@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  * A graphic which is represented by a still image, as opposed to an animation.
  */
 public class ImageGraphic extends Graphic {
-	private static final HashMap<String, Image[]> RESOURCES = new HashMap<String, Image[]>();
+	public static HashMap<String, Image[]> RESOURCES = new HashMap<String, Image[]>();
 	private static final long serialVersionUID = 7604033494188278910L;
 	private int facing = 1;
 	AffineTransformOp flipHorizontal = new AffineTransformOp(new AffineTransform(-1, 0, 0, 1, getWidth(), 0),
