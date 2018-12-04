@@ -211,6 +211,9 @@ public class Main implements KeyListener {
 			Obstacle lava2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/spikes.png", 1, 1, 50, true);
 			level.addGameObject(lava2);
+			Terrain terr6 = new Terrain(level.getCameraLocation(), 1400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/block.png", 1, 1);
+			level.addGameObject(terr6);
 			// TODO Level 2 construction.
 			break;
 		}
