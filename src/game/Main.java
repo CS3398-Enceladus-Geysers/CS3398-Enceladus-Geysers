@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.swing.JFrame;
@@ -40,8 +42,8 @@ public class Main implements KeyListener, WindowListener {
 	/** This is the dimensions for the panel which is always displayed. */
 	/** This determines how big the game is. */
 	public static Integer sizeFactor = 60;
-	public static Dimension gamePanelDimension = new Dimension(16 * sizeFactor, 9 * sizeFactor);
-	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
+	public static Dimension gamePanelDimension;
+	private static JFrame GAME_WINDOW;
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
 	private static ScenesEnum scene;
@@ -289,6 +291,19 @@ public class Main implements KeyListener, WindowListener {
 	 * @throws Exception if a file cannot be loaded.
 	 */
 	public Main() throws Exception {
+		GAME_WINDOW = new JFrame("Lunar Rebellion");
+		setup();
+		long lastFrameTime = System.currentTimeMillis();
+		while (true) {
+			if (System.currentTimeMillis() - lastFrameTime < 1000.0 / FPS_LIMIT)
+				Thread.sleep((int) (1000.0 / FPS_LIMIT - System.currentTimeMillis() + lastFrameTime));
+			lastFrameTime = System.currentTimeMillis();
+			currentScene().act();
+		}
+	}
+
+	private void setup() throws Exception {
+		gamePanelDimension = new Dimension(16 * sizeFactor, 9 * sizeFactor);
 		for (ScenesEnum s : ScenesEnum.values()) {
 			if (s != ScenesEnum.LEVEL)
 				SCENES_MAP.put(s, new Scene());
@@ -305,13 +320,6 @@ public class Main implements KeyListener, WindowListener {
 		GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		currentScene().act();
 		GAME_WINDOW.setVisible(true);
-		long lastFrameTime = System.currentTimeMillis();
-		while (true) {
-			if (System.currentTimeMillis() - lastFrameTime < 1000.0 / FPS_LIMIT)
-				Thread.sleep((int) (1000.0 / FPS_LIMIT - System.currentTimeMillis() + lastFrameTime));
-			lastFrameTime = System.currentTimeMillis();
-			currentScene().act();
-		}
 	}
 
 	private GameSave load() {
@@ -438,8 +446,8 @@ public class Main implements KeyListener, WindowListener {
 				transitionScene(ScenesEnum.CHARACTERS);
 			}
 		};
-		Graphic backM = new TextGraphic(375.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu", "Comic Sans",
-				Color.WHITE);
+		Graphic backM = new TextGraphic(375.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu",
+				"Comic Sans", Color.WHITE);
 
 		Graphic back = new ClickableGraphic(backM) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -458,12 +466,12 @@ public class Main implements KeyListener, WindowListener {
 
 		Graphic backgroundCharacters = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
 		characters.addGraphic(backgroundCharacters);
-		Graphic charactersScene = new TextGraphic(375.0 / 60, 100.0 / 60, 175.0 / 60, 24.0 / 60, "CHARACTERS", "Comic Sans",
-				Color.WHITE);
-        characters.addGraphic(charactersScene);
-        
-        Graphic backtoM = new TextGraphic(400.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu", "Comic Sans",
-				Color.WHITE);
+		Graphic charactersScene = new TextGraphic(375.0 / 60, 100.0 / 60, 175.0 / 60, 24.0 / 60, "CHARACTERS",
+				"Comic Sans", Color.WHITE);
+		characters.addGraphic(charactersScene);
+
+		Graphic backtoM = new TextGraphic(400.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu",
+				"Comic Sans", Color.WHITE);
 
 		Graphic backMenu = new ClickableGraphic(backtoM) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -485,6 +493,17 @@ public class Main implements KeyListener, WindowListener {
 
 	protected void fullscreen() {
 		// TODO Do fullscreen 2560x1600
+		sizeFactor = 100;
+		Animation.RESOURCES = new HashMap<String, Image[]>();
+		ImageGraphic.RESOURCES = new HashMap<String, Image[]>();
+		GAME_WINDOW = new JFrame("Lunar Rebellion");
+		GAME_WINDOW.setUndecorated(true);
+		try {
+			setup();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
 		// TODO Also remember to get rid of it if esc is pressed.
 	}
 
