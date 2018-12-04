@@ -74,8 +74,8 @@ public class Main implements KeyListener {
 				@Override
 				public void paintComponent(Graphics g) {
 					g.drawRect(1, 1, 200, 25);
-					g.setColor(Color.white);
-					g.fillRect(1, 1, 200, 25);
+					//g.setColor(Color.white);
+					//g.fillRect(1, 1, 200, 25);
 					g.drawRect(1, 1, 200, 25);
 					g.setColor(Color.red);
 					g.fillRect(1, 1, player.getHP(), 25);
@@ -178,8 +178,8 @@ public class Main implements KeyListener {
 				@Override
 				public void paintComponent(Graphics g) {
 					g.drawRect(1, 1, 200, 25);
-					g.setColor(Color.white);
-					g.fillRect(1, 1, 200, 25);
+					//g.setColor(Color.white);
+					//g.fillRect(1, 1, 200, 25);
 					g.drawRect(1, 1, 200, 25);
 					g.setColor(Color.red);
 					g.fillRect(1, 1, player.getHP(), 25);
@@ -197,13 +197,13 @@ public class Main implements KeyListener {
 					"assets/animated/lava.png", 1, 1, 50, true);
 			level.addGameObject(lava1);
 			Terrain terr2 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/block.png", 2, 1);
+					"assets/still/red.png", 2, 1);
 			level.addGameObject(terr2);
 			Terrain terr3 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/block.png", 1, 1);
+					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr3);
 			Terrain terr4 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/blockBottom.png", 1, 1);
+					"assets/still/redBottom.png", 1, 1);
 			level.addGameObject(terr4);
 			Terrain terr5 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/block.png", 1, 1);
