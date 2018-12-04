@@ -295,9 +295,18 @@ public class Main implements KeyListener, WindowListener {
 			Terrain terr25 = new Terrain(level.getCameraLocation(), 2900.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr25);
+			Terrain terrEx = new Terrain(level.getCameraLocation(), 2900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terrEx);
 			Terrain terr26 = new Terrain(level.getCameraLocation(), 3000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr26);
+			Terrain terrEx1 = new Terrain(level.getCameraLocation(), 3000.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terrEx1);
+			Terrain terrEx2 = new Terrain(level.getCameraLocation(), 3000.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terrEx2);
 			Terrain terr27 = new Terrain(level.getCameraLocation(), 3100.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr27);
@@ -313,6 +322,9 @@ public class Main implements KeyListener, WindowListener {
 			Terrain terr31 = new Terrain(level.getCameraLocation(), 3500.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr31);
+			Item jetpack = new Item(level.getCameraLocation(), 3400.0 / 60, -200 / 60, 100.0 / 60, 100.0 / 60, "gun",
+					"assets/still/jetpack.png", false);
+			level.addGameObject(jetpack);
 			Terrain portal2 = new Portal(level.getCameraLocation(), 3500.0 / 60, -300.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/animated/portal/", 2);
 			level.addGameObject(portal2);
@@ -559,7 +571,7 @@ public class Main implements KeyListener, WindowListener {
 
 	protected void fullscreen() {
 		// TODO Do fullscreen 2560x1600
-		sizeFactor = 100;
+		sizeFactor = 80;
 		Animation.RESOURCES = new HashMap<String, Image[]>();
 		ImageGraphic.RESOURCES = new HashMap<String, Image[]>();
 		GAME_WINDOW = new JFrame("Lunar Rebellion");
