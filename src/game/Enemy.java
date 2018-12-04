@@ -4,9 +4,9 @@ import java.awt.Point;
 
 public class Enemy extends Character {
 
-	private static final double WIDTH = 50.0 / 60, HEIGHT = 100.0 / 60;
+	private static final double WIDTH = 100.0 / 60, HEIGHT = 125.0 / 60;
 	private static final double MIN_X = 0, MAX_X = 600;
-	private ImageGraphic enemy = new ImageGraphic("assets/still/player.png", 0, 0, WIDTH, HEIGHT);
+	private ImageGraphic enemy = new ImageGraphic("assets/still/enemy2.png", 0, 0, WIDTH, HEIGHT);
 
 	public Enemy(Point cameraLocation) throws Exception {
 		super(cameraLocation, 10, 0, WIDTH, HEIGHT, true);
