@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.HashMap;
+
 import javax.imageio.ImageIO;
 
 /**

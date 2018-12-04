@@ -90,4 +90,21 @@ public class Animation extends Graphic {
 	public void paintComponent(Graphics g) {
 		g.drawImage(frames[facing * numFrames + currentFrame], 0, 0, null);
 	}
+
+	public final void faceLeft() {
+		if (facing == 1) {
+			flip();
+		}
+	}
+
+	private final void flip() {
+		facing = 1 - facing;
+		repaint();
+	}
+
+	public final void faceRight() {
+		if (facing == 0) {
+			flip();
+		}
+	}
 }
