@@ -292,6 +292,7 @@ public class Main implements KeyListener, WindowListener {
 	 */
 	public Main() throws Exception {
 		GAME_WINDOW = new JFrame("Lunar Rebellion");
+		gamePanelDimension = new Dimension(16 * sizeFactor, 9 * sizeFactor);
 		setup();
 		long lastFrameTime = System.currentTimeMillis();
 		while (true) {
@@ -303,7 +304,6 @@ public class Main implements KeyListener, WindowListener {
 	}
 
 	private void setup() throws Exception {
-		gamePanelDimension = new Dimension(16 * sizeFactor, 9 * sizeFactor);
 		for (ScenesEnum s : ScenesEnum.values()) {
 			if (s != ScenesEnum.LEVEL)
 				SCENES_MAP.put(s, new Scene());
@@ -494,8 +494,10 @@ public class Main implements KeyListener, WindowListener {
 	protected void fullscreen() {
 		// TODO Do fullscreen 2560x1600
 		sizeFactor = 100;
+		gamePanelDimension = new Dimension(16 * sizeFactor, 10 * sizeFactor);
 		Animation.RESOURCES = new HashMap<String, Image[]>();
 		ImageGraphic.RESOURCES = new HashMap<String, Image[]>();
+		GAME_WINDOW.setVisible(false);
 		GAME_WINDOW = new JFrame("Lunar Rebellion");
 		GAME_WINDOW.setUndecorated(true);
 		try {
