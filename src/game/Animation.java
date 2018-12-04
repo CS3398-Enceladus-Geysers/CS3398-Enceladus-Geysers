@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  * A graphic which implements a frame by frame animation drawing.
  */
 public class Animation extends Graphic {
-	private static final HashMap<String, Image[]> RESOURCES = new HashMap<String, Image[]>();
+	public static HashMap<String, Image[]> RESOURCES = new HashMap<String, Image[]>();
 	private static final long serialVersionUID = 3016242110618863938L;
 	private int currentFrame = 0;
 	private int facing = 1;
