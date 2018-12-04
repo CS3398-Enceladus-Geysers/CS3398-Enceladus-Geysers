@@ -24,6 +24,8 @@ public class Main implements KeyListener, WindowListener {
 	LEVEL, MAIN_MENU, CHARACTERS, SETTINGS, START_MENU, TITLE
 	}
 
+	public GameSave save;
+
 	/**
 	 * A {@link HashSet} which represents the currently pressed keys for as long as
 	 * they remain pressed.
@@ -259,15 +261,8 @@ public class Main implements KeyListener, WindowListener {
 				SCENES_MAP.put(s, new Scene());
 		}
 		currentLevel = 1;
-		GameSave save = load();
-		if (save != null)
-			currentLevel = save.getLevel();
+		save = load();
 		constructScenes();
-		if (save != null) {
-			for (Item itm : save.getItems())
-				getPlayer().addItem(itm);
-			getPlayer().setHP(save.getHP());
-		}
 		transitionScene(ScenesEnum.TITLE);
 		GAME_WINDOW.addKeyListener(this);
 		GAME_WINDOW.addWindowListener(this);
@@ -295,6 +290,8 @@ public class Main implements KeyListener, WindowListener {
 	}
 
 	private final void constructScenes() throws Exception {
+		if (save != null)
+			currentLevel = save.getLevel();
 		constructLevel();
 
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
@@ -446,6 +443,11 @@ public class Main implements KeyListener, WindowListener {
 		};
 		characters.addGraphic(backMenu);
 		// END OF CHARACTERS CONSTRUCTION
+		if (save != null) {
+			for (Item itm : save.getItems())
+				getPlayer().addItem(itm);
+			getPlayer().setHP(save.getHP());
+		}
 	}
 
 	protected void fullscreen() {
