@@ -47,15 +47,14 @@ public class Main implements KeyListener {
 	 */
 	private static final EnumMap<ScenesEnum, Scene> SCENES_MAP = new EnumMap<ScenesEnum, Scene>(ScenesEnum.class);
 
-	public static void constructLevel(int levelNumber) throws Exception {
-		currentLevel = levelNumber;
+	public static void constructLevel() throws Exception {
 		// Start level construction.
 		SCENES_MAP.put(ScenesEnum.LEVEL, new Scene(1.0 / 2, 2.0 / 3));
 		Scene level = SCENES_MAP.get(ScenesEnum.LEVEL);
 		player = new Player(level.getCameraLocation());
 		level.setPlayer(player);
 		level.addGameObject(player);
-		switch (levelNumber) {
+		switch (currentLevel) {
 		case 1:
 			enemy = new Enemy(level.getCameraLocation());
 			level.addGameObject(enemy);
@@ -74,8 +73,8 @@ public class Main implements KeyListener {
 				@Override
 				public void paintComponent(Graphics g) {
 					g.drawRect(1, 1, 200, 25);
-					g.setColor(Color.white);
-					g.fillRect(1, 1, 200, 25);
+					//g.setColor(Color.white);
+					//g.fillRect(1, 1, 200, 25);
 					g.drawRect(1, 1, 200, 25);
 					g.setColor(Color.red);
 					g.fillRect(1, 1, player.getHP(), 25);
@@ -161,7 +160,7 @@ public class Main implements KeyListener {
 		case 2:
 			Graphic background1 = new ImageGraphic("assets/still/titan.png", 0, 0, 16, 9, false);
 			level.addGraphic(background1);
-			
+
 			enemy = new Enemy(level.getCameraLocation());
 			level.addGameObject(enemy);
 			Graphic healthbarGraphic1 = new Graphic(4.0 / 60, 3.0 / 60, 150, 50) {
@@ -178,8 +177,8 @@ public class Main implements KeyListener {
 				@Override
 				public void paintComponent(Graphics g) {
 					g.drawRect(1, 1, 200, 25);
-					g.setColor(Color.white);
-					g.fillRect(1, 1, 200, 25);
+					//g.setColor(Color.white);
+					//g.fillRect(1, 1, 200, 25);
 					g.drawRect(1, 1, 200, 25);
 					g.setColor(Color.red);
 					g.fillRect(1, 1, player.getHP(), 25);
@@ -188,28 +187,28 @@ public class Main implements KeyListener {
 					g.drawString("HP: " + player.getHP(), 65, 15);
 				}
 			};
-			
+
 			level.addGraphic(healthbarGraphic1);
 			Terrain terr1 = new Terrain(level.getCameraLocation(), 0, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/red.png", 8, 1);
 			level.addGameObject(terr1);
 			Obstacle lava1 = new Obstacle(level.getCameraLocation(), 800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/animated/lava.png", 1, 1, 50, true);
+					"assets/animated/lava/", 1, 1, 50, true);
 			level.addGameObject(lava1);
 			Terrain terr2 = new Terrain(level.getCameraLocation(), 900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/block.png", 2, 1);
+					"assets/still/red.png", 2, 1);
 			level.addGameObject(terr2);
 			Terrain terr3 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/block.png", 1, 1);
+					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr3);
 			Terrain terr4 = new Terrain(level.getCameraLocation(), 1100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/blockBottom.png", 1, 1);
+					"assets/still/redBottom.png", 1, 1);
 			level.addGameObject(terr4);
 			Terrain terr5 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/block.png", 1, 1);
 			level.addGameObject(terr5);
 			Obstacle lava2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/spikes.png", 1, 1, 50, true);
+					"assets/animated/lava/", 1, 1, 50, true);
 			level.addGameObject(lava2);
 			Terrain terr6 = new Terrain(level.getCameraLocation(), 1400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/block.png", 1, 1);
@@ -278,8 +277,8 @@ public class Main implements KeyListener {
 	}
 
 	private final void constructScenes() throws Exception {
-
-		constructLevel(1);
+		currentLevel = 1;
+		constructLevel();
 
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
 		Graphic backgroundTitle = new ImageGraphic("assets/still/title.png", 0, 0, 16, 8.5, false);
@@ -312,7 +311,7 @@ public class Main implements KeyListener {
 
 		Graphic startB = new TextGraphic(375.0 / 60, 200.0 / 60, 175.0 / 60, 24.0 / 60, "START GAME", "Comic Sans",
 				Color.WHITE);
-		
+
 		Graphic startGame = new ClickableGraphic(startB) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
@@ -340,7 +339,7 @@ public class Main implements KeyListener {
 
 		Graphic quitB = new TextGraphic(375.0 / 60, 300.0 / 60, 175.0 / 60, 24.0 / 60, "QUIT", "Comic Sans",
 				Color.WHITE);
-		
+
 		Graphic quitting = new ClickableGraphic(quitB) {
 			private static final long serialVersionUID = 3237106029139727237L;
 
@@ -355,8 +354,8 @@ public class Main implements KeyListener {
 		menu.addGraphic(options);
 		menu.addGraphic(quitting);
 		// END OF START MENU CONSTRUCTION
-        // START SETTINGS CONSTRUCTION
-		
+		// START SETTINGS CONSTRUCTION
+
 		Scene settings = SCENES_MAP.get(ScenesEnum.SETTINGS);
 
 		Graphic backgroundSettings = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
@@ -365,8 +364,7 @@ public class Main implements KeyListener {
 				Color.WHITE);
 
 		settings.addGraphic(settingScene);
-		
-		
+
 		Graphic resizeB = new TextGraphic(375.0 / 60, 200.0 / 60, 175.0 / 60, 24.0 / 60, "FULL SCREEN", "Comic Sans",
 				Color.WHITE);
 
@@ -381,9 +379,9 @@ public class Main implements KeyListener {
 		};
 
 		settings.addGraphic(resize);
-		
-		Graphic newCharacterB = new TextGraphic(375.0 / 60, 250.0 / 60, 350.0 / 60, 24.0 / 60, "CHOOSE NEW CHARACTER", "Comic Sans",
-				Color.WHITE);
+
+		Graphic newCharacterB = new TextGraphic(375.0 / 60, 250.0 / 60, 350.0 / 60, 24.0 / 60, "CHOOSE NEW CHARACTER",
+				"Comic Sans", Color.WHITE);
 
 		Graphic newCharacter = new ClickableGraphic(newCharacterB) {
 			private static final long serialVersionUID = 3237106029139727237L;
@@ -433,10 +431,9 @@ public class Main implements KeyListener {
 		// END OF CHARACTERS CONSTRUCTION
 	}
 
-	
 	protected void fullscreen() {
-		// TODO Auto-generated method stub
-		
+		// TODO Do fullscren
+		// TODO Also remember to get rid of it if esc is pressed.
 	}
 
 	/** We can use this method to listen for keyboard input from our window. */

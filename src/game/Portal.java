@@ -13,7 +13,8 @@ public class Portal extends Terrain {
 
 	public final void teleport() {
 		try {
-			Main.constructLevel(levelNumberToGoTo);
+			Main.currentLevel = levelNumberToGoTo;
+			Main.constructLevel();
 		} catch (Exception e) {
 		}
 		Main.transitionScene(Main.ScenesEnum.LEVEL);
