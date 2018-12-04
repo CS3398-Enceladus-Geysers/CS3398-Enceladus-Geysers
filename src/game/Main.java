@@ -7,19 +7,24 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.EnumMap;
 import java.util.HashSet;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 /**
  * The main driver class for the game, also a {@link KeyListener}.
  */
-public class Main implements KeyListener {
+public class Main implements KeyListener, WindowListener {
 	/** A list of all the scenes. */
 	public enum ScenesEnum {
 	LEVEL, MAIN_MENU, CHARACTERS, SETTINGS, START_MENU, TITLE
 	}
+
+	public GameSave save;
 
 	/**
 	 * A {@link HashSet} which represents the currently pressed keys for as long as
@@ -34,8 +39,8 @@ public class Main implements KeyListener {
 	public static final int FPS_LIMIT = 30;
 	/** This is the dimensions for the panel which is always displayed. */
 	/** This determines how big the game is. */
-	public static final Integer SIZE_FACTOR = 60;
-	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
+	public static Integer sizeFactor = 60;
+	public static Dimension gamePanelDimension = new Dimension(16 * sizeFactor, 9 * sizeFactor);
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
@@ -73,8 +78,8 @@ public class Main implements KeyListener {
 				@Override
 				public void paintComponent(Graphics g) {
 					g.drawRect(1, 1, 200, 25);
-					//g.setColor(Color.white);
-					//g.fillRect(1, 1, 200, 25);
+					g.setColor(Color.white);
+					g.fillRect(1, 1, 200, 25);
 					g.drawRect(1, 1, 200, 25);
 					g.setColor(Color.red);
 					g.fillRect(1, 1, player.getHP(), 25);
@@ -177,8 +182,8 @@ public class Main implements KeyListener {
 				@Override
 				public void paintComponent(Graphics g) {
 					g.drawRect(1, 1, 200, 25);
-					//g.setColor(Color.white);
-					//g.fillRect(1, 1, 200, 25);
+					g.setColor(Color.white);
+					g.fillRect(1, 1, 200, 25);
 					g.drawRect(1, 1, 200, 25);
 					g.setColor(Color.red);
 					g.fillRect(1, 1, player.getHP(), 25);
@@ -205,11 +210,44 @@ public class Main implements KeyListener {
 					"assets/still/redBottom.png", 1, 1);
 			level.addGameObject(terr4);
 			Terrain terr5 = new Terrain(level.getCameraLocation(), 1200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
-					"assets/still/block.png", 1, 1);
+					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr5);
 			Obstacle lava2 = new Obstacle(level.getCameraLocation(), 1300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/animated/lava/", 1, 1, 50, true);
 			level.addGameObject(lava2);
+			Terrain terr6 = new Terrain(level.getCameraLocation(), 1400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr6);
+			Terrain terr7 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr7);
+			Terrain terr8 = new Terrain(level.getCameraLocation(), 1500.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/redBottom.png", 1, 1);
+			level.addGameObject(terr8);
+			Terrain terr9 = new Terrain(level.getCameraLocation(), 1600.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr9);
+			Terrain terr10 = new Terrain(level.getCameraLocation(), 1600.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/redBottom.png", 1, 1);
+			level.addGameObject(terr10);
+			Terrain terr11 = new Terrain(level.getCameraLocation(), 1600.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/redBottom.png", 1, 1);
+			level.addGameObject(terr11);
+			Terrain terr12 = new Terrain(level.getCameraLocation(), 1700.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr12);
+			Terrain terr13 = new Terrain(level.getCameraLocation(), 1700.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/redBottom.png", 1, 1);
+			level.addGameObject(terr13);
+			Terrain terr14 = new Terrain(level.getCameraLocation(), 1700.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/redBottom.png", 1, 1);
+			level.addGameObject(terr14);
+			Terrain terr15 = new Terrain(level.getCameraLocation(), 1800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr15);
+			Terrain terr16 = new Terrain(level.getCameraLocation(), 1900.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr16);
 			// TODO Level 2 construction.
 			break;
 		}
@@ -255,10 +293,13 @@ public class Main implements KeyListener {
 			if (s != ScenesEnum.LEVEL)
 				SCENES_MAP.put(s, new Scene());
 		}
+		currentLevel = 1;
+		save = load();
 		constructScenes();
 		transitionScene(ScenesEnum.TITLE);
 		GAME_WINDOW.addKeyListener(this);
-		GAME_WINDOW.setSize(GAME_PANEL_DIMENSION);
+		GAME_WINDOW.addWindowListener(this);
+		GAME_WINDOW.setSize(gamePanelDimension);
 		GAME_WINDOW.setResizable(false);
 		GAME_WINDOW.setLocationRelativeTo(null);
 		GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -273,8 +314,17 @@ public class Main implements KeyListener {
 		}
 	}
 
+	private GameSave load() {
+		try {
+			return (GameSave) ResourceManager.Load("game.sav");
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	private final void constructScenes() throws Exception {
-		currentLevel = 1;
+		if (save != null)
+			currentLevel = save.getLevel();
 		constructLevel();
 
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
@@ -426,10 +476,15 @@ public class Main implements KeyListener {
 		};
 		characters.addGraphic(backMenu);
 		// END OF CHARACTERS CONSTRUCTION
+		if (save != null) {
+			for (Item itm : save.getItems())
+				getPlayer().addItem(itm);
+			getPlayer().setHP(save.getHP());
+		}
 	}
 
 	protected void fullscreen() {
-		// TODO Do fullscren
+		// TODO Do fullscreen 2560x1600
 		// TODO Also remember to get rid of it if esc is pressed.
 	}
 
@@ -448,5 +503,43 @@ public class Main implements KeyListener {
 	/** Let's not use this one, it's for typing. */
 	@Override
 	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		save();
+	}
+
+	private void save() {
+		try {
+			ResourceManager.save(new GameSave(getPlayer().getHP(), currentLevel, getPlayer().getItems()), "game.sav");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
 	}
 }

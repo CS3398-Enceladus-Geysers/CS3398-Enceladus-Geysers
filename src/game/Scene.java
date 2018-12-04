@@ -50,7 +50,7 @@ public class Scene extends JPanel {
 		screenHeightFraction = 0;
 		cameraLocation = new Point(0, 0);
 		setLayout(null);
-		setSize(Main.GAME_PANEL_DIMENSION);
+		setSize(Main.gamePanelDimension);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class Scene extends JPanel {
 		this.screenHeightFraction = screenHeightFraction;
 		cameraLocation = new Point(0, 0);
 		setLayout(null);
-		setSize(Main.GAME_PANEL_DIMENSION);
+		setSize(Main.gamePanelDimension);
 	}
 
 	/** Will be called on every frame. */
@@ -187,8 +187,8 @@ public class Scene extends JPanel {
 	private final void followPlayerWithCamera() {
 		Rectangle r = playerRepresentation.occupiedSpace.getBounds();
 		Point p = new Point((int) r.getCenterX(), (int) r.getCenterY());
-		p.translate((int) (-Main.GAME_PANEL_DIMENSION.getWidth() * screenWidthFraction),
-				(int) (-Main.GAME_PANEL_DIMENSION.getHeight() * screenHeightFraction));
+		p.translate((int) (-Main.gamePanelDimension.getWidth() * screenWidthFraction),
+				(int) (-Main.gamePanelDimension.getHeight() * screenHeightFraction));
 		cameraLocation.setLocation(p);
 	}
 
@@ -201,7 +201,7 @@ public class Scene extends JPanel {
 
 	@Override
 	public final Dimension getPreferredSize() {
-		return Main.GAME_PANEL_DIMENSION;
+		return Main.gamePanelDimension;
 	}
 
 	/**
