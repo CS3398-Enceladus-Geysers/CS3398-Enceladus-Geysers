@@ -438,6 +438,8 @@ public class Main implements KeyListener, WindowListener {
 				transitionScene(ScenesEnum.CHARACTERS);
 			}
 		};
+		
+		
 		Graphic backM = new TextGraphic(375.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu", "Comic Sans",
 				Color.WHITE);
 
@@ -457,6 +459,10 @@ public class Main implements KeyListener, WindowListener {
 		Scene characters = SCENES_MAP.get(ScenesEnum.CHARACTERS);
 
 		Graphic backgroundCharacters = new ImageGraphic("assets/still/enceladus.png", 0, 0, 16, 9, false);
+		Graphic grey = new ImageGraphic("assets/still/player1.png", 375.0/60, 200.0 /60, 50.0 / 60, 100.0 / 60);
+		Graphic red = new ImageGraphic("assets/still/redPlayer.png", 500.0/60, 200.0 /60, 50.0 / 60, 100.0 / 60);
+		characters.addGraphic(grey);
+		characters.addGraphic(red);
 		characters.addGraphic(backgroundCharacters);
 		Graphic charactersScene = new TextGraphic(375.0 / 60, 100.0 / 60, 175.0 / 60, 24.0 / 60, "CHARACTERS", "Comic Sans",
 				Color.WHITE);
