@@ -390,6 +390,19 @@ public class Main implements KeyListener {
 				transitionScene(ScenesEnum.CHARACTERS);
 			}
 		};
+		Graphic backM = new TextGraphic(400.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu", "Comic Sans",
+				Color.WHITE);
+
+		Graphic back = new ClickableGraphic(backM) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				transitionScene(ScenesEnum.START_MENU);
+			}
+
+		};
+		settings.addGraphic(back);
 		settings.addGraphic(newCharacter);
 		// END OF SETTINGS CONSTRUCTION
 		// BEGINNING OF CHARACTERS CONSTRUCTION
@@ -400,6 +413,21 @@ public class Main implements KeyListener {
 		Graphic charactersScene = new TextGraphic(375.0 / 60, 100.0 / 60, 175.0 / 60, 24.0 / 60, "CHARACTERS", "Comic Sans",
 				Color.WHITE);
         characters.addGraphic(charactersScene);
+        
+        Graphic backtoM = new TextGraphic(400.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu", "Comic Sans",
+				Color.WHITE);
+
+		Graphic backMenu = new ClickableGraphic(backtoM) {
+			private static final long serialVersionUID = 3237106029139727237L;
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				transitionScene(ScenesEnum.START_MENU);
+			}
+
+		};
+		characters.addGraphic(backMenu);
+		// END OF CHARACTERS CONSTRUCTION
 	}
 
 	
