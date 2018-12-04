@@ -249,6 +249,69 @@ public class Main implements KeyListener, WindowListener {
 			Terrain terr17 = new Terrain(level.getCameraLocation(), 2000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
 					"assets/still/red.png", 1, 1);
 			level.addGameObject(terr17);
+			Obstacle lava3 = new Obstacle(level.getCameraLocation(), 1900.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/lava/", 1, 1, 50, true);
+			level.addGameObject(lava3);
+			Obstacle lava4 = new Obstacle(level.getCameraLocation(), 2000.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/lava/", 1, 1, 50, true);
+			level.addGameObject(lava4);
+			Obstacle lava5 = new Obstacle(level.getCameraLocation(), 2100.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/lava/", 1, 1, 50, true);
+			level.addGameObject(lava5);
+			Terrain terr18 = new Terrain(level.getCameraLocation(), 2100.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr18);
+			Obstacle lava6 = new Obstacle(level.getCameraLocation(), 2200.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/lava/", 1, 1, 50, true);
+			level.addGameObject(lava6);
+			Obstacle lava7 = new Obstacle(level.getCameraLocation(), 2300.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/lava/", 1, 1, 50, true);
+			level.addGameObject(lava7);
+			Obstacle lava8 = new Obstacle(level.getCameraLocation(), 2400.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/lava/", 1, 1, 50, true);
+			level.addGameObject(lava8);
+			Terrain terr19 = new Terrain(level.getCameraLocation(), 2300.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr19);
+			Terrain terr20 = new Terrain(level.getCameraLocation(), 2500.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr20);
+			Terrain terr21 = new Terrain(level.getCameraLocation(), 2500.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr21);
+			Terrain terr22 = new Terrain(level.getCameraLocation(), 2600.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr22);
+			Terrain terr23 = new Terrain(level.getCameraLocation(), 2700.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr23);
+			Terrain terr24 = new Terrain(level.getCameraLocation(), 2800.0 / 60, 100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr24);
+			Terrain terr25 = new Terrain(level.getCameraLocation(), 2900.0 / 60, 0.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr25);
+			Terrain terr26 = new Terrain(level.getCameraLocation(), 3000.0 / 60, -100.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr26);
+			Terrain terr27 = new Terrain(level.getCameraLocation(), 3100.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr27);
+			Terrain terr28 = new Terrain(level.getCameraLocation(), 3200.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr28);
+			Terrain terr29 = new Terrain(level.getCameraLocation(), 3300.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr29);
+			Terrain terr30 = new Terrain(level.getCameraLocation(), 3400.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr30);
+			Terrain terr31 = new Terrain(level.getCameraLocation(), 3500.0 / 60, -200.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/still/red.png", 1, 1);
+			level.addGameObject(terr31);
+			Terrain portal2 = new Portal(level.getCameraLocation(), 3500.0 / 60, -300.0 / 60, 100.0 / 60, 100.0 / 60,
+					"assets/animated/portal/", 2);
+			level.addGameObject(portal2);
 			// TODO Level 2 construction.
 			break;
 		}
