@@ -390,7 +390,7 @@ public class Main implements KeyListener {
 				transitionScene(ScenesEnum.CHARACTERS);
 			}
 		};
-		Graphic backM = new TextGraphic(400.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu", "Comic Sans",
+		Graphic backM = new TextGraphic(375.0 / 60, 375.0 / 60, 275.0 / 60, 24.0 / 60, "Back to Main Menu", "Comic Sans",
 				Color.WHITE);
 
 		Graphic back = new ClickableGraphic(backM) {
