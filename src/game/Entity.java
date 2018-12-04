@@ -45,30 +45,30 @@ public abstract class Entity extends CameraObservedObject {
 				if (deltaSign == 0)
 					return;
 				else if (deltaSign == 1.0) {
-					dy = Math.max(dy - (accelerationConstant * Main.SIZE_FACTOR), 0);
+					dy = Math.max(dy - (accelerationConstant * Main.sizeFactor), 0);
 				} else if (deltaSign == -1.0) {
-					dy = Math.min(dy + (accelerationConstant * Main.SIZE_FACTOR), 0);
+					dy = Math.min(dy + (accelerationConstant * Main.sizeFactor), 0);
 				}
 			} else {
 				double deltaSign = Math.signum(dx);
 				if (deltaSign == 0)
 					return;
 				else if (deltaSign == 1.0) {
-					dx = Math.max(dx - (accelerationConstant * Main.SIZE_FACTOR), 0);
+					dx = Math.max(dx - (accelerationConstant * Main.sizeFactor), 0);
 				} else if (deltaSign == -1.0) {
-					dx = Math.min(dx + (accelerationConstant * Main.SIZE_FACTOR), 0);
+					dx = Math.min(dx + (accelerationConstant * Main.sizeFactor), 0);
 				}
 			}
 		} else if (accelerationConstant > 0) {
 			if (isVertical)
-				dy = Math.min(dy + (accelerationConstant * Main.SIZE_FACTOR), maximumVelocity * Main.SIZE_FACTOR);
+				dy = Math.min(dy + (accelerationConstant * Main.sizeFactor), maximumVelocity * Main.sizeFactor);
 			else
-				dx = Math.min(dx + (accelerationConstant * Main.SIZE_FACTOR), maximumVelocity * Main.SIZE_FACTOR);
+				dx = Math.min(dx + (accelerationConstant * Main.sizeFactor), maximumVelocity * Main.sizeFactor);
 		} else {
 			if (isVertical)
-				dy = Math.max(dy + (accelerationConstant * Main.SIZE_FACTOR), maximumVelocity * Main.SIZE_FACTOR);
+				dy = Math.max(dy + (accelerationConstant * Main.sizeFactor), maximumVelocity * Main.sizeFactor);
 			else
-				dx = Math.max(dx + (accelerationConstant * Main.SIZE_FACTOR), maximumVelocity * Main.SIZE_FACTOR);
+				dx = Math.max(dx + (accelerationConstant * Main.sizeFactor), maximumVelocity * Main.sizeFactor);
 		}
 	}
 
@@ -175,14 +175,14 @@ public abstract class Entity extends CameraObservedObject {
 	 * @return The velocity of this object in the X-axis.
 	 */
 	protected double getDx() {
-		return dx / Main.SIZE_FACTOR;
+		return dx / Main.sizeFactor;
 	}
 
 	/**
 	 * @return The velocity of this object in the Y-axis.
 	 */
 	protected double getDy() {
-		return dy / Main.SIZE_FACTOR;
+		return dy / Main.sizeFactor;
 	}
 
 	/**
@@ -217,22 +217,22 @@ public abstract class Entity extends CameraObservedObject {
 
 	/**
 	 * Sets the velocity of this {@link Entity} in the X-axis, after scaling it by
-	 * {@link Main#SIZE_FACTOR}.
+	 * {@link Main#sizeFactor}.
 	 * 
-	 * @param dx the velocity to be set, before scaling by {@link Main#SIZE_FACTOR}.
+	 * @param dx the velocity to be set, before scaling by {@link Main#sizeFactor}.
 	 */
 	protected void setDx(double dx) {
-		this.dx = dx * Main.SIZE_FACTOR;
+		this.dx = dx * Main.sizeFactor;
 	}
 
 	/**
 	 * Sets the velocity of this {@link Entity} in the Y-axis, after scaling it by
-	 * {@link Main#SIZE_FACTOR}.
+	 * {@link Main#sizeFactor}.
 	 * 
-	 * @param dy the velocity to be set, before scaling by {@link Main#SIZE_FACTOR}.
+	 * @param dy the velocity to be set, before scaling by {@link Main#sizeFactor}.
 	 */
 	protected void setDy(double dy) {
-		this.dy = dy * Main.SIZE_FACTOR;
+		this.dy = dy * Main.sizeFactor;
 	}
 
 	/**

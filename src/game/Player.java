@@ -13,7 +13,7 @@ public class Player extends Character {
 	private int invincibilityFrames = 0;
 	private final ArrayList<Item> items = new ArrayList<Item>();
 	public Animation walking = new Animation("assets/animated/player/", 0, 0, WIDTH, HEIGHT);
-	public ImageGraphic standing = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
+	public ImageGraphic standing = new ImageGraphic("assets/still/player1.png", 0, 0, WIDTH, HEIGHT);
 
 	@Override
 	public boolean exclusionPrinciple(Terrain trr) {
@@ -111,5 +111,9 @@ public class Player extends Character {
 			standing.refresh();
 		}
 		repaint();
+	}
+
+	public ArrayList<Item> getItems() {
+		return items;
 	}
 }

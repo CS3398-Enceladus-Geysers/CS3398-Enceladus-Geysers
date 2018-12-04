@@ -1,6 +1,7 @@
 package game;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * {@link AbstractMethodError} {@link Serializable} object meant to store the
@@ -8,9 +9,25 @@ import java.io.Serializable;
  */
 public class GameSave implements Serializable {
 	private static final long serialVersionUID = 1L;
-	// private Items items;
-	@SuppressWarnings("unused")
-	private int HP;
-	@SuppressWarnings("unused")
-	private int level;
+	private final int HP;
+	private final int level;
+	private final ArrayList<Item> Items;
+
+	public GameSave(int HP, int level, ArrayList<Item> Items) {
+		this.HP = HP;
+		this.level = level;
+		this.Items = Items;
+	}
+
+	public int getHP() {
+		return HP;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public ArrayList<Item> getItems() {
+		return Items;
+	}
 }

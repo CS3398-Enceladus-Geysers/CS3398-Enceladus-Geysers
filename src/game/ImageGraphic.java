@@ -36,9 +36,9 @@ public class ImageGraphic extends Graphic {
 	 * @param yoffset  The distance for this image to be rendered measured in the
 	 *                 Y-axis from the top-left corner.
 	 * @param width    Width of this graphic, before scaling by
-	 *                 {@link Main#SIZE_FACTOR}
+	 *                 {@link Main#sizeFactor}
 	 * @param height   Height of this graphic, before scaling by
-	 *                 {@link Main#SIZE_FACTOR}
+	 *                 {@link Main#sizeFactor}
 	 * @throws Exception In case a file is missing.
 	 */
 	public ImageGraphic(String fileName, double xoffset, double yoffset, double width, double height) throws Exception {

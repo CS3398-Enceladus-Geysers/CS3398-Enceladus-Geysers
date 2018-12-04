@@ -7,15 +7,18 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.EnumMap;
 import java.util.HashSet;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 /**
  * The main driver class for the game, also a {@link KeyListener}.
  */
-public class Main implements KeyListener {
+public class Main implements KeyListener, WindowListener {
 	/** A list of all the scenes. */
 	public enum ScenesEnum {
 	LEVEL, MAIN_MENU, CHARACTERS, SETTINGS, START_MENU, TITLE
@@ -34,8 +37,8 @@ public class Main implements KeyListener {
 	public static final int FPS_LIMIT = 30;
 	/** This is the dimensions for the panel which is always displayed. */
 	/** This determines how big the game is. */
-	public static final Integer SIZE_FACTOR = 60;
-	public static final Dimension GAME_PANEL_DIMENSION = new Dimension(16 * SIZE_FACTOR, 9 * SIZE_FACTOR);
+	public static Integer sizeFactor = 60;
+	public static Dimension gamePanelDimension = new Dimension(16 * sizeFactor, 9 * sizeFactor);
 	private static final JFrame GAME_WINDOW = new JFrame("Lunar Rebellion");
 	private static Player player;
 	/** This variable tells us which scene we're currently in. */
@@ -288,10 +291,20 @@ public class Main implements KeyListener {
 			if (s != ScenesEnum.LEVEL)
 				SCENES_MAP.put(s, new Scene());
 		}
+		currentLevel = 1;
+		GameSave save = load();
+		if (save != null)
+			currentLevel = save.getLevel();
 		constructScenes();
+		if (save != null) {
+			for (Item itm : save.getItems())
+				getPlayer().addItem(itm);
+			getPlayer().setHP(save.getHP());
+		}
 		transitionScene(ScenesEnum.TITLE);
 		GAME_WINDOW.addKeyListener(this);
-		GAME_WINDOW.setSize(GAME_PANEL_DIMENSION);
+		GAME_WINDOW.addWindowListener(this);
+		GAME_WINDOW.setSize(gamePanelDimension);
 		GAME_WINDOW.setResizable(false);
 		GAME_WINDOW.setLocationRelativeTo(null);
 		GAME_WINDOW.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -306,8 +319,15 @@ public class Main implements KeyListener {
 		}
 	}
 
+	private GameSave load() {
+		try {
+			return (GameSave) ResourceManager.Load("game.sav");
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	private final void constructScenes() throws Exception {
-		currentLevel = 1;
 		constructLevel();
 
 		Scene title = SCENES_MAP.get(ScenesEnum.TITLE);
@@ -462,7 +482,7 @@ public class Main implements KeyListener {
 	}
 
 	protected void fullscreen() {
-		// TODO Do fullscren
+		// TODO Do fullscreen 2560x1600
 		// TODO Also remember to get rid of it if esc is pressed.
 	}
 
@@ -481,5 +501,43 @@ public class Main implements KeyListener {
 	/** Let's not use this one, it's for typing. */
 	@Override
 	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		save();
+	}
+
+	private void save() {
+		try {
+			ResourceManager.save(new GameSave(getPlayer().getHP(), currentLevel, getPlayer().getItems()), "game.sav");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
 	}
 }
