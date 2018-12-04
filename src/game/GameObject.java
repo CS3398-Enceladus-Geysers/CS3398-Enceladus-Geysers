@@ -23,13 +23,13 @@ public class GameObject {
 
 	/**
 	 * This constructor sets the {@link #absoluteLocation} to match {@code x} and
-	 * {@code y}, after scaling them by {@link Main#SIZE_FACTOR}.
+	 * {@code y}, after scaling them by {@link Main#sizeFactor}.
 	 * 
 	 * @param x
 	 * @param y
 	 */
 	public GameObject(double x, double y) {
-		absoluteLocation = new Point((int) (x * Main.SIZE_FACTOR), (int) (y * Main.SIZE_FACTOR));
+		absoluteLocation = new Point((int) (x * Main.sizeFactor), (int) (y * Main.sizeFactor));
 	}
 
 	/**

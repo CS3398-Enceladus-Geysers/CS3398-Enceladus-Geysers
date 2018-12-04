@@ -11,7 +11,7 @@ public abstract class Graphic extends JComponent {
 	private static final long serialVersionUID = 5084265228790714409L;
 
 	private static final Dimension scaledSize(double width, double height) {
-		return new Dimension((int) (width * Main.SIZE_FACTOR), (int) (height * Main.SIZE_FACTOR));
+		return new Dimension((int) (width * Main.sizeFactor), (int) (height * Main.sizeFactor));
 	}
 
 	private boolean expired;
@@ -19,7 +19,7 @@ public abstract class Graphic extends JComponent {
 	private final int xoffset, yoffset;
 
 	/**
-	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
+	 * Sets the size of this graphic according to {@link Main#sizeFactor} and sets
 	 * its location to the top left of the {@link GameObject} to which it belongs.
 	 * 
 	 * @param width  the x dimension of this {@link Graphic}
@@ -34,7 +34,7 @@ public abstract class Graphic extends JComponent {
 	}
 
 	/**
-	 * Sets the size of this graphic according to {@link Main#SIZE_FACTOR} and sets
+	 * Sets the size of this graphic according to {@link Main#sizeFactor} and sets
 	 * its location to offset from the top left of the {@link GameObject} to which
 	 * it belongs according to {@code xoffset} and {@code yoffset}.
 	 * 
@@ -52,8 +52,8 @@ public abstract class Graphic extends JComponent {
 	public Graphic(double xoffset, double yoffset, double width, double height, boolean foreground) {
 		this.foreground = foreground;
 		setSize(scaledSize(width, height));
-		this.xoffset = (int) (xoffset * Main.SIZE_FACTOR);
-		this.yoffset = (int) (yoffset * Main.SIZE_FACTOR);
+		this.xoffset = (int) (xoffset * Main.sizeFactor);
+		this.yoffset = (int) (yoffset * Main.sizeFactor);
 		setLocation(0, 0);
 	}
 

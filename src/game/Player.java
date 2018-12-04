@@ -112,4 +112,8 @@ public class Player extends Character {
 		}
 		repaint();
 	}
+
+	public ArrayList<Item> getItems() {
+		return items;
+	}
 }

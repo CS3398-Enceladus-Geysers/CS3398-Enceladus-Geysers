@@ -12,20 +12,20 @@ public class Hitbox {
 
 	/**
 	 * Initializes this {@link Hitbox} with a width and height scaled by
-	 * {@link Main#SIZE_FACTOR}, and a {@link Point} that refers to a
+	 * {@link Main#sizeFactor}, and a {@link Point} that refers to a
 	 * {@link GameObject#absoluteLocation} to represent a rectangle that depends on
 	 * the location of that {@link GameObject}.
 	 * 
 	 * @param width            The width of this {@link Hitbox}, before scaling by
-	 *                         {@link Main#SIZE_FACTOR}
+	 *                         {@link Main#sizeFactor}
 	 * @param height           The height of this {@link Hitbox}, before scaling by
-	 *                         {@link Main#SIZE_FACTOR}
+	 *                         {@link Main#sizeFactor}
 	 * @param absoluteLocation The reference to a
 	 *                         {@link GameObject#absoluteLocation}
 	 */
 	public Hitbox(double width, double height, Point absoluteLocation) {
-		this.width = width * Main.SIZE_FACTOR;
-		this.height = height * Main.SIZE_FACTOR;
+		this.width = width * Main.sizeFactor;
+		this.height = height * Main.sizeFactor;
 		this.absoluteLocation = absoluteLocation;
 	}
 
