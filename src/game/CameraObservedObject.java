@@ -21,9 +21,9 @@ public abstract class CameraObservedObject extends GameObject {
 	 * @param x              The x coordinate in absolute space of this Object
 	 * @param y              The y coordinate in absolute space of this Object
 	 * @param width          The width of this object, before scaling by
-	 *                       {@link Main#SIZE_FACTOR}
+	 *                       {@link Main#sizeFactor}
 	 * @param height         The width of this object, before scaling by
-	 *                       {@link Main#SIZE_FACTOR}
+	 *                       {@link Main#sizeFactor}
 	 */
 	public CameraObservedObject(Point cameraLocation, double x, double y, double width, double height) {
 		super(x, y);
