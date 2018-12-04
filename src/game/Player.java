@@ -12,7 +12,8 @@ public class Player extends Character {
 	private static final int PLAYER_HEALTH = 200;
 	private int invincibilityFrames = 0;
 	private final ArrayList<Item> items = new ArrayList<Item>();
-	private ImageGraphic sprite = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
+	public Animation walking = new Animation("assets/animated/player/", 0, 0, WIDTH, HEIGHT);
+	public ImageGraphic standing = new ImageGraphic("assets/still/player2.png", 0, 0, WIDTH, HEIGHT);
 
 	@Override
 	public boolean exclusionPrinciple(Terrain trr) {
@@ -30,7 +31,8 @@ public class Player extends Character {
 	 */
 	public Player(Point cameraLocation) throws Exception {
 		super(cameraLocation, 0, 0, WIDTH, HEIGHT, true);
-		addGraphic(sprite);
+		addGraphic(standing);
+		addGraphic(walking);
 		setHP(PLAYER_HEALTH);
 	}
 
@@ -62,7 +64,7 @@ public class Player extends Character {
 
 		if (getHP() <= 0) {
 			try {
-				Main.constructLevel(Main.currentLevel);
+				Main.constructLevel();
 				Main.transitionScene(Main.ScenesEnum.LEVEL);
 			} catch (Exception e) {
 
@@ -95,9 +97,19 @@ public class Player extends Character {
 			}
 		}
 		if (getDx() > 0) {
-			sprite.faceRight();
+			walking.refresh();
+			standing.expire();
+			standing.faceRight();
+			walking.faceRight();
 		} else if (getDx() < 0) {
-			sprite.faceLeft();
+			walking.refresh();
+			standing.expire();
+			standing.faceLeft();
+			walking.faceLeft();
+		} else if (getDx() == 0) {
+			walking.expire();
+			standing.refresh();
 		}
+		repaint();
 	}
 }

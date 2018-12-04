@@ -71,7 +71,14 @@ public abstract class Graphic extends JComponent {
 	public abstract void act();
 
 	/**
-	 * Mark this object for destruction.
+	 * Unmark this object for removal.
+	 */
+	public final void refresh() {
+		expired = false;
+	}
+
+	/**
+	 * Mark this object for removal.
 	 */
 	public final void expire() {
 		expired = true;
