@@ -43,4 +43,4 @@ Peter Hutchson, I will make a new file type to store levels in, to be easily edi
 End of Sprint 3 (FINAL SPRINT)
 
 Maria Jaramillo - I worked mainly on Main.java. I created the tile, main menu, and settings. Also worked on the transition between these scenes.  The main thing I was able to accomplish from Sprint 2 into Sprint 3 was being able to have workable buttons and transitions for the title and main menu. Next step is to hopefully keep working on the game and improve it.
-Jazmine Castillo - I worked on the level 2 background, terrain, obstacle, items and enemy assets. I also worked on Main.java to display the character options.
+Jazmine Castillo - I worked on the level 2 background, terrain, obstacle, items and enemy assets. I also worked on Main.java to display the character options. Next step would be to begin creating the assets for level 3 and to add the ability for the user to actually choose their character.
