@@ -38,3 +38,8 @@ Kristof York, I will start building the next level by placing platforms and obst
 Laura Rice, in the next sprint I plan to implement Game Over/Reset Methods using the GameSave and ResourceManager classes that I made in sprint 2.  
 Jazmine Castillo, I will create an overworld and design the enemies and collectible items.
 Peter Hutchson, I will make a new file type to store levels in, to be easily edited independently of the other files.
+
+
+End of Sprint 3 (FINAL SPRINT)
+
+Maria Jaramillo - I worked mainly on Main.java. I created the tile, main menu, and settings. Also worked on the transition between these scenes.  The main thing I was able to accomplish from Sprint 2 into Sprint 3 was being able to have workable buttons and transitions for the title and main menu.
