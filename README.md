@@ -42,4 +42,4 @@ Peter Hutchson, I will make a new file type to store levels in, to be easily edi
 
 End of Sprint 3 (FINAL SPRINT)
 
-Maria Jaramillo - I worked mainly on Main.java. I created the tile, main menu, and settings. Also worked on the transition between these scenes.  The main thing I was able to accomplish from Sprint 2 into Sprint 3 was being able to have workable buttons and transitions for the title and main menu.
+Maria Jaramillo - I worked mainly on Main.java. I created the tile, main menu, and settings. Also worked on the transition between these scenes.  The main thing I was able to accomplish from Sprint 2 into Sprint 3 was being able to have workable buttons and transitions for the title and main menu. Next step is to hopefully keep working on the game and improve it.
