@@ -37,11 +37,27 @@ Next steps for Sprint 3
 Kristof York, I will start building the next level by placing platforms and obstacles.
 Laura Rice, in the next sprint I plan to implement Game Over/Reset Methods using the GameSave and ResourceManager classes that I made in sprint 2.  
 Jazmine Castillo, I will create an overworld and design the enemies and collectible items.
-Peter Hutchson, I will make a new file type to store levels in, to be easily edited independently of the other files.
+Peter Hutcheson, I will make a new file type to store levels in, to be easily edited independently of the other files.
 
 
 End of Sprint 3 (FINAL SPRINT)
 
-Maria Jaramillo - I worked mainly on Main.java. I created the tile, main menu, and settings. Also worked on the transition between these scenes.  The main thing I was able to accomplish from Sprint 2 into Sprint 3 was being able to have workable buttons and transitions for the title and main menu. Next step is to hopefully keep working on the game and improve it.
-Jazmine Castillo - I worked on the level 2 background, terrain, obstacle, items and enemy assets. I also worked on Main.java to display the character options. Next step would be to begin creating the assets for level 3 and to add the ability for the user to actually choose their character.
-Laura Rice - I worked on the Enemy class.  I also worked on restarting the game if the player fell off the edge of the game or lost all their hitpoints.  If the player died they would respawn at the last completed level.  If we had another sprint, the next thing I would work on would be adding animation to our enemy, add a loading scene when a character is moving on to the next level, and add some kind game over message or animation when the player died.  
+Maria Jaramillo - I worked mainly on Main.java. I created the title, main menu,
+and settings. Also worked on the transition between these scenes.  The main
+thing I was able to accomplish from Sprint 2 into Sprint 3 was being able to
+have workable buttons and transitions for the title and main menu. Next step is
+to hopefully keep working on the game and improve it.
+Jazmine Castillo - I worked on the level 2 background, terrain, obstacle, items
+and enemy assets. I also worked on Main.java to display the character options.
+Next step would be to begin creating the assets for level 3 and to add the
+ability for the user to actually choose their character.
+Laura Rice - I worked on the Enemy class.  I also worked on restarting the game
+if the player fell off the edge of the game or lost all their hitpoints.  If
+the player died they would respawn at the last completed level.  If we had
+another sprint, the next thing I would work on would be adding animation to our
+enemy, add a loading scene when a character is moving on to the next level, and
+add some kind game over message or animation when the player died.
+Peter Wesley Hutcheson - I worked on Item.java, Portal.java, and Animation.java
+in order to implement collectible items, animations, and changing levels. In a
+future sprint, I would clean up and optimize the code significantly, and perhaps
+create convenience methods and a new filetype to store levels.
