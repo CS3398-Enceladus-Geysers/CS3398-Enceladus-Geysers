@@ -13,7 +13,7 @@ overthrow this tyrant, our protagonist must travel through wormhole portals to
 other moons of saturn where they can collect useful gear and powers that will
 help them infiltrate the ruler's lair and defeat them.
 
-**3 Project Status **
+**3 Project Status**
 
 For Sprint 1, we have created a simple platformer. 
 
